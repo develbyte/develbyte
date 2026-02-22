@@ -1,0 +1,92 @@
+.tagsFilterContainer {
+  background: rgba(42, 42, 42, 0.4);
+  border: 1px solid rgba(80, 80, 80, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 2rem);
+  max-height: calc(100vh - var(--ifm-navbar-height) - 4rem);
+  overflow-y: auto;
+  min-width: 280px;
+  width: 100%;
+}
+
+.tagsFilterHeader {
+  color: #FFFF66;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(80, 80, 80, 0.3);
+}
+
+.tagsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tagItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #B8B8B8;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.tagItem:hover {
+  background: rgba(60, 60, 60, 0.4);
+  border-color: rgba(100, 100, 100, 0.4);
+  color: #E5E7EB;
+}
+
+.tagItemActive {
+  background: rgba(255, 255, 102, 0.1) !important;
+  border-color: rgba(255, 255, 102, 0.3) !important;
+  color: #FFFF66 !important;
+}
+
+.tagLabel {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tagCount {
+  color: #9CA3AF;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  background: rgba(60, 60, 60, 0.5);
+  border-radius: 12px;
+  min-width: 24px;
+  text-align: center;
+}
+
+.tagItemActive .tagCount {
+  background: rgba(255, 255, 102, 0.2);
+  color: #FFFF66;
+}
+
+
+@media (max-width: 996px) {
+  .tagsFilterContainer {
+    position: static;
+    max-height: none;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
