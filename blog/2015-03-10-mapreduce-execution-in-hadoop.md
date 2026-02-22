@@ -12,7 +12,7 @@ In this article we have tried to summaries,  how a MapReduce program executes in
 
 <!-- truncate -->
 
-## MapReduce 1 Execution Sequence:
+## ❯ MapReduce 1 Execution Sequence:
 
 MapReduce execution starts with below command.
 

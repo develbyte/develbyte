@@ -21,7 +21,7 @@ If redundancy exists in the database then problems can arise when the database i
 - When data is inserted the data must be duplicated correctly in all places where there is redundancy. For instance, if two tables exist for in a database, and both tables contain the employee name, then creating a new employee entry requires that both tables be updated with the employee name.
 - When data is modified in the database, if the data being changed has redundancy, then all versions of the redundant data must be updated simultaneously. So in the employee example a change to the employee name must happen in both tables simultaneously.
 
-## Aims of Normalisation
+## ❯ Aims of Normalisation
 
 - Normalisation ensures that the database is structured in the best possible way.
 - To achieve control over data redundancy. There should be no unnecessary duplication of data in different tables.
@@ -29,14 +29,14 @@ If redundancy exists in the database then problems can arise when the database i
 - To ensure tables have a flexible structure. E.g. number of classes taken or books borrowed should not be limited.
 - To allow data in different tables can be used in complex queries.
 
-## Stages of Normalisation
+## ❯ Stages of Normalisation
 
 - First Normal Form 1NF
 - Second Normal Form 2NF
 - Third Normal Form 3NF
 - Boyce-Codd Normal Form BCNF
 
-## First Normal Form: 1NF
+## ❯ First Normal Form: 1NF
 
 A table is in its first normal form if it contains no repeating attributes or groups of attributes. To convert data for unnormalised form to 1NF, simply convert any repeated attributes into part of the candidate key.
 
@@ -51,7 +51,7 @@ A table is in its first normal form if it contains no repeating attributes or gr
 - Remember to put the primary key from the original relation into both new relations.
 - This option is liable to give the best results.
 
-## Second Normal Form: 2NF
+## ❯ Second Normal Form: 2NF
 
 A table is in the second normal form if it's in the first normal form AND no column that is not part of the primary key is dependant only a portion of the primary key.
 
@@ -65,7 +65,7 @@ The concept of functional dependency in central to normalisation and, in particu
 - One relation for the attributes that are fully dependent upon the key.
 - One relation for each part of the key that has partially dependent attributes
 
-## Third Normal Form: 3NF
+## ❯ Third Normal Form: 3NF
 
 A table is in the third normal form if it is the second normal form and there are no non-key columns dependant on other non-key columns that could not act as the primary key.
 

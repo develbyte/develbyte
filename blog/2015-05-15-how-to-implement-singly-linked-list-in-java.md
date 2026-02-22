@@ -14,7 +14,7 @@ Linked lists and arrays are similar since they both store collections of data. T
 
 <!-- truncate -->
 
-## Types of Linked List
+## ❯ Types of Linked List
 
 - Singly Linked List
 - Doubly Linked List
@@ -24,9 +24,9 @@ Singly Linked List is the most basic types of Linked List where every node holds
 
 ![linkedlist](/img/linkedlist.png)
 
-## Implementation of Singly Linked List
+## ❯ Implementation of Singly Linked List
 
-### Node.java
+### ❯ Node.java
 
 ```java
 public class Node {
@@ -43,7 +43,7 @@ public class Node {
 }
 ```
 
-### LinkedList.java
+### ❯ LinkedList.java
 
 ```java
 public class LinkedList {
@@ -115,7 +115,7 @@ public class LinkedList {
 }
 ```
 
-### MainClass.java
+### ❯ MainClass.java
 
 ```java
 public class testClass {

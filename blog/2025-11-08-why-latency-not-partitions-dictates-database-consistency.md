@@ -29,7 +29,7 @@ To kick things off, I picked a paper that’s sparked more conversations (and ar
 Let's unpack that.
 
 <!--truncate-->
-## The Myth of the All-Powerful CAP Theorem
+## ❯ The Myth of the All-Powerful CAP Theorem
 
 For anyone working in distributed systems, the CAP theorem is a foundational concept. It's the go-to framework for explaining the difficult choices engineers face when building databases that can withstand failure. We're taught that in the face of a network partition, we must choose between Consistency and Availability.
 
@@ -38,7 +38,7 @@ But while the CAP theorem is undoubtedly important, its influence on the day-to-
 This article will follow the clues laid out in Daniel J. Abadi's seminal paper to reveal the true tradeoffs shaping modern distributed databases, uncovering a more complete mental model for how these complex systems actually work.
 
 
-## CAP Is for Failures, Not Everyday Life
+## ❯ CAP Is for Failures, Not Everyday Life
 
 The big “aha” for me was this:
 CAP only kicks in when you’re in failure mode — when network partitions actually happen. For the vast majority of time, when your database nodes can all see and talk to one another, there’s no forced tradeoff. You can have both consistency and availability. If a system relaxes consistency during this “all healthy” state, it’s doing it for other reasons, not because CAP demands it.
@@ -49,7 +49,7 @@ As Abadi bluntly says:
 
 So what’s really going on?
 
-## The Real Battle: Consistency vs. Latency (AKA, Why Users Hate Waiting)
+## ❯ The Real Battle: Consistency vs. Latency (AKA, Why Users Hate Waiting)
 
 The true, always-on tension in distributed databases comes from **replication**. Modern applications need data close to their users, across multiple regions, for both speed and fault tolerance. Replication across datacenters or availability zones is non-negotiable — but it comes with a price.
 
@@ -59,7 +59,7 @@ The result is a continuous tradeoff: either you wait (and guarantee consistency)
 
 And for modern user-facing apps, latency isn't negotiable. Studies show even a 100‑millisecond delay can measurably hurt engagement and conversions. That's why many "eventually consistent" architectures exist not to survive partitions — but to keep the UI fast.
 
-## PNUTS: The Smoking Gun
+## ❯ PNUTS: The Smoking Gun
 
 Yahoo's PNUTS database is the clearest example of this. Let's look at how it behaves in two situations.
 
@@ -73,7 +73,7 @@ PNUTS prioritizes low latency. It serves reads from any replica to respond quick
 
 This split personality is the giveaway: PNUTS's consistency choices have less to do with network partitions and more to do with user latency and throughput. CAP explains its behavior in failure mode, but not its design in steady state.
 
-## From CAP to PACELC
+## ❯ From CAP to PACELC
 
 To reconcile these two perspectives, Abadi proposed a more complete framework: **PACELC**.
 
@@ -87,7 +87,7 @@ That gives us a much richer vocabulary to describe real systems:
 
 PACELC extends CAP into real-world territory — capturing how systems behave not just in the rare event of a failure, but during the 99.9% of time when everything is working.
 
-## Ask the Better Question
+## ❯ Ask the Better Question
 
 CAP still matters. It tells you how your system behaves when things go wrong. But PACELC reminds us that systems spend most of their lives running normally, where the key constraint is **latency, not partitioning**.
 
@@ -96,7 +96,7 @@ So, next time you're whiteboarding an architecture or comparing databases, don't
 > **In the absence of failures — when it actually matters to users — does it sacrifice my consistency for lower latency?**
 
 
-## What’s Next for #50PaperChallenge?
+## ❯ What’s Next for #50PaperChallenge?
 
 That’s Whitepaper #1 done!
 Next week, I’m planning to dig into another classic — maybe something on consensus or data pipelines (not decided yet).

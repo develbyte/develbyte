@@ -16,23 +16,23 @@ Zookeper is open-sorced to Apache by Yahoo. Apache Zookeper have became standard
 
 <!-- truncate -->
 
-## What is a distributed application?
+## ❯ What is a distributed application?
 
 Distributed applications are the type of application comprised of multiple software components running independently and concurrently across multiple physical machines. Distributed applications are required to do resource intensive computions which is difficult or impossible to do in a non-distributed environment. The group is machines running the distributed applications are togethere called as cluster and each machine individually called as Nodes. Distributed applications provides scalability and performance along with other benifits, But it can also easly lead to various complexities like Race Condition, DeadLock, Inconsistency, This is where Zookeeper comes to rescue. Zookeper helps to create co-ordianation between the tasks and maintain shared data with robust syncronisation technique.
 
 Let's look at some examples where ZooKeeper has been useful to get a better sense of where it is applicable:
 
-## 1. Apache HBase
+## ❯ 1. Apache HBase
 HBase is a data store typically used alongside Hadoop. In HBase, ZooKeeper is used to  elect  a  cluster  master,  to  keep  track  of  available  servers,  and  to  keep  cluster metadata.
 
-## 2. Apache Kafka
+## ❯ 2. Apache Kafka
 Kafka is a pub-sub messaging system. It uses ZooKeeper to detect crashes, to implement topic discovery, and to maintain production and consumption state for topics.
 
-## 3. Apache Solr
+## ❯ 3. Apache Solr
 Solr is an enterprise search platform. In its distributed form, called SolrCloud, it uses ZooKeeper to store metadata about the cluster and coordinate the updates to this metadata.
 
-## 4. Yahoo! Fetching Service
+## ❯ 4. Yahoo! Fetching Service
 Part of a crawler implementation, the Fetching Service  fetches web pages efficiently by  caching content while making sure that web server policies, such as those in robots.txt files, are preserved. This service uses ZooKeeper for tasks such as master election, crash detection, and metadata storage.
 
-## 5. Facebook Messages
+## ❯ 5. Facebook Messages
 This is a Facebook application that integrates communication channels: email, SMS, Facebook Chat, and the existing Facebook Inbox. It uses ZooKeeper as a controller for implementing sharding and failover, and also for service discovery.

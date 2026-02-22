@@ -12,7 +12,7 @@ I have seen people writing number of lines of code to find out the date on a spe
 
 <!-- truncate -->
 
-## Logic:
+## ❯ Logic:
 - Add a number of the day you want the date for in your current date, assuming Monday as day 1, Tuesday as day 2 and so on.
 
 ```sql

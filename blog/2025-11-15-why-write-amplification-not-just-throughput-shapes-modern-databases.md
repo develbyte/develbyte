@@ -9,7 +9,7 @@ tags: [distributed-systems, architecture, database, 50PaperChallenge, storage-en
 
 *Lessons from LSM Trees and WiscKey — Paper #2 & #3 of #50PaperChallenge*
 
-## Introduction: Why This Paper Stayed With Me
+## ❯ Introduction: Why This Paper Stayed With Me
 
 In my **#50PaperChallenge** journey, I've been deliberately alternating between *foundational theory* and *systems papers that quietly changed the industry*. This pairing — **[LSM Tree (O’Neil et al., 1996)](https://dsf.berkeley.edu/cs286/papers/lsm-acta1996.pdf)** and **[WiscKey: Separating Keys from Values in SSD-Conscious Storage](https://pages.cs.wisc.edu/~ll/papers/wisckey_tos.pdf)** — sits squarely in that second category.
 
@@ -30,7 +30,7 @@ This post is my attempt to unpack **what LSM Trees actually optimize for**, why 
 If you build databases, data platforms, or even just tune RocksDB configs in production, this is not academic history. This is operational reality.
 
 
-## The Core Problem: Why B-Trees Started to Break
+## ❯ The Core Problem: Why B-Trees Started to Break
 
 The LSM Tree was not designed to be "cool."
 
@@ -54,7 +54,7 @@ Instead of paying the cost at write time, it batches writes in memory, flushes t
 
 That distinction becomes important later.
 
-## What LSM Trees Actually Optimize For
+## ❯ What LSM Trees Actually Optimize For
 
 At a high level, an **LSM Tree trades read complexity for write efficiency**.
 
@@ -70,7 +70,7 @@ This is why production LSM systems feel stable until they don’t. Everything lo
 
 And this is where write amplification stops being an abstract metric and starts becoming an operational problem.
 
-### Write Amplification: The Cost That Refuses to Disappear
+### ❯ Write Amplification: The Cost That Refuses to Disappear
 
 At a database level, write amplification is simple to define:
 
@@ -84,7 +84,7 @@ Those database-level rewrites land on storage devices that have their own intern
 
 The LSM Tree paper focuses on the database side. WiscKey is interesting because it implicitly acknowledges that the cost of rewriting data is no longer abstract once SSD endurance enters the picture.
 
-### Why WiscKey Feels Like an Obvious Idea in Hindsight
+### ❯ Why WiscKey Feels Like an Obvious Idea in Hindsight
 
 WiscKey starts from a slightly uncomfortable observation: during compaction, most of the I/O cost often comes from rewriting values, not keys — even though values don’t meaningfully participate in ordering decisions.
 
@@ -103,7 +103,7 @@ What WiscKey does not claim is equally important. It doesn’t say this design i
 
 Once again, the theme is not elimination of cost — it’s redistribution of cost.
 
-## Where Industry Mental Models Often Go Wrong
+## ❯ Where Industry Mental Models Often Go Wrong
 
 One reason these papers still matter is that the industry tends to compress them into slogans.
 
@@ -132,7 +132,7 @@ The brilliance is not the data structure itself — it's the **I/O pattern**:
 * Batched reads
 * Deferred cleanup
 
-### What This Changes for Me as a Practitioner
+### ❯ What This Changes for Me as a Practitioner
 
 After revisiting these papers, I find myself thinking less about “which engine is faster” and more about where the inevitable work shows up.
 
@@ -147,7 +147,7 @@ If large values dominate your workload and compaction is your bottleneck, design
 
 None of these choices are abstract. They surface directly in on-call rotations, hardware refresh cycles, and customer-facing latency charts.
 
-## Closing Thought
+## ❯ Closing Thought
 
 Storage engine design is never about winning. It is about choosing which costs you are willing to pay, and when.
 

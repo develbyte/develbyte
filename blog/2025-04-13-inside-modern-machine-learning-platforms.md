@@ -25,7 +25,7 @@ We'll cover:
 
 Let's get started.
 
-## What is a Machine Learning Platform, Really?
+## ❯ What is a Machine Learning Platform, Really?
 
 At a high level, a Machine Learning Platform is everything that sits between raw data and live predictions. Here's a common breakdown:
 
@@ -39,9 +39,9 @@ At a high level, a Machine Learning Platform is everything that sits between raw
 
 This sounds like a lot — and it is. Which is why companies have taken vastly different paths depending on their scale, domain, and engineering maturity.
 
-## The Tech Giants: Heavyweight End-to-End Platforms
+## ❯ The Tech Giants: Heavyweight End-to-End Platforms
 
-### Uber: Michelangelo
+### ❯ Uber: Michelangelo
 
 Arguably one of the most referenced ML platforms in the industry.
 
@@ -58,7 +58,7 @@ Michelangelo powers ETA predictions, fraud models, driver allocation, and even s
 
 **Trade-offs:** High engineering investment. Not for small teams.
 
-### Facebook: FBLearner Flow
+### ❯ Facebook: FBLearner Flow
 
 Facebook took a slightly different route. FBLearner was built to let _any engineer_ build and train ML models with minimal boilerplate.
 
@@ -75,7 +75,7 @@ FBLearner also focused heavily on reuse: train once, serve anywhere. The interna
 
 **Trade-offs:** Deeply tied to Facebook infra. Not transferable.
 
-### Airbnb: Bighead
+### ❯ Airbnb: Bighead
 
 Airbnb opted for modularity with a suite of focused tools:
 
@@ -90,11 +90,11 @@ Each component was replaceable, making the platform evolve-friendly. Most import
 
 **Trade-offs:** Building many micro-components adds integration overhead.
 
-## The Modular Approach: Open-Source Stacks
+## ❯ The Modular Approach: Open-Source Stacks
 
 Companies without 100+ engineers can still build sophisticated ML platforms by stitching together open-source tools:
 
-### Common OSS Stack:
+### ❯ Common OSS Stack:
 
 * **Data Ingestion:** Airflow or Dagster for pipelines
 * **Feature Engineering:** Feast or custom ETL over Snowflake/BigQuery
@@ -109,23 +109,23 @@ This approach gives full control, and avoids vendor lock-in.
 
 **Trade-offs:** You own integration, observability, and scaling.
 
-## Cloud-Managed ML Platforms
+## ❯ Cloud-Managed ML Platforms
 
 Cloud providers offer full-service ML stacks — great for startups, prototypes, or when internal DevOps resources are scarce.
 
-### AWS SageMaker:
+### ❯ AWS SageMaker:
 
 * **Feature Store, Model Registry, Pipelines, and Endpoints** all managed
 * Tight integration with S3, Glue, CloudWatch, IAM
 * Supports Bring-Your-Own-Container (BYOC) for custom model logic
 
-### Google Vertex AI:
+### ❯ Google Vertex AI:
 
 * Managed pipelines built on Kubeflow
 * Integrated with BigQuery, GCS, AutoML, and Explainable AI
 * Feature Store with real-time and batch support
 
-### Azure ML:
+### ❯ Azure ML:
 
 * End-to-end model lifecycle with drag-drop UI or code-based SDKs
 * Strong MLOps integrations with GitHub Actions and Azure DevOps
@@ -134,13 +134,13 @@ Cloud providers offer full-service ML stacks — great for startups, prototypes,
 
 **Drawbacks:** Opaque internals, higher long-term cost, and limited flexibility.
 
-## Databricks: The Lakehouse Approach to MLOps
+## ❯ Databricks: The Lakehouse Approach to MLOps
 
 Databricks deserves special mention as a platform that blends the benefits of a managed cloud platform with the openness and flexibility of OSS-based design.
 
 If you don't want to go with self-managed OSS platform but still want OSS stack, Databricks by far the best Platform for all Data and ML Platform, little expensive then the Cloud solution but its worth the money spent.
 
-### Why Databricks Stands Out:
+### ❯ Why Databricks Stands Out:
 
 * **Unified Lakehouse Architecture:** Combines the data warehouse and data lake into a single platform, making it easier to manage both structured and unstructured data in one place.
 * **Native MLflow Integration:** As the creators of MLflow, Databricks offers best-in-class experiment tracking, model versioning, and model registry baked right into its platform.
@@ -149,7 +149,7 @@ If you don't want to go with self-managed OSS platform but still want OSS stack,
 * **Model Deployment:** Supports batch inference via jobs or real-time endpoints with model serving. Integrates with Unity Catalog for governance and lineage.
 * **Deep Collaboration Features:** Real-time collaborative notebooks with Git integration, commenting, and version history.
 
-### Ideal For:
+### ❯ Ideal For:
 
 * Enterprises that want a **data-first ML platform**
 * Teams already using Spark, Delta Lake, or lakehouse patterns
@@ -162,7 +162,7 @@ If you don't want to go with self-managed OSS platform but still want OSS stack,
 
 Still, for many, Databricks hits the sweet spot of managed infrastructure, OSS compatibility, and platform maturity.
 
-## Comparison Table
+## ❯ Comparison Table
 
 | Platform Type | Scale | Maintenance | Flexibility | Cost | Best For |
 |--------------|-------|-------------|-------------|------|----------|
@@ -172,7 +172,7 @@ Still, for many, Databricks hits the sweet spot of managed infrastructure, OSS c
 | Cloud-Managed | Med-High | Low | Medium | Medium-High | Teams without infra engineers |
 | Commercial AutoML | Medium | Low | Low | High | Traditional enterprises |
 
-## Final Thoughts
+## ❯ Final Thoughts
 
 There's no one right ML platform architecture. What matters is choosing something that aligns with your team's size, experience, and goals.
 
