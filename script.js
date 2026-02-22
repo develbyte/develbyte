@@ -65,18 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-focus search input on page load
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
+        // Immediate focus
+        searchInput.focus();
+
+        // Ensure focus after page fully loads
         setTimeout(() => {
             searchInput.focus();
-        }, 500);
+        }, 100);
     }
 
-    // Click on block cursor focuses input
-    const blockCursor = document.querySelector('.block-cursor');
-    if (blockCursor) {
-        blockCursor.addEventListener('click', () => {
-            if (searchInput) {
-                searchInput.focus();
-            }
+    // Click anywhere on search prompt to focus input
+    const searchPrompt = document.querySelector('.search-prompt');
+    if (searchPrompt && searchInput) {
+        searchPrompt.addEventListener('click', () => {
+            searchInput.focus();
         });
     }
 

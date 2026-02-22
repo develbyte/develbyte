@@ -387,6 +387,7 @@ body {
     margin-bottom: var(--spacing-md);
     position: relative;
     white-space: nowrap;
+    cursor: text;
 }
 
 .search-prompt .prompt {
@@ -424,6 +425,11 @@ body {
     width: auto;
     min-width: 10ch;
     caret-color: var(--terminal-accent);
+}
+
+/* Ensure input is always focusable */
+.search-input:focus {
+    outline: none;
 }
 
 /* Block cursor */
