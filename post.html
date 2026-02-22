@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Fast CLI Tool in Rust - ~/blog</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="prompt-line">
+                <span class="prompt">guest@develbyte:~$</span>
+                <span class="command typed-text">cat ./building-fast-cli-rust.md</span>
+                <span class="cursor">_</span>
+            </div>
+
+            <article class="content-area fade-in post-content">
+                <nav class="breadcrumb">
+                    <a href="index.html" class="back-link">← cd ..</a>
+                </nav>
+
+                <header class="post-header">
+                    <h1 class="post-main-title">Building a Fast CLI Tool in Rust</h1>
+                    <div class="post-meta-full">
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2026-02-20</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> rust, performance, cli</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 8 min read</span>
+                    </div>
+                </header>
+
+                <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#setup">Project Setup</a></li>
+                        <li><a href="#performance">Performance Optimization</a></li>
+                        <li><a href="#benchmarks">Benchmarks</a></li>
+                        <li><a href="#conclusion">Conclusion</a></li>
+                    </ol>
+                </div>
+
+                <section id="introduction">
+                    <h2>> Introduction</h2>
+                    <p>
+                        Command-line tools are the backbone of developer productivity. When you run a CLI tool
+                        hundreds of times a day, every millisecond of startup time matters. Rust's zero-cost
+                        abstractions and minimal runtime make it an ideal choice for building snappy CLI applications.
+                    </p>
+
+                    <p>
+                        In this post, we'll explore how to build a high-performance CLI tool that starts in under
+                        10 milliseconds and processes millions of lines of input efficiently. We'll cover dependency
+                        management, async I/O patterns, and real-world optimization techniques.
+                    </p>
+
+                    <div class="callout callout-info">
+                        <div class="callout-title">[INFO]</div>
+                        <div class="callout-content">
+                            This guide assumes basic familiarity with Rust. If you're new to the language,
+                            check out the official <a href="https://doc.rust-lang.org/book/">Rust Book</a> first.
+                        </div>
+                    </div>
+                </section>
+
+                <section id="setup">
+                    <h2>> Project Setup</h2>
+                    <p>Let's start by creating a new Rust project with the right dependencies:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-window-buttons">
+                                <span class="code-btn-close"></span>
+                                <span class="code-btn-minimize"></span>
+                                <span class="code-btn-maximize"></span>
+                            </div>
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy" onclick="copyCode(this)">copy</button>
+                        </div>
+                        <pre><code class="language-bash">cargo new fast-cli --bin
+cd fast-cli</code></pre>
+                    </div>
+
+                    <p>Update your <code class="inline-code">Cargo.toml</code> with essential dependencies:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-window-buttons">
+                                <span class="code-btn-close"></span>
+                                <span class="code-btn-minimize"></span>
+                                <span class="code-btn-maximize"></span>
+                            </div>
+                            <span class="code-lang">toml</span>
+                            <button class="code-copy" onclick="copyCode(this)">copy</button>
+                        </div>
+                        <pre><code class="language-toml">[package]
+name = "fast-cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+tokio = { version = "1.35", features = ["full"] }
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true</code></pre>
+                    </div>
+
+                    <div class="callout callout-warning">
+                        <div class="callout-title">[WARNING]</div>
+                        <div class="callout-content">
+                            The release profile settings above optimize for binary size and performance
+                            but will increase compilation time. Use them only for production builds.
+                        </div>
+                    </div>
+                </section>
+
+                <section id="performance">
+                    <h2>> Performance Optimization</h2>
+
+                    <h3>// Memory Allocation Strategy</h3>
+                    <p>
+                        One of the biggest performance wins comes from reducing allocations. Here's a
+                        comparison of different approaches:
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-window-buttons">
+                                <span class="code-btn-close"></span>
+                                <span class="code-btn-minimize"></span>
+                                <span class="code-btn-maximize"></span>
+                            </div>
+                            <span class="code-lang">rust</span>
+                            <button class="code-copy" onclick="copyCode(this)">copy</button>
+                        </div>
+                        <pre><code class="language-rust">// ❌ Slow: Allocates new String each iteration
+fn process_lines_slow(input: &str) -> Vec&lt;String&gt; {
+    input.lines()
+        .map(|line| line.to_uppercase())
+        .collect()
+}
+
+// ✅ Fast: Reuses buffer
+fn process_lines_fast(input: &str) -> Vec&lt;String&gt; {
+    let mut results = Vec::with_capacity(input.lines().count());
+    let mut buffer = String::new();
+
+    for line in input.lines() {
+        buffer.clear();
+        buffer.push_str(line);
+        buffer.make_ascii_uppercase();
+        results.push(buffer.clone());
+    }
+    results
+}</code></pre>
+                    </div>
+
+                    <h3>// Benchmark Results</h3>
+                    <p>Here's how different implementations compare on a 100MB input file:</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Implementation</th>
+                                <th>Time (ms)</th>
+                                <th>Memory (MB)</th>
+                                <th>Allocations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Naive String</td>
+                                <td class="num">1,245</td>
+                                <td class="num">512</td>
+                                <td class="num">2,048,576</td>
+                            </tr>
+                            <tr>
+                                <td>Buffer Reuse</td>
+                                <td class="num">423</td>
+                                <td class="num">156</td>
+                                <td class="num">1,024</td>
+                            </tr>
+                            <tr>
+                                <td>Zero-Copy</td>
+                                <td class="num">89</td>
+                                <td class="num">102</td>
+                                <td class="num">128</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>Parallel + Zero-Copy</td>
+                                <td class="num">23</td>
+                                <td class="num">108</td>
+                                <td class="num">512</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="caption">
+                        Table 1: Performance comparison on 100MB text file (AMD Ryzen 9 5900X, 32GB RAM)
+                    </p>
+                </section>
+
+                <section id="benchmarks">
+                    <h2>> Real-World Example</h2>
+
+                    <p>Here's a complete example of a fast file processing CLI:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-window-buttons">
+                                <span class="code-btn-close"></span>
+                                <span class="code-btn-minimize"></span>
+                                <span class="code-btn-maximize"></span>
+                            </div>
+                            <span class="code-lang">rust</span>
+                            <button class="code-copy" onclick="copyCode(this)">copy</button>
+                        </div>
+                        <pre><code class="language-rust">use clap::Parser;
+use std::io::{self, BufRead, BufReader};
+use std::fs::File;
+
+#[derive(Parser)]
+#[command(name = "fast-grep")]
+#[command(about = "A blazingly fast grep alternative")]
+struct Cli {
+    pattern: String,
+    file: String,
+
+    #[arg(short, long)]
+    case_insensitive: bool,
+}
+
+fn main() -> anyhow::Result&lt;()&gt; {
+    let args = Cli::parse();
+    let file = File::open(&args.file)?;
+    let reader = BufReader::new(file);
+
+    for (idx, line) in reader.lines().enumerate() {
+        let line = line?;
+        if matches_pattern(&line, &args.pattern, args.case_insensitive) {
+            println!("{}:{}", idx + 1, line);
+        }
+    }
+
+    Ok(())
+}
+
+fn matches_pattern(line: &str, pattern: &str, case_insensitive: bool) -> bool {
+    if case_insensitive {
+        line.to_lowercase().contains(&pattern.to_lowercase())
+    } else {
+        line.contains(pattern)
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="image-container">
+                        <img src="https://placehold.co/800x400/0a0e14/00ff41?text=Terminal+Screenshot+of+fast-grep+in+action" alt="Terminal screenshot showing fast-grep processing a large log file">
+                        <p class="caption">Figure 1: fast-grep processing a 500MB log file in real-time</p>
+                    </div>
+                </section>
+
+                <section id="conclusion">
+                    <h2>> Conclusion</h2>
+
+                    <p>
+                        Building fast CLI tools in Rust requires attention to detail, but the language's
+                        zero-cost abstractions make it possible to achieve both ergonomic APIs and
+                        exceptional performance.
+                    </p>
+
+                    <p>Key takeaways:</p>
+
+                    <ul>
+                        <li>Minimize allocations by reusing buffers</li>
+                        <li>Use buffered I/O for file operations</li>
+                        <li>Leverage Rust's type system for zero-cost abstractions</li>
+                        <li>Profile before optimizing - measure, don't guess</li>
+                        <li>Consider parallel processing for CPU-bound tasks</li>
+                    </ul>
+
+                    <div class="callout callout-tip">
+                        <div class="callout-title">[TIP]</div>
+                        <div class="callout-content">
+                            For more advanced optimization techniques, check out the
+                            <a href="https://nnethercote.github.io/perf-book/">Rust Performance Book</a>
+                            by Nicholas Nethercote.
+                        </div>
+                    </div>
+
+                    <hr class="section-break">
+
+                    <p>
+                        The complete source code for this project is available on
+                        <a href="https://github.com/example/fast-cli">GitHub</a>.
+                        Feel free to open issues or contribute improvements!
+                    </p>
+                </section>
+
+                <footer class="post-footer-nav">
+                    <a href="index.html" class="footer-nav-link">← Back to posts</a>
+                    <div class="footer-nav-spacer">•</div>
+                    <a href="#" class="footer-nav-link">Next post →</a>
+                </footer>
+
+            </article>
+        </div>
+    </div>
+
+    <!-- Prism.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <!-- Prism.js Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

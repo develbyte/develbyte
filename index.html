@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~/blog - Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="content-area fade-in">
+                <!-- ASCII Art Header -->
+                <div class="ascii-header">
+                    <pre>
+▗▄▄▄ ▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▖   ▗▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖
+▐▌  █▐▌   ▐▌  ▐▌▐▌   ▐▌   ▐▌ ▐▌▝▚▞▘   █  ▐▌
+▐▌  █▐▛▀▀▘▐▌  ▐▌▐▛▀▀▘▐▌   ▐▛▀▚▖ ▐▌    █  ▐▛▀▀▘
+▐▙▄▄▀▐▙▄▄▖ ▝▚▞▘ ▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘ ▐▌    █  ▐▙▄▄▖
+                    </pre>
+                </div>
+
+                <!-- Blog Info -->
+                <div class="blog-info">
+                    BLOG • <span class="post-count">5</span> posts indexed • Last updated: 2025-11-15
+                </div>
+
+                <div class="separator-line">─────────────────────────────────────────────────────────────────────────────────</div>
+
+                <!-- Interactive Search Prompt -->
+                <div class="search-prompt">
+                    <span class="prompt">guest@develbyte:~$</span>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="search posts..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="command-line">
+                    <span class="prompt-symbol">&gt;</span> <span class="command">ls -al</span>
+                </div>
+
+                <!-- Compact Posts List -->
+                <div class="posts-list-compact" id="postsList">
+                    <div class="post-line" data-tags="distributed-systems architecture database 50PaperChallenge storage-engines lsm-trees" data-title="Why Write Amplification, Not Just Throughput, Shapes Modern Databases">
+                        <span class="post-date-compact">[2025-11-15]</span>
+                        <a href="https://develbyte.github.io/blog/why-write-amplification-not-just-throughput-shapes-modern-databases" class="post-title-compact">Why Write Amplification, Not Just Throughput, Shapes Modern Databases</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">database</span>
+                            <span class="tag-compact">50PaperChallenge</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture database 50PaperChallenge" data-title="Why Latency, Not Partitions, Dictates Your Database's Consistency">
+                        <span class="post-date-compact">[2025-11-08]</span>
+                        <a href="https://develbyte.github.io/blog/why-latency-not-partitions-dictates-database-consistency" class="post-title-compact">Why Latency, Not Partitions, Dictates Your Database's Consistency</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">database</span>
+                            <span class="tag-compact">50PaperChallenge</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture machine-learning" data-title="Inside Modern Machine Learning Platforms: A Survey Across the Industry">
+                        <span class="post-date-compact">[2025-04-13]</span>
+                        <a href="https://develbyte.github.io/blog/inside-modern-machine-learning-platforms" class="post-title-compact">Inside Modern Machine Learning Platforms: A Survey Across the Industry</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">machine-learning</span>
+                            <span class="tag-compact">architecture</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture database" data-title="Zookeeper Sessions and life cycle">
+                        <span class="post-date-compact">[2016-11-04]</span>
+                        <a href="https://develbyte.github.io/blog/zookeeper-sessions-and-life-cycle" class="post-title-compact">Zookeeper Sessions and life cycle</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">zookeeper</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture database" data-title="Zookeeper Namespace And Operations">
+                        <span class="post-date-compact">[2016-10-27]</span>
+                        <a href="https://develbyte.github.io/blog/zookeeper-namespace-and-operations" class="post-title-compact">Zookeeper Namespace And Operations</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">zookeeper</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
