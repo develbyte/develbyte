@@ -70,6 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
 
+    // Click on block cursor focuses input
+    const blockCursor = document.querySelector('.block-cursor');
+    if (blockCursor) {
+        blockCursor.addEventListener('click', () => {
+            if (searchInput) {
+                searchInput.focus();
+            }
+        });
+    }
+
     // Smooth scroll for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
 
