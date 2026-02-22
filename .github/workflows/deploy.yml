@@ -50,6 +50,7 @@ jobs:
           cp favicon.ico build/
           cp CNAME build/
           cp .nojekyll build/
+          # Profile image is already in build/static/img/ from Docusaurus
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
