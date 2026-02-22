@@ -68,10 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Immediate focus
         searchInput.focus();
 
-        // Ensure focus after page fully loads
-        setTimeout(() => {
-            searchInput.focus();
-        }, 100);
+        // Ensure focus after short delays (in case other scripts interfere)
+        setTimeout(() => searchInput.focus(), 50);
+        setTimeout(() => searchInput.focus(), 200);
+        setTimeout(() => searchInput.focus(), 500);
     }
 
     // Click anywhere on search prompt to focus input
@@ -114,6 +114,12 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             terminalWindow.style.transition = 'box-shadow 0.5s ease';
         }, 300);
+    }
+
+    // Ensure search input is focused after page load
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.focus();
     }
 });
 
