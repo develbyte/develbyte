@@ -8,8 +8,10 @@ This is a minimal, terminal-themed static blog designed for technical content. T
 - Clean terminal aesthetics with minimal green accents (light gray text, green for prompts/highlights)
 - Interactive search on index page (real-time post filtering)
 - Exceptional readability for long-form technical writing
-- Zero build dependencies (pure HTML/CSS/JS for GitHub Pages)
+- Minimal build dependencies (Node.js for markdown conversion, no frameworks)
 - Comprehensive content support (code blocks, tables, images, callouts)
+
+**Migration Note**: This project was migrated from Docusaurus to a pure static terminal theme. Blog posts are written in Markdown (`blog/*.md`) and converted to static HTML pages using `convert-posts.js`.
 
 ## Architecture
 
@@ -24,12 +26,34 @@ This is a minimal, terminal-themed static blog designed for technical content. T
 ```
 /
 ├── index.html       # Blog listing page with interactive search and post list
+├── about.html       # About page with profile info
 ├── post.html        # Example post template showing all content types
 ├── styles.css       # Complete styling system with CSS variables
 ├── script.js        # Interactive features (search, code copy, smooth scroll)
 ├── template-post.html  # Clean template for creating new posts
+├── convert-posts.js # Markdown to HTML converter for blog posts
+├── blog/            # Markdown source files for blog posts
+│   └── *.md         # Blog posts in markdown format with YAML frontmatter
+├── {slug}/          # Generated HTML directories (one per blog post)
+│   └── index.html   # Terminal-themed blog post HTML
 └── README.md        # User documentation
 ```
+
+### Build Process
+
+**Converting Blog Posts**:
+- Blog posts are written as Markdown files in the `blog/` directory
+- Each markdown file has YAML frontmatter with metadata (title, tags, slug, date)
+- Run `node convert-posts.js` to convert all markdown posts to HTML
+- This creates a directory for each post (e.g., `/why-write-amplification.../index.html`)
+- The conversion script uses `template-post.html` as the base template
+- GitHub Actions runs this automatically on every push to main
+
+**Deployment**:
+- GitHub Actions workflow (`.github/workflows/deploy.yml`) handles deployment
+- Runs `convert-posts.js` to generate post HTML from markdown
+- Copies all static files and generated post directories to `deploy/`
+- Deploys to GitHub Pages from the `deploy/` directory
 
 ### Styling System
 
@@ -87,11 +111,28 @@ This is a minimal, terminal-themed static blog designed for technical content. T
 
 ### Creating New Blog Posts
 
-1. **Copy template**: Duplicate `post.html` to new filename
+**Method 1: Markdown (Recommended)**:
+1. **Create markdown file**: Add new file to `blog/` with format `YYYY-MM-DD-post-slug.md`
+2. **Add frontmatter**: Include YAML metadata at the top:
+   ```yaml
+   ---
+   slug: post-slug
+   title: Your Post Title
+   authors: narendra
+   tags: [tag1, tag2, tag3]
+   ---
+   ```
+3. **Write content**: Use standard Markdown syntax (headers, code blocks, lists, etc.)
+4. **Convert to HTML**: Run `node convert-posts.js` to generate HTML
+5. **Update index**: Add post entry to `index.html` with correct slug and metadata
+6. **Test locally**: Open the generated `{slug}/index.html` in a browser
+
+**Method 2: Direct HTML** (for special layouts):
+1. **Copy template**: Duplicate `template-post.html` to `{slug}/index.html`
 2. **Update meta tags**: Change `<title>` and post header metadata
 3. **Replace content**: Edit inside `<article class="post-content">`
-4. **Add to index**: Create new `<article class="post-entry">` in `index.html`
-5. **Update TOC**: Modify table of contents if using sections with IDs
+4. **Add to index**: Create new `<div class="post-line">` in `index.html`
+5. **Fix paths**: Update `href` and `src` paths to use `../` for parent directory
 
 ### Customizing Colors
 
@@ -220,6 +261,8 @@ When modifying or extending:
 
 ## Important Files
 
+- `convert-posts.js` - Markdown to HTML converter (generates post directories from blog/*.md)
+- `template-post.html` - Base template for generated blog posts
 - `styles.css:1-45` - CSS variables (primary theming control point - minimal green!)
 - `styles.css:147-161` - Scanlines effect
 - `styles.css:283-329` - Search input styles
@@ -228,3 +271,4 @@ When modifying or extending:
 - `post.html:36-235` - Complete content examples for all supported types
 - `index.html:41-58` - Interactive search implementation
 - `index.html:62-169` - Post listing structure with data-* attributes for search
+- `.github/workflows/deploy.yml` - GitHub Actions deployment workflow

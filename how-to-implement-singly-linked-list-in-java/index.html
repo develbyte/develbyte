@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Implement Singly Linked List in Java - ~/blog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="alternate icon" href="../favicon.ico">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="prompt-line">
+                <span class="prompt">guest@develbyte:~$</span>
+                <span class="command typed-text">cat ./how-to-implement-singly-linked-list-in-java/</span>
+                <span class="cursor">_</span>
+            </div>
+
+            <article class="content-area fade-in post-content">
+                <nav class="breadcrumb">
+                    <a href="../index.html" class="back-link">← cd ..</a>
+                </nav>
+
+                <header class="post-header">
+                    <h1 class="post-main-title">How to Implement Singly Linked List in Java</h1>
+                    <div class="post-meta-full">
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2015-05-15</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> algorithms</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 3 min read</span>
+                    </div>
+                </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
+
+                <!-- START YOUR CONTENT HERE -->
+<h1>How to Implement Singly Linked List in Java</h1>
+<p>A <strong>Linked List</strong> is a dynamic data structure. The number of nodes in a list is not fixed and can grow and shrink on demand. Any application which has to deal with an unknown number of objects will need to use a linked list.</p>
+<p>Linked lists and arrays are similar since they both store collections of data. The terminology is that arrays and linked lists store "elements" on behalf of "client" code. The specific type of element is not important since essentially the same structure works to store elements of any type. The size of the array is fixed where Linked List is a dynamic and also Inserting new elements at the front or in middle of an array is potentially expensive because existing elements need to be shifted over to make room.</p>
+<h2>> Types of Linked List</h2>
+<ul><li>Singly Linked List</li>
+<li>Doubly Linked List</li>
+<li>Circular Linked List</li></ul>
+<p>Singly Linked List is the most basic types of Linked List where every node holds some data and reference to next Node.</p>
+<p>!<a href="/img/linkedlist.png">linkedlist</a></p>
+<h2>> Implementation of Singly Linked List</h2>
+<h3>// Node.java</h3>
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-window-buttons">
+            <span class="code-btn-close"></span>
+            <span class="code-btn-minimize"></span>
+            <span class="code-btn-maximize"></span>
+        </div>
+        <span class="code-lang">java</span>
+        <button class="code-copy" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><code class="language-java">public class Node {
+<p>private Node nextNode; private Object data;</p>
+<p>public Node(Object data){ this.data = data;} public Node(Object data, Node nextNode){ this.data=data;this.nextNode=nextNode;} public Object getData(){return data;} public void setData(Object data){this.data=data;} public Node getNextNode(){return nextNode;} public void setNextNode(Node nextNode){this.nextNode=nextNode;} }</p>
+</code></pre>
+</div>
+<h3>// LinkedList.java</h3>
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-window-buttons">
+            <span class="code-btn-close"></span>
+            <span class="code-btn-minimize"></span>
+            <span class="code-btn-maximize"></span>
+        </div>
+        <span class="code-lang">java</span>
+        <button class="code-copy" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><code class="language-java">public class LinkedList {
+<p>private int listCount; private Node head;</p>
+<p>public LinkedList() { head = new Node(null); listCount = 0; }</p>
+<p>public void add(Object data) { Node newNode = new Node(data); Node currentNode = head; while (currentNode.getNextNode() != null) { currentNode = currentNode.getNextNode(); } currentNode.setNextNode(newNode); listCount++; }</p>
+<p>public void add(Object data, int index) {</p>
+<p>if (index &lt;= listCount &amp;&amp; index &gt; 0) { Node newNode = new Node(data); Node currentNode = head;</p>
+<p>for (int i = 1; i &lt; index; i++) { currentNode = currentNode.getNextNode(); }</p>
+<p>newNode.setNextNode(currentNode.getNextNode()); currentNode.setNextNode(newNode); listCount++; } }</p>
+<p>public Node get(int index) {</p>
+<p>if (index &gt; listCount || index &lt;= 0) return null;</p>
+<p>Node currentNode = head; for (int i = 1; i &lt;= index; i++) { currentNode = currentNode.getNextNode(); } return currentNode; }</p>
+<p>public boolean remove(int index) {</p>
+<p>if (index &gt; listCount || index &lt;= 0) return false;</p>
+<p>Node currentNode = head; for (int i = 0; i &lt; index - 2; i++) { currentNode = currentNode.getNextNode(); }</p>
+<p>currentNode.setNextNode(currentNode.getNextNode().getNextNode()); listCount--; return true; }</p>
+<p>public int size() { return listCount; } }</p>
+</code></pre>
+</div>
+<h3>// MainClass.java</h3>
+<div class="code-block">
+    <div class="code-header">
+        <div class="code-window-buttons">
+            <span class="code-btn-close"></span>
+            <span class="code-btn-minimize"></span>
+            <span class="code-btn-maximize"></span>
+        </div>
+        <span class="code-lang">java</span>
+        <button class="code-copy" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><code class="language-java">public class testClass {
+<p>public static void main(String[] args) { LinkedList lnklist = new LinkedList(); lnklist.add("naren"); lnklist.add("manish"); lnklist.add("ram"); System.out.println("Number Of Nodes in the List: " + lnklist.size());</p>
+<p>lnklist.add("naren1", 1); lnklist.add("manish1", 3); lnklist.add("ram1", 5); System.out.println("Number Of Nodes in the List: " + lnklist.size());</p>
+<p>System.out.println("All the Nodes available in the List : "); DisplayList(lnklist);</p>
+<p>lnklist.remove(1); lnklist.remove(3); lnklist.remove(6); System.out.println("Number Of Nodes in the List: " + lnklist.size()); System.out.println("All the Nodes available in the List : "); DisplayList(lnklist); }</p>
+<p>public static void DisplayList(LinkedList ll) { for (int i = 1; i &lt;= ll.size(); i++) { System.out.println(i + " : " + ll.get(i).getData()); } } }</p>
+</code></pre>
+</div>
+<!-- END YOUR CONTENT HERE -->
+
+                <footer class="post-footer-nav">
+                    <a href="../index.html" class="footer-nav-link">← Back to posts</a>
+                    <div class="footer-nav-spacer">•</div>
+                    <a href="#" class="footer-nav-link">Next post →</a>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+    <!-- Prism.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <!-- Prism.js Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+
+    <script src="../script.js"></script>
+</body>
+</html>

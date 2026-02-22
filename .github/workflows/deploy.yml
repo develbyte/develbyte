@@ -25,37 +25,46 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          
-      - name: Install dependencies
-        run: npm ci
-        
-      - name: Build website
-        run: npm run build
 
-      - name: Copy terminal blog to build root
+      - name: Convert blog posts to terminal theme
+        run: node convert-posts.js
+
+      - name: Prepare deployment directory
         run: |
-          cp index.html build/
-          cp about.html build/
-          cp styles.css build/
-          cp script.js build/
-          cp post.html build/
-          cp template-post.html build/
-          cp favicon.svg build/
-          cp favicon.ico build/
-          cp CNAME build/
-          cp .nojekyll build/
-          # Profile image is already in build/static/img/ from Docusaurus
+          mkdir -p deploy
+          # Copy static files
+          cp index.html deploy/
+          cp about.html deploy/
+          cp styles.css deploy/
+          cp script.js deploy/
+          cp post.html deploy/
+          cp template-post.html deploy/
+          cp favicon.svg deploy/
+          cp favicon.ico deploy/
+          cp CNAME deploy/
+          cp .nojekyll deploy/
+          cp resume.pdf deploy/
+          # Copy all generated post directories
+          for dir in */; do
+            # Only copy directories that have an index.html (blog posts)
+            if [ -f "$dir/index.html" ] && [ "$dir" != "blog/" ] && [ "$dir" != "src/" ] && [ "$dir" != "static/" ] && [ "$dir" != ".git/" ] && [ "$dir" != ".github/" ] && [ "$dir" != ".claude/" ] && [ "$dir" != "deploy/" ]; then
+              cp -r "$dir" deploy/
+            fi
+          done
+          # Copy static assets if they exist
+          if [ -d "static" ]; then
+            cp -r static deploy/
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build
+          path: ./deploy
 
   deploy:
     environment:

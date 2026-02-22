@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Inside Modern Machine Learning Platforms: A Survey Across the Industry" - ~/blog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="alternate icon" href="../favicon.ico">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="prompt-line">
+                <span class="prompt">guest@develbyte:~$</span>
+                <span class="command typed-text">cat ./inside-modern-machine-learning-platforms/</span>
+                <span class="cursor">_</span>
+            </div>
+
+            <article class="content-area fade-in post-content">
+                <nav class="breadcrumb">
+                    <a href="../index.html" class="back-link">← cd ..</a>
+                </nav>
+
+                <header class="post-header">
+                    <h1 class="post-main-title">"Inside Modern Machine Learning Platforms: A Survey Across the Industry"</h1>
+                    <div class="post-meta-full">
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2025-04-13</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture, machine-learning</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 7 min read</span>
+                    </div>
+                </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
+
+                <!-- START YOUR CONTENT HERE -->
+<p>Machine Learning (ML) is no longer just a research field or a niche corner of data science teams. Today, it's deeply embedded in products we use daily — be it your Uber ETA, Instagram feed, Netflix recommendations, or fraud detection in fintech. And the real magic behind deploying these models reliably, at scale, lies in how companies build their internal <strong>ML platforms</strong>.</p>
+<p>In this post, we dive deep into how different organisations — ranging from tech giants to startups — are architecting their ML systems. We've compiled insights from real-world case studies, open-source projects, and platform blueprints to show how companies are solving the same problem with wildly different approaches.</p>
+<p>!<a href="/img/computation-complexity">ML Platform Computation Complexity</a></p>
+<p>We'll cover:</p>
+<ul><li>What a typical ML platform looks like</li>
+<li>How tech companies like Uber, Facebook, Airbnb, and Instacart architect theirs</li>
+<li>Trade-offs in design: scalability vs. flexibility vs. cost</li>
+<li>The rise of open-source ML infrastructure</li>
+<li>When to consider managed cloud offerings like AWS SageMaker, Vertex AI, or Azure ML</li>
+<li>A comparison table to help you decide what's right for your org</li>
+<p>Let's get started.</p>
+<h2>> What is a Machine Learning Platform, Really?</h2>
+<p>At a high level, a Machine Learning Platform is everything that sits between raw data and live predictions. Here's a common breakdown:</p>
+<li><strong>Data Ingestion & Processing:</strong> Scheduled or real-time pipelines (Spark, Airflow, Kafka)</li>
+<li><strong>Feature Store:</strong> A central system to define, compute, and serve features for ML</li>
+<li><strong>Experimentation:</strong> Notebook environments, experiment tracking, model training</li>
+<li><strong>Model Registry:</strong> Cataloging model artifacts, versions, metrics</li>
+<li><strong>Deployment:</strong> Real-time serving or batch prediction, often via APIs or cron jobs</li>
+<li><strong>Monitoring:</strong> Tracking model drift, latency, and performance degradation</li>
+<li><strong>Orchestration:</strong> Pipeline DAGs tying all the above together</li>
+<p>This sounds like a lot — and it is. Which is why companies have taken vastly different paths depending on their scale, domain, and engineering maturity.</p>
+<h2>> The Tech Giants: Heavyweight End-to-End Platforms</h2>
+<h3>// Uber: Michelangelo</h3>
+<p>Arguably one of the most referenced ML platforms in the industry.</p>
+<p>Michelangelo isn't just a platform, it's a philosophy of consistency and scale. Designed to democratise ML across teams, The platform covered everything: data pipelines, a feature store, distributed training, a model registry, and serving infrastructure.</p>
+<li><strong>Palette (Feature Store):</strong> Both offline and online features accessible via a common API, versioned and reusable.</li>
+<li><strong>Training Stack:</strong> Uses Spark for distributed preprocessing and TensorFlow or XGBoost for model training. Includes auto-tuning and training across thousands of configurations.</li>
+<li><strong>Model Deployment:</strong> Kubernetes-based serving with one-click deployments and autoscaling.</li>
+<li><strong>Monitoring:</strong> Collects real-time performance metrics, model output distributions, and a proprietary model health score to trigger retraining.</li>
+<p>Michelangelo powers ETA predictions, fraud models, driver allocation, and even supply-demand balancing models.</p>
+<strong>Why it works:</strong> Uber has high QPS, latency-sensitive products and ML is core to business (e.g. pricing, ETA). They needed strong guardrails.
+<strong>Trade-offs:</strong> High engineering investment. Not for small teams.
+<h3>// Facebook: FBLearner Flow</h3>
+<p>Facebook took a slightly different route. FBLearner was built to let _any engineer_ build and train ML models with minimal boilerplate.</p>
+<p>A <strong>Workflows-as-code</strong> platform, built for internal reusability and speed:</p>
+<li><strong>Workflows-as-Code:</strong> Define training pipelines as DAGs using Python APIs.</li>
+<li><strong>Pluggable Components:</strong> Standardised modules for preprocessing, model training, evaluation, and deployment.</li>
+<li><strong>Experiment Management:</strong> Automatically tracks every experiment, dataset, and outcome.</li>
+<li><strong>Scale:</strong> At its peak, powered 6M predictions/sec across Facebook apps.</li>
+<p>FBLearner also focused heavily on reuse: train once, serve anywhere. The internal adoption was massive — 25%+ of engineers were using it within a few years.</p>
+<strong>Why it works:</strong> At Facebook's scale, ML is everywhere. Democratisation and reuse matter more than custom infra per team.
+<strong>Trade-offs:</strong> Deeply tied to Facebook infra. Not transferable.
+<h3>// Airbnb: Bighead</h3>
+<p>Airbnb opted for modularity with a suite of focused tools:</p>
+<li><strong>Zipline:</strong> Feature engineering as code; supports time-windowed feature computation and training-serving parity.</li>
+<li><strong>Bighead Lib:</strong> Pipelines-as-Python for rapid experimentation.</li>
+<li><strong>Redspot:</strong> Hosted notebook environments with consistent containers.</li>
+<li><strong>Deep Thought:</strong> Wraps models into Docker services, adds observability, and deploys to Kubernetes.</li>
+<p>Each component was replaceable, making the platform evolve-friendly. Most importantly, Bighead drastically reduced time-to-production for models.</p>
+<strong>Why it works:</strong> Airbnb needed consistency and productivity, not one-size-fits-all.
+<strong>Trade-offs:</strong> Building many micro-components adds integration overhead.
+<h2>> The Modular Approach: Open-Source Stacks</h2>
+<p>Companies without 100+ engineers can still build sophisticated ML platforms by stitching together open-source tools:</p>
+<h3>// Common OSS Stack:</h3>
+<li><strong>Data Ingestion:</strong> Airflow or Dagster for pipelines</li>
+<li><strong>Feature Engineering:</strong> Feast or custom ETL over Snowflake/BigQuery</li>
+<li><strong>Training & Tracking:</strong> MLflow, PyTorch Lightning, or TensorFlow with Optuna/Ray Tune</li>
+<li><strong>Model Registry & Deployment:</strong> MLflow Model Registry, Seldon Core, BentoML</li>
+<li><strong>Serving:</strong> KServe for scalable real-time inference</li>
+<li><strong>Monitoring:</strong> Evidently, WhyLogs, Prometheus + Grafana</li>
+<p>This approach gives full control, and avoids vendor lock-in.</p>
+<strong>Real-World Example:</strong> Instacart's Griffin ML platform combines Feast, Databricks, Ray, MLflow, and a custom orchestrator — scaled to hundreds of models without building from scratch.
+<strong>Trade-offs:</strong> You own integration, observability, and scaling.
+<h2>> Cloud-Managed ML Platforms</h2>
+<p>Cloud providers offer full-service ML stacks — great for startups, prototypes, or when internal DevOps resources are scarce.</p>
+<h3>// AWS SageMaker:</h3>
+<li><strong>Feature Store, Model Registry, Pipelines, and Endpoints</strong> all managed</li>
+<li>Tight integration with S3, Glue, CloudWatch, IAM</li>
+<li>Supports Bring-Your-Own-Container (BYOC) for custom model logic</li>
+<h3>// Google Vertex AI:</h3>
+<li>Managed pipelines built on Kubeflow</li>
+<li>Integrated with BigQuery, GCS, AutoML, and Explainable AI</li>
+<li>Feature Store with real-time and batch support</li>
+<h3>// Azure ML:</h3>
+<li>End-to-end model lifecycle with drag-drop UI or code-based SDKs</li>
+<li>Strong MLOps integrations with GitHub Actions and Azure DevOps</li>
+<strong>Best for:</strong> Teams that want to skip infrastructure and focus purely on modeling.
+<strong>Drawbacks:</strong> Opaque internals, higher long-term cost, and limited flexibility.
+<h2>> Databricks: The Lakehouse Approach to MLOps</h2>
+<p>Databricks deserves special mention as a platform that blends the benefits of a managed cloud platform with the openness and flexibility of OSS-based design.</p>
+<p>If you don't want to go with self-managed OSS platform but still want OSS stack, Databricks by far the best Platform for all Data and ML Platform, little expensive then the Cloud solution but its worth the money spent.</p>
+<h3>// Why Databricks Stands Out:</h3>
+<li><strong>Unified Lakehouse Architecture:</strong> Combines the data warehouse and data lake into a single platform, making it easier to manage both structured and unstructured data in one place.</li>
+<li><strong>Native MLflow Integration:</strong> As the creators of MLflow, Databricks offers best-in-class experiment tracking, model versioning, and model registry baked right into its platform.</li>
+<li><strong>Auto-scaling Compute:</strong> Easily provision GPU/CPU clusters for ML workloads with zero DevOps involvement.</li>
+<li><strong>Delta Lake:</strong> ACID-compliant, versioned data tables optimized for large-scale ML pipelines.</li>
+<li><strong>Model Deployment:</strong> Supports batch inference via jobs or real-time endpoints with model serving. Integrates with Unity Catalog for governance and lineage.</li>
+<li><strong>Deep Collaboration Features:</strong> Real-time collaborative notebooks with Git integration, commenting, and version history.</li>
+<h3>// Ideal For:</h3>
+<li>Enterprises that want a <strong>data-first ML platform</strong></li>
+<li>Teams already using Spark, Delta Lake, or lakehouse patterns</li>
+<li>Organizations looking for strong governance and secure data access (via Unity Catalog)</li>
+<strong>Trade-offs:</strong>
+<li>Cost: Running heavy ML workloads at scale on Databricks can be expensive.</li>
+<li>Real-time deployment flexibility: Some teams find KServe or BentoML more flexible for specialized serving use cases.</li>
+<p>Still, for many, Databricks hits the sweet spot of managed infrastructure, OSS compatibility, and platform maturity.</p>
+<h2>> Comparison Table</h2>
+<p>| Platform Type | Scale | Maintenance | Flexibility | Cost | Best For | |--------------|-------|-------------|-------------|------|----------| | In-House (Uber) | Very High | Very High | Very High | High | Large tech companies | | Modular (Airbnb) | High | Medium | High | Medium | Mid-size product orgs | | OSS Stack | High | Medium | Very High | Low to Med | Startups with ML infra teams | | Cloud-Managed | Med-High | Low | Medium | Medium-High | Teams without infra engineers | | Commercial AutoML | Medium | Low | Low | High | Traditional enterprises |</p>
+<h2>> Final Thoughts</h2>
+<p>There's no one right ML platform architecture. What matters is choosing something that aligns with your team's size, experience, and goals.</p>
+<li>If you're Uber or Facebook, you'll likely need to build.</li>
+<li>If you're a 20-person startup? Don't.</li>
+<li>If you're somewhere in the middle? Open-source + cloud might be your sweet spot.</li></ul>
+<p>Regardless of what you pick, the trends are clear: feature stores are no longer optional, monitoring is essential, and modularity is king. And as the tooling ecosystem matures, the barrier to building solid ML infra is lower than ever.</p>
+<p>Have thoughts or want to share how your company does it? I'd love to hear from you.</p>
+<p>---</p>
+<em>Can also read on <a href="https://medium.com/develbyte/inside-modern-machine-learning-platforms-a-surveyacross-the-industry-fe2ed51e38c6">Medium</a></em>
+<!-- END YOUR CONTENT HERE -->
+
+                <footer class="post-footer-nav">
+                    <a href="../index.html" class="footer-nav-link">← Back to posts</a>
+                    <div class="footer-nav-spacer">•</div>
+                    <a href="#" class="footer-nav-link">Next post →</a>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+    <!-- Prism.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <!-- Prism.js Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+
+    <script src="../script.js"></script>
+</body>
+</html>
