@@ -15,16 +15,9 @@ function initializeSearch() {
 
     const posts = postsList.querySelectorAll('.post-line');
 
-    // Handle typing state for cursor visibility
+    // Handle search filtering
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
-
-        // Toggle cursor visibility
-        if (e.target.value.length > 0) {
-            searchPrompt.classList.add('typing');
-        } else {
-            searchPrompt.classList.remove('typing');
-        }
 
         // Filter posts
         posts.forEach((post) => {
