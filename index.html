@@ -58,13 +58,13 @@
                 <!-- Interactive Search Prompt -->
                 <div class="search-prompt">
                     <span class="prompt">guest@develbyte:~$</span>
-                    <span class="command-text">find . -iname "</span><input
+                    <span class="command-text">find . -name "</span><input
                         type="text"
                         id="searchInput"
                         class="search-input"
                         placeholder=""
                         autocomplete="off"
-                    ><span class="command-text">"</span>
+                    ><span class="command-text">" -exec ls -lh {} +</span>
                 </div>
 
                 <div class="command-line">
