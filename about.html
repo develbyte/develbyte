@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ~/develbyte</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/about</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="content-area fade-in">
+                <!-- ASCII Art Header -->
+                <div class="ascii-header">
+                    <pre>
+▗▄▄▄ ▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▖   ▗▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖
+▐▌  █▐▌   ▐▌  ▐▌▐▌   ▐▌   ▐▌ ▐▌▝▚▞▘   █  ▐▌
+▐▌  █▐▛▀▀▘▐▌  ▐▌▐▛▀▀▘▐▌   ▐▛▀▚▖ ▐▌    █  ▐▛▀▀▘
+▐▙▄▄▀▐▙▄▄▖ ▝▚▞▘ ▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘ ▐▌    █  ▐▙▄▄▖
+                    </pre>
+                </div>
+
+                <!-- Navigation -->
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">posts</a>
+                    <span class="nav-separator">•</span>
+                    <a href="about.html" class="nav-link active">about</a>
+                </div>
+
+                <div class="separator-line">─────────────────────────────────────────────────────────────────────────────────</div>
+
+                <!-- About Content -->
+                <article class="post-content">
+                    <div class="command-line">
+                        <span class="prompt-symbol">&gt;</span> <span class="command">whoami</span>
+                    </div>
+
+                    <section>
+                        <h2>> Narendra Kumar</h2>
+
+                        <p>
+                            Software engineer with a focus on distributed systems, databases, and machine learning infrastructure.
+                            Currently building scalable data platforms and exploring the intersection of systems programming and ML.
+                        </p>
+
+                        <p>
+                            I write about technical deep-dives, paper reviews (#50PaperChallenge), and lessons learned from
+                            building production systems.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>> What I Write About</h2>
+
+                        <ul>
+                            <li><strong>Distributed Systems</strong> - Consistency models, consensus algorithms, system design</li>
+                            <li><strong>Databases</strong> - Storage engines, query optimization, write amplification</li>
+                            <li><strong>Machine Learning Infrastructure</strong> - ML platforms, model serving, feature stores</li>
+                            <li><strong>Paper Reviews</strong> - Breaking down seminal research papers (#50PaperChallenge)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>> Current Projects</h2>
+
+                        <div class="callout callout-info">
+                            <div class="callout-title">[#50PaperChallenge]</div>
+                            <div class="callout-content">
+                                Reading and writing about 50 foundational papers in distributed systems, databases,
+                                and computer science. Follow along on the blog!
+                            </div>
+                        </div>
+
+                        <p>
+                            Recent papers covered:
+                        </p>
+                        <ul>
+                            <li>LSM Trees and WiscKey (Write Amplification)</li>
+                            <li>Consistency Tradeoffs (PACELC)</li>
+                            <li>Modern ML Platform Architectures</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>> Connect</h2>
+
+                        <div class="connect-links">
+                            <div class="connect-item">
+                                <span class="connect-label">GitHub:</span>
+                                <a href="https://github.com/develbyte" target="_blank">@develbyte</a>
+                            </div>
+                            <div class="connect-item">
+                                <span class="connect-label">Blog:</span>
+                                <a href="https://develbyte.in">develbyte.in</a>
+                            </div>
+                            <div class="connect-item">
+                                <span class="connect-label">Resume:</span>
+                                <a href="resume.pdf" target="_blank">View PDF</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>> Colophon</h2>
+
+                        <p>
+                            This blog is built with pure HTML/CSS/JavaScript - no frameworks, no build step,
+                            no npm dependencies. Just open <code class="inline-code">index.html</code> and it works.
+                        </p>
+
+                        <p>
+                            The terminal aesthetic is intentional - a nod to the command-line tools and
+                            systems programming that inspire much of the content here.
+                        </p>
+
+                        <p>
+                            Syntax highlighting powered by <a href="https://prismjs.com/" target="_blank">Prism.js</a>.
+                            Typography set in <a href="https://www.jetbrains.com/lp/mono/" target="_blank">JetBrains Mono</a>.
+                        </p>
+                    </section>
+
+                    <hr class="section-break">
+
+                    <footer class="post-footer-nav">
+                        <a href="index.html" class="footer-nav-link">← Back to posts</a>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

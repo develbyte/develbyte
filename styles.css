@@ -262,6 +262,34 @@ body {
    SYSTEM INFO
    ═══════════════════════════════════════════════════════════════ */
 
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.nav-link {
+    color: var(--terminal-dim);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--terminal-accent);
+}
+
+.nav-link.active {
+    color: var(--terminal-fg-bright);
+    font-weight: 700;
+}
+
+.nav-separator {
+    color: var(--separator);
+}
+
 .blog-info {
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-small);
@@ -270,6 +298,25 @@ body {
 
 .blog-info .post-count {
     color: var(--terminal-accent);
+    font-weight: 700;
+}
+
+/* Connect Links on About Page */
+.connect-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.connect-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.connect-label {
+    color: var(--terminal-dim);
+    min-width: 80px;
     font-weight: 700;
 }
 
