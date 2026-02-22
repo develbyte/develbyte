@@ -46,6 +46,8 @@ jobs:
           cp script.js build/
           cp post.html build/
           cp template-post.html build/
+          cp favicon.svg build/
+          cp favicon.ico build/
           cp CNAME build/
           cp .nojekyll build/
 
