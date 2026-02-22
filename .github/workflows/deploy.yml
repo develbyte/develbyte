@@ -37,7 +37,18 @@ jobs:
         
       - name: Build website
         run: npm run build
-        
+
+      - name: Copy terminal blog to build root
+        run: |
+          cp index.html build/
+          cp about.html build/
+          cp styles.css build/
+          cp script.js build/
+          cp post.html build/
+          cp template-post.html build/
+          cp CNAME build/
+          cp .nojekyll build/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
