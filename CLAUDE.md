@@ -37,6 +37,8 @@ This project is a pure static site with zero framework dependencies. Blog posts 
 ├── posts/           # Generated HTML directories (one per blog post)
 │   ├── {slug}/      # Individual post directory
 │   │   └── index.html   # Terminal-themed blog post HTML
+├── img/             # Blog post images and diagrams
+│   └── *.png        # Images referenced in blog posts
 ├── .github/         # GitHub Actions workflow for deployment
 └── README.md        # User documentation
 ```

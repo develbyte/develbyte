@@ -52,6 +52,8 @@ jobs:
           cp posts-metadata.json deploy/
           # Copy generated posts directory
           cp -r posts deploy/
+          # Copy images directory
+          cp -r img deploy/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
