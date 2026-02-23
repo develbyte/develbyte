@@ -967,9 +967,94 @@ pre[class*="language-"] {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   TABLES
+   TABLES - TERMINAL THEME
    ═══════════════════════════════════════════════════════════════ */
 
+/* All tables in blog posts */
+.post-content table {
+    width: 100%;
+    max-width: 100%;
+    margin: var(--spacing-lg) 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: var(--font-size-small);
+    background: rgba(10, 14, 20, 0.5);
+    border: 1px solid var(--separator);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Table wrapper for horizontal scroll on mobile */
+.post-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.post-content table thead {
+    background: rgba(0, 255, 65, 0.08);
+    border-bottom: 2px solid var(--terminal-accent);
+}
+
+.post-content table th {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    color: var(--terminal-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border-right: 1px solid var(--separator);
+    position: sticky;
+    top: 0;
+    background: rgba(0, 255, 65, 0.08);
+}
+
+.post-content table th:last-child {
+    border-right: none;
+}
+
+.post-content table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-right: 1px solid rgba(139, 148, 158, 0.2);
+    border-bottom: 1px solid rgba(139, 148, 158, 0.1);
+    color: var(--terminal-fg);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.post-content table td:last-child {
+    border-right: none;
+}
+
+.post-content table tbody tr {
+    transition: all 0.15s ease;
+}
+
+.post-content table tbody tr:hover {
+    background: rgba(0, 255, 65, 0.04);
+    box-shadow: inset 0 0 0 1px rgba(0, 255, 65, 0.1);
+}
+
+.post-content table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Alternating row colors for better readability */
+.post-content table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+/* Numeric columns right-aligned */
+.post-content table .num,
+.post-content table td:first-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-blue);
+    font-weight: 500;
+}
+
+/* Legacy class support */
 .data-table {
     width: 100%;
     margin: var(--spacing-lg) 0;
@@ -1211,6 +1296,24 @@ pre[class*="language-"] {
     .data-table th,
     .data-table td {
         padding: var(--spacing-xs);
+    }
+
+    /* Blog post tables responsive */
+    .post-content table {
+        font-size: 11px;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .post-content table th,
+    .post-content table td {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        white-space: nowrap;
+    }
+
+    .post-content table th {
+        font-size: 10px;
     }
 
     /* Profile section responsive */
