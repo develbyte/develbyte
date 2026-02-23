@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Homepage -->
+    <url>
+        <loc>https://develbyte.in/</loc>
+        <lastmod>2026-02-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- About page -->
+    <url>
+        <loc>https://develbyte.in/about.html</loc>
+        <lastmod>2026-02-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Why Write Amplification, Not Just Throughput, Shapes Modern Databases [50PaperChallenge] -->
+    <url>
+        <loc>https://develbyte.in/posts/why-write-amplification-not-just-throughput-shapes-modern-databases/</loc>
+        <lastmod>2025-11-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Why Latency, Not Partitions, Dictates Your Database's Consistency [50PaperChallenge] -->
+    <url>
+        <loc>https://develbyte.in/posts/why-latency-not-partitions-dictates-database-consistency/</loc>
+        <lastmod>2025-11-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- "Inside Modern Machine Learning Platforms: A Survey Across the Industry" -->
+    <url>
+        <loc>https://develbyte.in/posts/inside-modern-machine-learning-platforms/</loc>
+        <lastmod>2025-04-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Zookeeper Sessions and life cycle -->
+    <url>
+        <loc>https://develbyte.in/posts/zookeeper-sessions-and-life-cycle/</loc>
+        <lastmod>2016-11-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Zookeeper Namespace And Operations -->
+    <url>
+        <loc>https://develbyte.in/posts/zookeeper-namespace-and-operations/</loc>
+        <lastmod>2016-10-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Zookeeper Introduction to Zookeeper -->
+    <url>
+        <loc>https://develbyte.in/posts/zookeeper-introduction-to-zookeeper/</loc>
+        <lastmod>2016-10-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Message Queue -->
+    <url>
+        <loc>https://develbyte.in/posts/message-queue/</loc>
+        <lastmod>2016-09-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Normalisation -->
+    <url>
+        <loc>https://develbyte.in/posts/normalisation/</loc>
+        <lastmod>2015-09-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- How to sort a HashMap on Values -->
+    <url>
+        <loc>https://develbyte.in/posts/how-to-sort-a-hashmap-on-values/</loc>
+        <lastmod>2015-05-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- How to Implement Singly Linked List in Java -->
+    <url>
+        <loc>https://develbyte.in/posts/how-to-implement-singly-linked-list-in-java/</loc>
+        <lastmod>2015-05-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Introduction To MapReduce -->
+    <url>
+        <loc>https://develbyte.in/posts/introduction-to-mapreduce/</loc>
+        <lastmod>2015-05-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- HDFS Architecture -->
+    <url>
+        <loc>https://develbyte.in/posts/hdfs-architecture/</loc>
+        <lastmod>2015-05-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- MapReduce Execution in Hadoop -->
+    <url>
+        <loc>https://develbyte.in/posts/mapreduce-execution-in-hadoop/</loc>
+        <lastmod>2015-03-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- How to Find out Next and Previous Day of Week in Oracle -->
+    <url>
+        <loc>https://develbyte.in/posts/how-to-find-out-next-and-previous-day-of-week-in-oracle/</loc>
+        <lastmod>2015-02-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>

@@ -11,7 +11,7 @@ This is a minimal, terminal-themed static blog designed for technical content. T
 - Minimal build dependencies (Node.js for markdown conversion, no frameworks)
 - Comprehensive content support (code blocks, tables, images, callouts)
 
-**Migration Note**: This project was migrated from Docusaurus to a pure static terminal theme. Blog posts are written in Markdown (`blog/*.md`) and converted to static HTML pages using `convert-posts.js`.
+This project is a pure static site with zero framework dependencies. Blog posts are written in Markdown (`blog/*.md`) and converted to static HTML pages using `convert-posts.js`.
 
 ## Architecture
 
@@ -27,15 +27,17 @@ This is a minimal, terminal-themed static blog designed for technical content. T
 /
 ├── index.html       # Blog listing page with interactive search and post list
 ├── about.html       # About page with profile info
-├── post.html        # Example post template showing all content types
 ├── styles.css       # Complete styling system with CSS variables
 ├── script.js        # Interactive features (search, code copy, smooth scroll)
 ├── template-post.html  # Clean template for creating new posts
 ├── convert-posts.js # Markdown to HTML converter for blog posts
+├── package.json     # Minimal build scripts (no dependencies)
 ├── blog/            # Markdown source files for blog posts
 │   └── *.md         # Blog posts in markdown format with YAML frontmatter
-├── {slug}/          # Generated HTML directories (one per blog post)
-│   └── index.html   # Terminal-themed blog post HTML
+├── posts/           # Generated HTML directories (one per blog post)
+│   ├── {slug}/      # Individual post directory
+│   │   └── index.html   # Terminal-themed blog post HTML
+├── .github/         # GitHub Actions workflow for deployment
 └── README.md        # User documentation
 ```
 
@@ -45,14 +47,14 @@ This is a minimal, terminal-themed static blog designed for technical content. T
 - Blog posts are written as Markdown files in the `blog/` directory
 - Each markdown file has YAML frontmatter with metadata (title, tags, slug, date)
 - Run `node convert-posts.js` to convert all markdown posts to HTML
-- This creates a directory for each post (e.g., `/why-write-amplification.../index.html`)
+- This creates a directory for each post in `posts/` (e.g., `/posts/why-write-amplification.../index.html`)
 - The conversion script uses `template-post.html` as the base template
 - GitHub Actions runs this automatically on every push to main
 
 **Deployment**:
 - GitHub Actions workflow (`.github/workflows/deploy.yml`) handles deployment
 - Runs `convert-posts.js` to generate post HTML from markdown
-- Copies all static files and generated post directories to `deploy/`
+- Copies all static files and the `posts/` directory to `deploy/`
 - Deploys to GitHub Pages from the `deploy/` directory
 
 ### Styling System
@@ -123,16 +125,16 @@ This is a minimal, terminal-themed static blog designed for technical content. T
    ---
    ```
 3. **Write content**: Use standard Markdown syntax (headers, code blocks, lists, etc.)
-4. **Convert to HTML**: Run `node convert-posts.js` to generate HTML
-5. **Update index**: Add post entry to `index.html` with correct slug and metadata
-6. **Test locally**: Open the generated `{slug}/index.html` in a browser
+4. **Convert to HTML**: Run `node convert-posts.js` to generate HTML in `posts/{slug}/`
+5. **Auto-update**: The script automatically updates `index.html` with the new post
+6. **Test locally**: Open the generated `posts/{slug}/index.html` in a browser
 
 **Method 2: Direct HTML** (for special layouts):
-1. **Copy template**: Duplicate `template-post.html` to `{slug}/index.html`
+1. **Copy template**: Duplicate `template-post.html` to `posts/{slug}/index.html`
 2. **Update meta tags**: Change `<title>` and post header metadata
 3. **Replace content**: Edit inside `<article class="post-content">`
 4. **Add to index**: Create new `<div class="post-line">` in `index.html`
-5. **Fix paths**: Update `href` and `src` paths to use `../` for parent directory
+5. **Fix paths**: Update `href` and `src` paths to use `../../` for root directory
 
 ### Customizing Colors
 
@@ -261,14 +263,15 @@ When modifying or extending:
 
 ## Important Files
 
-- `convert-posts.js` - Markdown to HTML converter (generates post directories from blog/*.md)
-- `template-post.html` - Base template for generated blog posts
+- `convert-posts.js` - Markdown to HTML converter (auto-generates post list, sitemap, metadata)
+- `template-post.html` - Base template for generated blog posts (includes SRI hashes, SEO tags)
 - `styles.css:1-45` - CSS variables (primary theming control point - minimal green!)
 - `styles.css:147-161` - Scanlines effect
-- `styles.css:283-329` - Search input styles
-- `script.js:8-69` - Search functionality for index page
-- `script.js:71-86` - Code copy functionality
-- `post.html:36-235` - Complete content examples for all supported types
-- `index.html:41-58` - Interactive search implementation
-- `index.html:62-169` - Post listing structure with data-* attributes for search
+- `styles.css:1272-1323` - Accessibility features (skip-link, sr-only, reduced-motion)
+- `script.js:9-48` - Search functionality with screen reader announcements
+- `script.js:64-99` - Copy button functionality with event delegation and accessibility
+- `index.html` - Auto-updated by convert-posts.js (post list, post count)
+- `sitemap.xml` - Auto-generated by convert-posts.js (14 posts + 2 pages)
+- `posts-metadata.json` - Auto-generated metadata for all posts
+- `robots.txt` - SEO crawl directives
 - `.github/workflows/deploy.yml` - GitHub Actions deployment workflow

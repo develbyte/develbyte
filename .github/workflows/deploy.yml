@@ -42,24 +42,16 @@ jobs:
           cp about.html deploy/
           cp styles.css deploy/
           cp script.js deploy/
-          cp post.html deploy/
-          cp template-post.html deploy/
           cp favicon.svg deploy/
           cp favicon.ico deploy/
           cp CNAME deploy/
           cp .nojekyll deploy/
-          cp resume.pdf deploy/
-          # Copy all generated post directories
-          for dir in */; do
-            # Only copy directories that have an index.html (blog posts)
-            if [ -f "$dir/index.html" ] && [ "$dir" != "blog/" ] && [ "$dir" != "src/" ] && [ "$dir" != "static/" ] && [ "$dir" != ".git/" ] && [ "$dir" != ".github/" ] && [ "$dir" != ".claude/" ] && [ "$dir" != "deploy/" ]; then
-              cp -r "$dir" deploy/
-            fi
-          done
-          # Copy static assets if they exist
-          if [ -d "static" ]; then
-            cp -r static deploy/
-          fi
+          # Copy SEO and metadata files
+          cp robots.txt deploy/
+          cp sitemap.xml deploy/
+          cp posts-metadata.json deploy/
+          # Copy generated posts directory
+          cp -r posts deploy/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

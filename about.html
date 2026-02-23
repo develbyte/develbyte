@@ -3,21 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - ~/develbyte</title>
+    <title>About Narendra Kumar - DevelByte Technical Blog</title>
+    <meta name="description" content="About Narendra Kumar - Software engineer writing about distributed systems, databases, and ML infrastructure. #50PaperChallenge participant.">
+    <meta name="author" content="Narendra Kumar">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self';
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   img-src 'self' https://github.com data:;">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://develbyte.in/about.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="About - Narendra Kumar">
+    <meta property="og:description" content="Software engineer writing about distributed systems, databases, and ML infrastructure.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://develbyte.in/about.html">
+    <meta property="og:image" content="https://develbyte.in/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@im-naren">
+    <meta name="twitter:title" content="About - Narendra Kumar">
+    <meta name="twitter:description" content="Software engineer writing about distributed systems and databases.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" href="favicon.ico">
 
-    <link rel="stylesheet" href="styles.css">
+    <!-- Resource Preloads -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="styles.css">
+    <link rel="preload" as="script" href="script.js">
 
-    <!-- Prism.js for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="scanlines"></div>
     <div class="terminal-window">
         <div class="terminal-header">
@@ -30,7 +58,7 @@
         </div>
 
         <div class="terminal-body">
-            <div class="content-area fade-in">
+            <div class="content-area fade-in" id="main-content">
                 <!-- ASCII Art Header -->
                 <div class="ascii-header">
                     <pre>
@@ -59,7 +87,12 @@
                     <section>
                         <div class="profile-section">
                             <div class="profile-image-container">
-                                <img src="https://github.com/im-naren.png" alt="Narendra Kumar" class="profile-image">
+                                <img src="https://github.com/im-naren.png"
+                                     alt="Narendra Kumar"
+                                     class="profile-image"
+                                     loading="lazy"
+                                     width="200"
+                                     height="200">
                             </div>
                             <div class="profile-text">
                                 <h2>❯ Narendra Kumar</h2>

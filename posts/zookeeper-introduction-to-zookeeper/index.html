@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zookeeper Introduction to Zookeeper - DevelByte Blog</title>
+    <meta name="description" content="Zookeeper Introduction to Zookeeper Zookeper is an opensource, centralised coordination service which is used to coordinate the services and manage th...">
+    <meta name="author" content="Narendra Kumar">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' https://cdnjs.cloudflare.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   img-src 'self' https://github.com data:;">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://develbyte.in/zookeeper-introduction-to-zookeeper/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Zookeeper Introduction to Zookeeper">
+    <meta property="og:description" content="Zookeeper Introduction to Zookeeper Zookeper is an opensource, centralised coordination service which is used to coordinate the services and manage th...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://develbyte.in/zookeeper-introduction-to-zookeeper/">
+    <meta property="og:image" content="https://develbyte.in/og-image.png">
+    <meta property="og:site_name" content="DevelByte">
+    <meta property="article:published_time" content="2016-10-20">
+    <meta property="article:author" content="Narendra Kumar">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@im-naren">
+    <meta name="twitter:title" content="Zookeeper Introduction to Zookeeper">
+    <meta name="twitter:description" content="Zookeeper Introduction to Zookeeper Zookeper is an opensource, centralised coordination service which is used to coordinate the services and manage th...">
+    <meta name="twitter:image" content="https://develbyte.in/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="alternate icon" href="../../favicon.ico">
+
+    <!-- Resource Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" as="style" href="../../styles.css">
+    <link rel="preload" as="script" href="script.js">
+
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet"
+          integrity="sha384-wFjoQjtV1y5jVHbt0p35Ui8aV8GVpEZkyF99OXWqP/eNJDU93D3Ugxkoyh6Y2I4A"
+          crossorigin="anonymous" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Zookeeper Introduction to Zookeeper",
+      "description": "Zookeeper Introduction to Zookeeper Zookeper is an opensource, centralised coordination service which is used to coordinate the services and manage th...",
+      "image": "https://develbyte.in/og-image.png",
+      "datePublished": "2016-10-20",
+      "dateModified": "2016-10-20",
+      "author": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in/about.html"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://develbyte.in/zookeeper-introduction-to-zookeeper/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./zookeeper-introduction-to-zookeeper/</span>
+            </div>
+
+            <article class="content-area fade-in post-content" id="main-content">
+                <header class="post-header">
+                    <h1 class="post-main-title">Zookeeper Introduction to Zookeeper</h1>
+                    <div class="post-meta-full">
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2016-10-20</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture, database</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 2 min read</span>
+                    </div>
+                </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
+
+                <!-- START YOUR CONTENT HERE -->
+<h1>Zookeeper Introduction to Zookeeper</h1>
+<strong>Zookeper</strong> is an open-source, centralised co-ordination service which is used to co-ordinate the services and manage the configurations of applications accross a large number of hosts over a distributed environment.
+<p>Co-ordinating between the services in a distributed application is a complex process. ZooKeeper was designed to be a robust service that enables application developers to focus mainly on their  application logic rather than coordination. It exposes a simple API, similar to filesystem API, that allows developers to implement common co‐ordination tasks, such as electing a master server,managing group membership, and managing metadata.</p>
+<p>Zookeper is open-sorced to Apache by Yahoo. Apache Zookeper have became standard for organising the services in Hadoop, kafka and other distributed frameworks.</p>
+<h2>> ❯ What is a distributed application?</h2>
+<p>Distributed applications are the type of application comprised of multiple software components running independently and concurrently across multiple physical machines. Distributed applications are required to do resource intensive computions which is difficult or impossible to do in a non-distributed environment. The group is machines running the distributed applications are togethere called as cluster and each machine individually called as Nodes. Distributed applications provides scalability and performance along with other benifits, But it can also easly lead to various complexities like Race Condition, DeadLock, Inconsistency, This is where Zookeeper comes to rescue. Zookeper helps to create co-ordianation between the tasks and maintain shared data with robust syncronisation technique.</p>
+<p>Let's look at some examples where ZooKeeper has been useful to get a better sense of where it is applicable:</p>
+<h2>> ❯ 1. Apache HBase</h2>
+<p>HBase is a data store typically used alongside Hadoop. In HBase, ZooKeeper is used to  elect  a  cluster  master,  to  keep  track  of  available  servers,  and  to  keep  cluster metadata.</p>
+<h2>> ❯ 2. Apache Kafka</h2>
+<p>Kafka is a pub-sub messaging system. It uses ZooKeeper to detect crashes, to implement topic discovery, and to maintain production and consumption state for topics.</p>
+<h2>> ❯ 3. Apache Solr</h2>
+<p>Solr is an enterprise search platform. In its distributed form, called SolrCloud, it uses ZooKeeper to store metadata about the cluster and coordinate the updates to this metadata.</p>
+<h2>> ❯ 4. Yahoo! Fetching Service</h2>
+<p>Part of a crawler implementation, the Fetching Service  fetches web pages efficiently by  caching content while making sure that web server policies, such as those in robots.txt files, are preserved. This service uses ZooKeeper for tasks such as master election, crash detection, and metadata storage.</p>
+<h2>> ❯ 5. Facebook Messages</h2>
+<p>This is a Facebook application that integrates communication channels: email, SMS, Facebook Chat, and the existing Facebook Inbox. It uses ZooKeeper as a controller for implementing sharding and failover, and also for service discovery.</p>
+<!-- END YOUR CONTENT HERE -->
+
+                <footer class="post-footer-nav">
+                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+    <!-- Prism.js Core -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+            integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+            crossorigin="anonymous"></script>
+    <!-- Prism.js Language Support -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"
+            integrity="sha384-JyDgFjMbyrE/TGiEUSXW3CLjQOySrsoiUNAlXTFdIsr/XUfaB7E+eYlR+tGQ9bCO"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"
+            integrity="sha384-9WmlN8ABpoFSSHvBGGjhvB3E/D8UkNB9HpLJjBQFC2VSQsM1odiQDv4NbEo+7l15"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"
+            integrity="sha384-Uh6n44GRSQeQSMIIfAjlbqojWR7F5KALTHNsspuLDrNCsXpDPRdZbJ5A42AP/cA4"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"
+            integrity="sha384-D44bgYYKvaiDh4cOGlj1dbSDpSctn2FSUj118HZGmZEShZcO2v//Q5vvhNy206pp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"
+            integrity="sha384-PeOqKNW/piETaCg8rqKFy+Pm6KEk7e36/5YZE5XO/OaFdO+/Aw3O8qZ9qDPKVUgx"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"
+            integrity="sha384-WJdEkJKrbsqw0evQ4GB6mlsKe5cGTxBOw4KAEIa52ZLB7DDpliGkwdme/HMa5n1m"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"
+            integrity="sha384-YxCco6ByOY5rJ3jD18514fa8w5so07zigIyV6tZa3CWSE5vYrbDSuFkZ5zOknnZ6"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"
+            integrity="sha384-DioAMZB4yk91W6LuFit5wJDh8c5Ov09f/MBvja94y0PodMqTpTZeBeejqpRUru7D"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"
+            integrity="sha384-gaD4ncierlmWk42Z3BmTp37/z+Dqt8V4Wf74UjTvFeo+M+SgnEI6Ysd98pWhksQv"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"
+            integrity="sha384-NiOrAquf32LSG3Vuig99LKS03EZPUuM8a51NOp+XXsqx08hUVo3wbNWALY7K/2J8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"
+            integrity="sha384-RhrmFFMb0ZCHImjFMpR/UE3VEtIVTCtNrtKQqXCzqXZNJala02N3UbVhi+qzw3CY"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"
+            integrity="sha384-AKAiycghK0jDCjD+aavMHzDkLzRR7Yzcwh3+xL/295cvyVMe+cxQfyQC8xxGGcI8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"
+            integrity="sha384-/MKWdycCDliku23mP5sYXbZNuXrzgmQO/jsVxwPFn99dVOaXRyKsqDjarqpueGAp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"
+            integrity="sha384-44ggPevoK6FC5kDMdbbWoMCAFkSCwaRoXXtKMkslR2lf8Ra3OSzCRrFIyeK+TQBi"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"
+            integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
+            crossorigin="anonymous"></script>
+
+    <script src="../../script.js"></script>
+</body>
+</html>

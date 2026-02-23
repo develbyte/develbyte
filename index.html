@@ -3,21 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>~/blog - Terminal</title>
+    <title>DevelByte - Technical Blog on Distributed Systems & Databases</title>
+    <meta name="description" content="Technical blog covering distributed systems, databases, and machine learning infrastructure. Paper reviews and system design deep dives by Narendra Kumar.">
+    <meta name="author" content="Narendra Kumar">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self';
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   img-src 'self' https://github.com data:;">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://develbyte.in/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="DevelByte - Technical Blog">
+    <meta property="og:description" content="Technical blog covering distributed systems, databases, and machine learning infrastructure.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://develbyte.in/">
+    <meta property="og:image" content="https://develbyte.in/og-image.png">
+    <meta property="og:site_name" content="DevelByte">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@im-naren">
+    <meta name="twitter:creator" content="@im-naren">
+    <meta name="twitter:title" content="DevelByte - Technical Blog">
+    <meta name="twitter:description" content="Technical blog covering distributed systems, databases, and ML infrastructure.">
+    <meta name="twitter:image" content="https://develbyte.in/og-image.png">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" href="favicon.ico">
 
-    <link rel="stylesheet" href="styles.css">
+    <!-- Resource Preloads -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="styles.css">
+    <link rel="preload" as="script" href="script.js">
+
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Prism.js for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Narendra Kumar",
+      "url": "https://develbyte.in",
+      "sameAs": [
+        "https://github.com/im-naren",
+        "https://linkedin.com/in/im-naren"
+      ],
+      "jobTitle": "Software Engineer",
+      "description": "Software engineer focused on distributed systems, databases, and machine learning infrastructure"
+    }
+    </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="scanlines"></div>
     <div class="terminal-window">
         <div class="terminal-header">
@@ -30,7 +77,7 @@
         </div>
 
         <div class="terminal-body">
-            <div class="content-area fade-in">
+            <div class="content-area fade-in" id="main-content">
                 <!-- ASCII Art Header -->
                 <div class="ascii-header">
                     <pre>
@@ -50,7 +97,7 @@
 
                 <!-- Blog Info -->
                 <div class="blog-info">
-                    BLOG • <span class="post-count">5</span> posts indexed • Last updated: 2025-11-15
+                    BLOG • <span class="post-count">14</span> posts indexed • Last updated: 2025-11-15
                 </div>
 
                 <div class="separator-line">─────────────────────────────────────────────────────────────────────────────────</div>
@@ -64,56 +111,150 @@
                         class="search-input"
                         placeholder=""
                         autocomplete="off"
-                        autofocus
+                        aria-label="Search blog posts by title or tags"
+                        aria-describedby="search-description"
+                        role="searchbox"
                     ><span class="block-cursor">█</span></span><span class="command-text">*" -exec ls -alh {} +</span>
                 </div>
 
+                <!-- Screen reader only text -->
+                <span id="search-description" class="sr-only">
+                    Type to filter posts by title, tags, or content. Results update as you type.
+                </span>
+
+                <!-- Screen reader announcements -->
+                <div id="search-results-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
                 <!-- Compact Posts List -->
                 <div class="posts-list-compact" id="postsList">
-                    <div class="post-line" data-tags="distributed-systems architecture database 50PaperChallenge storage-engines lsm-trees" data-title="Why Write Amplification, Not Just Throughput, Shapes Modern Databases">
+                    <div class="post-line" data-tags="distributed-systems architecture database 50PaperChallenge storage-engines lsm-trees" data-title="Why Write Amplification, Not Just Throughput, Shapes Modern Databases [50PaperChallenge]">
                         <span class="post-date-compact">[2025-11-15]</span>
-                        <a href="/why-write-amplification-not-just-throughput-shapes-modern-databases/" class="post-title-compact">Why Write Amplification, Not Just Throughput, Shapes Modern Databases</a>
+                        <a href="/posts/why-write-amplification-not-just-throughput-shapes-modern-databases/" class="post-title-compact">Why Write Amplification, Not Just Throughput, Shapes Modern Databases [50PaperChallenge]</a>
                         <span class="post-tags-compact">
                             <span class="tag-compact">distributed-systems</span>
-                            <span class="tag-compact">database</span>
-                            <span class="tag-compact">50PaperChallenge</span>
-                        </span>
-                    </div>
-
-                    <div class="post-line" data-tags="distributed-systems architecture database 50PaperChallenge" data-title="Why Latency, Not Partitions, Dictates Your Database's Consistency">
-                        <span class="post-date-compact">[2025-11-08]</span>
-                        <a href="/why-latency-not-partitions-dictates-database-consistency/" class="post-title-compact">Why Latency, Not Partitions, Dictates Your Database's Consistency</a>
-                        <span class="post-tags-compact">
-                            <span class="tag-compact">distributed-systems</span>
-                            <span class="tag-compact">database</span>
-                            <span class="tag-compact">50PaperChallenge</span>
-                        </span>
-                    </div>
-
-                    <div class="post-line" data-tags="distributed-systems architecture machine-learning" data-title="Inside Modern Machine Learning Platforms: A Survey Across the Industry">
-                        <span class="post-date-compact">[2025-04-13]</span>
-                        <a href="/inside-modern-machine-learning-platforms/" class="post-title-compact">Inside Modern Machine Learning Platforms: A Survey Across the Industry</a>
-                        <span class="post-tags-compact">
-                            <span class="tag-compact">machine-learning</span>
                             <span class="tag-compact">architecture</span>
+                            <span class="tag-compact">database</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture database 50PaperChallenge" data-title="Why Latency, Not Partitions, Dictates Your Database's Consistency [50PaperChallenge]">
+                        <span class="post-date-compact">[2025-11-08]</span>
+                        <a href="/posts/why-latency-not-partitions-dictates-database-consistency/" class="post-title-compact">Why Latency, Not Partitions, Dictates Your Database's Consistency [50PaperChallenge]</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">architecture</span>
+                            <span class="tag-compact">database</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture machine-learning" data-title=""Inside Modern Machine Learning Platforms: A Survey Across the Industry"">
+                        <span class="post-date-compact">[2025-04-13]</span>
+                        <a href="/posts/inside-modern-machine-learning-platforms/" class="post-title-compact">"Inside Modern Machine Learning Platforms: A Survey Across the Industry"</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">architecture</span>
+                            <span class="tag-compact">machine-learning</span>
                         </span>
                     </div>
 
                     <div class="post-line" data-tags="distributed-systems architecture database" data-title="Zookeeper Sessions and life cycle">
                         <span class="post-date-compact">[2016-11-04]</span>
-                        <a href="/zookeeper-sessions-and-life-cycle/" class="post-title-compact">Zookeeper Sessions and life cycle</a>
+                        <a href="/posts/zookeeper-sessions-and-life-cycle/" class="post-title-compact">Zookeeper Sessions and life cycle</a>
                         <span class="post-tags-compact">
                             <span class="tag-compact">distributed-systems</span>
-                            <span class="tag-compact">zookeeper</span>
+                            <span class="tag-compact">architecture</span>
+                            <span class="tag-compact">database</span>
                         </span>
                     </div>
 
                     <div class="post-line" data-tags="distributed-systems architecture database" data-title="Zookeeper Namespace And Operations">
                         <span class="post-date-compact">[2016-10-27]</span>
-                        <a href="/zookeeper-namespace-and-operations/" class="post-title-compact">Zookeeper Namespace And Operations</a>
+                        <a href="/posts/zookeeper-namespace-and-operations/" class="post-title-compact">Zookeeper Namespace And Operations</a>
                         <span class="post-tags-compact">
                             <span class="tag-compact">distributed-systems</span>
-                            <span class="tag-compact">zookeeper</span>
+                            <span class="tag-compact">architecture</span>
+                            <span class="tag-compact">database</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture database" data-title="Zookeeper Introduction to Zookeeper">
+                        <span class="post-date-compact">[2016-10-20]</span>
+                        <a href="/posts/zookeeper-introduction-to-zookeeper/" class="post-title-compact">Zookeeper Introduction to Zookeeper</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">architecture</span>
+                            <span class="tag-compact">database</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture database" data-title="Message Queue">
+                        <span class="post-date-compact">[2016-09-20]</span>
+                        <a href="/posts/message-queue/" class="post-title-compact">Message Queue</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">architecture</span>
+                            <span class="tag-compact">database</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="system-design database" data-title="Normalisation">
+                        <span class="post-date-compact">[2015-09-14]</span>
+                        <a href="/posts/normalisation/" class="post-title-compact">Normalisation</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">system-design</span>
+                            <span class="tag-compact">database</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="algorithms" data-title="How to sort a HashMap on Values">
+                        <span class="post-date-compact">[2015-05-25]</span>
+                        <a href="/posts/how-to-sort-a-hashmap-on-values/" class="post-title-compact">How to sort a HashMap on Values</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">algorithms</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="algorithms" data-title="How to Implement Singly Linked List in Java">
+                        <span class="post-date-compact">[2015-05-15]</span>
+                        <a href="/posts/how-to-implement-singly-linked-list-in-java/" class="post-title-compact">How to Implement Singly Linked List in Java</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">algorithms</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture" data-title="Introduction To MapReduce">
+                        <span class="post-date-compact">[2015-05-14]</span>
+                        <a href="/posts/introduction-to-mapreduce/" class="post-title-compact">Introduction To MapReduce</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">architecture</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="distributed-systems architecture" data-title="HDFS Architecture">
+                        <span class="post-date-compact">[2015-05-03]</span>
+                        <a href="/posts/hdfs-architecture/" class="post-title-compact">HDFS Architecture</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">distributed-systems</span>
+                            <span class="tag-compact">architecture</span>
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="" data-title="MapReduce Execution in Hadoop">
+                        <span class="post-date-compact">[2015-03-10]</span>
+                        <a href="/posts/mapreduce-execution-in-hadoop/" class="post-title-compact">MapReduce Execution in Hadoop</a>
+                        <span class="post-tags-compact">
+                            
+                        </span>
+                    </div>
+
+                    <div class="post-line" data-tags="oracle sql database hadoop" data-title="How to Find out Next and Previous Day of Week in Oracle">
+                        <span class="post-date-compact">[2015-02-03]</span>
+                        <a href="/posts/how-to-find-out-next-and-previous-day-of-week-in-oracle/" class="post-title-compact">How to Find out Next and Previous Day of Week in Oracle</a>
+                        <span class="post-tags-compact">
+                            <span class="tag-compact">oracle</span>
+                            <span class="tag-compact">sql</span>
+                            <span class="tag-compact">database</span>
                         </span>
                     </div>
                 </div>

@@ -2,12 +2,7 @@
 node_modules/
 
 # Production
-build/
 deploy/
-
-# Generated files
-.docusaurus/
-.cache/
 
 # macOS
 .DS_Store

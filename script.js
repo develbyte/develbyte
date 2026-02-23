@@ -9,7 +9,7 @@
 function initializeSearch() {
     const searchInput = document.getElementById('searchInput');
     const postsList = document.getElementById('postsList');
-    const searchPrompt = document.querySelector('.search-prompt');
+    const statusElement = document.getElementById('search-results-status');
 
     if (!searchInput || !postsList) return;
 
@@ -18,6 +18,7 @@ function initializeSearch() {
     // Handle search filtering
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
+        let visibleCount = 0;
 
         // Filter posts
         posts.forEach((post) => {
@@ -30,30 +31,20 @@ function initializeSearch() {
 
             if (matchesSearch) {
                 post.classList.remove('hidden');
+                visibleCount++;
             } else {
                 post.classList.add('hidden');
             }
         });
-    });
-}
 
-// Copy code block functionality
-function copyCode(button) {
-    const codeBlock = button.closest('.code-block');
-    const code = codeBlock.querySelector('code').textContent;
-
-    navigator.clipboard.writeText(code).then(() => {
-        const originalText = button.textContent;
-        button.textContent = 'copied!';
-        button.style.color = 'var(--terminal-bright)';
-
-        setTimeout(() => {
-            button.textContent = originalText;
-            button.style.color = '';
-        }, 2000);
-    }).catch(err => {
-        console.error('Failed to copy code:', err);
-        button.textContent = 'error';
+        // Announce results to screen readers
+        if (statusElement) {
+            if (query) {
+                statusElement.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''} found`;
+            } else {
+                statusElement.textContent = '';
+            }
+        }
     });
 }
 
@@ -62,25 +53,52 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize search functionality
     initializeSearch();
 
-    // Auto-focus search input on page load
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        // Immediate focus
-        searchInput.focus();
-
-        // Ensure focus after short delays (in case other scripts interfere)
-        setTimeout(() => searchInput.focus(), 50);
-        setTimeout(() => searchInput.focus(), 200);
-        setTimeout(() => searchInput.focus(), 500);
-    }
-
     // Click anywhere on search prompt to focus input
     const searchPrompt = document.querySelector('.search-prompt');
+    const searchInput = document.getElementById('searchInput');
     if (searchPrompt && searchInput) {
         searchPrompt.addEventListener('click', () => {
             searchInput.focus();
         });
     }
+
+    // Setup copy buttons with event delegation
+    document.addEventListener('click', (e) => {
+        const copyBtn = e.target.closest('[data-copy-btn]');
+        if (!copyBtn) return;
+
+        const codeBlock = copyBtn.closest('.code-block');
+        if (!codeBlock) return;
+
+        const codeElement = codeBlock.querySelector('code');
+        if (!codeElement) return;
+
+        const code = codeElement.textContent;
+
+        navigator.clipboard.writeText(code).then(() => {
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'copied!';
+            copyBtn.style.color = 'var(--terminal-bright)';
+            copyBtn.setAttribute('aria-label', 'Code copied to clipboard');
+
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+                copyBtn.style.color = '';
+                copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy code:', err);
+            copyBtn.textContent = 'error';
+            copyBtn.setAttribute('aria-label', 'Failed to copy code');
+
+            // Reset error state after 2 seconds
+            setTimeout(() => {
+                copyBtn.textContent = 'copy';
+                copyBtn.style.color = '';
+                copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
+            }, 2000);
+        });
+    });
 
     // Smooth scroll for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
@@ -115,50 +133,7 @@ window.addEventListener('load', () => {
             terminalWindow.style.transition = 'box-shadow 0.5s ease';
         }, 300);
     }
-
-    // Ensure search input is focused after page load
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.focus();
-    }
 });
-
-// Keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-    // Ctrl/Cmd + K to focus search (if implemented)
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        // Implement search functionality here
-    }
-
-    // Escape to close modals/overlays
-    if (e.key === 'Escape') {
-        // Implement modal close functionality here
-    }
-});
-
-// Track reading progress (optional)
-function updateReadingProgress() {
-    const article = document.querySelector('.post-content');
-    if (!article) return;
-
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight - windowHeight;
-    const scrolled = window.scrollY;
-    const progress = (scrolled / documentHeight) * 100;
-
-    // You can use this to show a progress bar
-    // document.querySelector('.progress-bar').style.width = progress + '%';
-}
-
-// Optional: Update on scroll
-window.addEventListener('scroll', () => {
-    requestAnimationFrame(updateReadingProgress);
-}, { passive: true });
-
-// Add current year to footer if needed
-const currentYear = new Date().getFullYear();
-// document.querySelector('.footer-year')?.textContent = currentYear;
 
 // Performance optimization: Lazy load images
 if ('IntersectionObserver' in window) {
