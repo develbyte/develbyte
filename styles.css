@@ -970,74 +970,64 @@ pre[class*="language-"] {
    TABLES - TERMINAL THEME
    ═══════════════════════════════════════════════════════════════ */
 
+/* Table wrapper for horizontal scroll */
+.post-content .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: var(--spacing-lg) 0;
+}
+
 /* All tables in blog posts */
 .post-content table {
     width: 100%;
     max-width: 100%;
-    margin: var(--spacing-lg) 0;
-    border-collapse: separate;
-    border-spacing: 0;
+    margin: 0;
+    border-collapse: collapse;
     font-size: var(--font-size-small);
-    background: rgba(10, 14, 20, 0.5);
-    border: 1px solid var(--separator);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Table wrapper for horizontal scroll on mobile */
-.post-content table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    background: rgba(10, 14, 20, 0.6);
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    display: table;
 }
 
 .post-content table thead {
-    background: rgba(0, 255, 65, 0.08);
-    border-bottom: 2px solid var(--terminal-accent);
+    background: linear-gradient(180deg, rgba(0, 255, 65, 0.15) 0%, rgba(0, 255, 65, 0.08) 100%);
+    border-bottom: 2px solid rgba(0, 255, 65, 0.5);
 }
 
 .post-content table th {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 12px 16px;
     text-align: left;
     color: var(--terminal-accent);
     font-weight: 700;
     text-transform: uppercase;
     font-size: 11px;
-    letter-spacing: 0.5px;
-    border-right: 1px solid var(--separator);
-    position: sticky;
-    top: 0;
+    letter-spacing: 0.8px;
+    border: 1px solid rgba(0, 255, 65, 0.2);
     background: rgba(0, 255, 65, 0.08);
-}
-
-.post-content table th:last-child {
-    border-right: none;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
 }
 
 .post-content table td {
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-right: 1px solid rgba(139, 148, 158, 0.2);
-    border-bottom: 1px solid rgba(139, 148, 158, 0.1);
+    padding: 10px 16px;
+    border: 1px solid rgba(139, 148, 158, 0.2);
     color: var(--terminal-fg);
     font-family: 'JetBrains Mono', monospace;
-}
-
-.post-content table td:last-child {
-    border-right: none;
+    background: rgba(10, 14, 20, 0.3);
 }
 
 .post-content table tbody tr {
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
 }
 
 .post-content table tbody tr:hover {
-    background: rgba(0, 255, 65, 0.04);
-    box-shadow: inset 0 0 0 1px rgba(0, 255, 65, 0.1);
+    background: rgba(0, 255, 65, 0.08);
 }
 
-.post-content table tbody tr:last-child td {
-    border-bottom: none;
+.post-content table tbody tr:hover td {
+    border-color: rgba(0, 255, 65, 0.3);
+    color: var(--terminal-fg-bright);
 }
 
 /* Alternating row colors for better readability */
@@ -1045,13 +1035,19 @@ pre[class*="language-"] {
     background: rgba(255, 255, 255, 0.01);
 }
 
-/* Numeric columns right-aligned */
-.post-content table .num,
+/* ID/Numeric columns styling */
 .post-content table td:first-child {
-    text-align: right;
+    text-align: center;
     font-variant-numeric: tabular-nums;
     color: var(--color-blue);
-    font-weight: 500;
+    font-weight: 600;
+    background: rgba(88, 166, 255, 0.05);
+}
+
+.post-content table .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-yellow);
 }
 
 /* Legacy class support */
@@ -1299,11 +1295,13 @@ pre[class*="language-"] {
     }
 
     /* Blog post tables responsive */
-    .post-content table {
-        font-size: 11px;
-        display: block;
+    .post-content .table-wrapper {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+    }
+
+    .post-content table {
+        font-size: 11px;
     }
 
     .post-content table th,
