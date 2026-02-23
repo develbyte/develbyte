@@ -53,9 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize search functionality
     initializeSearch();
 
+    // Auto-focus search input on page load (only on index page)
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.focus();
+    }
+
     // Click anywhere on search prompt to focus input
     const searchPrompt = document.querySelector('.search-prompt');
-    const searchInput = document.getElementById('searchInput');
     if (searchPrompt && searchInput) {
         searchPrompt.addEventListener('click', () => {
             searchInput.focus();
