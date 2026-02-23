@@ -205,6 +205,9 @@ function markdownToHtml(md) {
     // Handle italic (*text*)
     html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
 
+    // Convert images (must come before links!)
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy">');
+
     // Convert links
     html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 
