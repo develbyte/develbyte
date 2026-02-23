@@ -40,9 +40,24 @@ If redundancy exists in the database then problems can arise when the database i
 
 A table is in its first normal form if it contains no repeating attributes or groups of attributes. To convert data for unnormalised form to 1NF, simply convert any repeated attributes into part of the candidate key.
 
-![un-normalise](/img/un-normalise.png)
+**Non-Normalised Table:**
 
-![first-degree-normalisation](/img/first-degree-normalisation.png)
+| ID  | Name           | Age | Movie                          | Language |
+|-----|----------------|-----|--------------------------------|----------|
+| 001 | Tom Cruise     | 53  | Mission Impossible, Top gun    | English  |
+| 002 | Brad Pitt      | 50  | Seven, Troy                    | English  |
+| 003 | George Clooney | 54  | ER, Gravity                    | English  |
+
+**First Degree Normalised Table:**
+
+| ID  | Name           | Age | Movie              | Language |
+|-----|----------------|-----|--------------------|----------|
+| 001 | Tom Cruise     | 53  | Mission Impossible | English  |
+| 001 | Tom Cruise     | 53  | Top gun            | English  |
+| 002 | Brad Pitt      | 50  | Seven              | English  |
+| 002 | Brad Pitt      | 50  | Troy               | English  |
+| 003 | George Clooney | 54  | ER                 | English  |
+| 003 | George Clooney | 54  | Gravity            | English  |
 
 - A relation is in 1NF if it contains no repeating groups
 - To convert an unnormalised relation to 1NF either
@@ -57,7 +72,26 @@ A table is in the second normal form if it's in the first normal form AND no col
 
 The concept of functional dependency in central to normalisation and, in particular, strongly related to 2NF
 
-![second-degree-normalisation](/img/second-degree-normalisation.png)
+**Second Degree Normalised Tables:**
+
+**ACTOR Table:**
+
+| ID  | Name           | Age |
+|-----|----------------|-----|
+| 001 | Tom Cruise     | 53  |
+| 002 | Brad Pitt      | 50  |
+| 003 | George Clooney | 54  |
+
+**MOVIES Table:**
+
+| ID  | Movie              | Language |
+|-----|--------------------|----------|
+| 001 | Mission Impossible | English  |
+| 001 | Top gun            | English  |
+| 002 | Seven              | English  |
+| 002 | Troy               | English  |
+| 003 | ER                 | English  |
+| 003 | Gravity            | English  |
 
 - A relation is in 2NF if it contains no repeating groups and no partial key functional dependencies
 - Rule: A relation in 1NF with a single key field must be in 2NF
@@ -69,7 +103,32 @@ The concept of functional dependency in central to normalisation and, in particu
 
 A table is in the third normal form if it is the second normal form and there are no non-key columns dependant on other non-key columns that could not act as the primary key.
 
-![third-degree-normalisation](/img/third-degree-normalisation.png)
+**Third Degree Normalised Tables:**
+
+**ACTOR Table:**
+
+| ID  | Name           | Age |
+|-----|----------------|-----|
+| 001 | Tom Cruise     | 53  |
+| 002 | Brad Pitt      | 50  |
+| 003 | George Clooney | 54  |
+
+**LANGUAGE Table:**
+
+| LANG_ID | LANGUAGE |
+|---------|----------|
+| L1      | English  |
+
+**MOVIES Table:**
+
+| ID  | Movie              | LANG_ID |
+|-----|--------------------|---------|
+| 001 | Mission Impossible | L1      |
+| 001 | Top gun            | L1      |
+| 002 | Seven              | L1      |
+| 002 | Troy               | L1      |
+| 003 | ER                 | L1      |
+| 003 | Gravity            | L1      |
 
 - A relation is in 3NF if it contains no repeating groups, no partial functional dependencies, and no transitive functional dependencies
 - To convert a relation with transitive functional dependencies to 3NF, remove the attributes involved in the transitive dependency and put them in a new relation

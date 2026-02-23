@@ -107,7 +107,7 @@
                     <div class="post-meta-full">
                         <span class="meta-item"><span class="meta-label">DATE:</span> 2015-09-14</span>
                         <span class="meta-item"><span class="meta-label">TAGS:</span> system-design, database</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 4 min read</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 5 min read</span>
                     </div>
                 </header>
 
@@ -147,8 +147,97 @@
 </ul>
 <h2>> ❯ First Normal Form: 1NF</h2>
 <p>A table is in its first normal form if it contains no repeating attributes or groups of attributes. To convert data for unnormalised form to 1NF, simply convert any repeated attributes into part of the candidate key.</p>
-<img src="/img/un-normalise.png" alt="un-normalise" loading="lazy">
-<img src="/img/first-degree-normalisation.png" alt="first-degree-normalisation" loading="lazy">
+<strong>Non-Normalised Table:</strong>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Movie</th>
+<th>Language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>Tom Cruise</td>
+<td>53</td>
+<td>Mission Impossible, Top gun</td>
+<td>English</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Brad Pitt</td>
+<td>50</td>
+<td>Seven, Troy</td>
+<td>English</td>
+</tr>
+<tr>
+<td>003</td>
+<td>George Clooney</td>
+<td>54</td>
+<td>ER, Gravity</td>
+<td>English</td>
+</tr>
+</tbody>
+</table>
+<strong>First Degree Normalised Table:</strong>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Movie</th>
+<th>Language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>Tom Cruise</td>
+<td>53</td>
+<td>Mission Impossible</td>
+<td>English</td>
+</tr>
+<tr>
+<td>001</td>
+<td>Tom Cruise</td>
+<td>53</td>
+<td>Top gun</td>
+<td>English</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Brad Pitt</td>
+<td>50</td>
+<td>Seven</td>
+<td>English</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Brad Pitt</td>
+<td>50</td>
+<td>Troy</td>
+<td>English</td>
+</tr>
+<tr>
+<td>003</td>
+<td>George Clooney</td>
+<td>54</td>
+<td>ER</td>
+<td>English</td>
+</tr>
+<tr>
+<td>003</td>
+<td>George Clooney</td>
+<td>54</td>
+<td>Gravity</td>
+<td>English</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>A relation is in 1NF if it contains no repeating groups</li>
 <li>To convert an unnormalised relation to 1NF either</li>
@@ -160,7 +249,76 @@
 <h2>> ❯ Second Normal Form: 2NF</h2>
 <p>A table is in the second normal form if it's in the first normal form AND no column that is not part of the primary key is dependant only a portion of the primary key.</p>
 <p>The concept of functional dependency in central to normalisation and, in particular, strongly related to 2NF</p>
-<img src="/img/second-degree-normalisation.png" alt="second-degree-normalisation" loading="lazy">
+<strong>Second Degree Normalised Tables:</strong>
+<strong>ACTOR Table:</strong>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>Tom Cruise</td>
+<td>53</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Brad Pitt</td>
+<td>50</td>
+</tr>
+<tr>
+<td>003</td>
+<td>George Clooney</td>
+<td>54</td>
+</tr>
+</tbody>
+</table>
+<strong>MOVIES Table:</strong>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Movie</th>
+<th>Language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>Mission Impossible</td>
+<td>English</td>
+</tr>
+<tr>
+<td>001</td>
+<td>Top gun</td>
+<td>English</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Seven</td>
+<td>English</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Troy</td>
+<td>English</td>
+</tr>
+<tr>
+<td>003</td>
+<td>ER</td>
+<td>English</td>
+</tr>
+<tr>
+<td>003</td>
+<td>Gravity</td>
+<td>English</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>A relation is in 2NF if it contains no repeating groups and no partial key functional dependencies</li>
 <li>Rule: A relation in 1NF with a single key field must be in 2NF</li>
@@ -170,7 +328,91 @@
 </ul>
 <h2>> ❯ Third Normal Form: 3NF</h2>
 <p>A table is in the third normal form if it is the second normal form and there are no non-key columns dependant on other non-key columns that could not act as the primary key.</p>
-<img src="/img/third-degree-normalisation.png" alt="third-degree-normalisation" loading="lazy">
+<strong>Third Degree Normalised Tables:</strong>
+<strong>ACTOR Table:</strong>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>Tom Cruise</td>
+<td>53</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Brad Pitt</td>
+<td>50</td>
+</tr>
+<tr>
+<td>003</td>
+<td>George Clooney</td>
+<td>54</td>
+</tr>
+</tbody>
+</table>
+<strong>LANGUAGE Table:</strong>
+<table>
+<thead>
+<tr>
+<th>LANG_ID</th>
+<th>LANGUAGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1</td>
+<td>English</td>
+</tr>
+</tbody>
+</table>
+<strong>MOVIES Table:</strong>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Movie</th>
+<th>LANG_ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>Mission Impossible</td>
+<td>L1</td>
+</tr>
+<tr>
+<td>001</td>
+<td>Top gun</td>
+<td>L1</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Seven</td>
+<td>L1</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Troy</td>
+<td>L1</td>
+</tr>
+<tr>
+<td>003</td>
+<td>ER</td>
+<td>L1</td>
+</tr>
+<tr>
+<td>003</td>
+<td>Gravity</td>
+<td>L1</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>A relation is in 3NF if it contains no repeating groups, no partial functional dependencies, and no transitive functional dependencies</li>
 <li>To convert a relation with transitive functional dependencies to 3NF, remove the attributes involved in the transitive dependency and put them in a new relation</li>

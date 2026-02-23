@@ -153,6 +153,61 @@ function extractExcerpt(content, maxLength = 150) {
 }
 
 /**
+ * Convert markdown tables to HTML
+ */
+function convertTables(html) {
+    const lines = html.split('\n');
+    const result = [];
+    let i = 0;
+
+    while (i < lines.length) {
+        const line = lines[i];
+
+        // Check if this line starts a table (starts with |)
+        if (line.trim().startsWith('|')) {
+            const tableLines = [];
+
+            // Collect all consecutive table lines
+            while (i < lines.length && lines[i].trim().startsWith('|')) {
+                tableLines.push(lines[i]);
+                i++;
+            }
+
+            if (tableLines.length >= 2) {
+                // Parse table
+                const headerRow = tableLines[0].split('|').filter(cell => cell.trim());
+                const dataRows = tableLines.slice(2).map(row =>
+                    row.split('|').filter(cell => cell.trim())
+                );
+
+                // Build HTML table
+                let tableHtml = '<table>\n<thead>\n<tr>\n';
+                headerRow.forEach(cell => {
+                    tableHtml += `<th>${cell.trim()}</th>\n`;
+                });
+                tableHtml += '</tr>\n</thead>\n<tbody>\n';
+
+                dataRows.forEach(row => {
+                    tableHtml += '<tr>\n';
+                    row.forEach(cell => {
+                        tableHtml += `<td>${cell.trim()}</td>\n`;
+                    });
+                    tableHtml += '</tr>\n';
+                });
+
+                tableHtml += '</tbody>\n</table>';
+                result.push(tableHtml);
+            }
+        } else {
+            result.push(line);
+            i++;
+        }
+    }
+
+    return result.join('\n');
+}
+
+/**
  * Simple markdown to HTML conversion (basic features only)
  */
 function markdownToHtml(md) {
@@ -160,6 +215,9 @@ function markdownToHtml(md) {
 
     // Remove <!--truncate--> markers
     html = html.replace(/<!--\s*truncate\s*-->/gi, '');
+
+    // Convert tables (must come early to avoid conflicts)
+    html = convertTables(html);
 
     // Convert headers
     html = html.replace(/^### (.*?)$/gm, '<h3>// $1</h3>');
