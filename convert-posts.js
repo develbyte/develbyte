@@ -219,9 +219,13 @@ function markdownToHtml(md) {
     // Convert tables (must come early to avoid conflicts)
     html = convertTables(html);
 
-    // Convert headers
-    html = html.replace(/^### (.*?)$/gm, '<h3>// $1</h3>');
-    html = html.replace(/^## (.*?)$/gm, '<h2>> $1</h2>');
+    // Convert headers (wrap ❯ in green span)
+    html = html.replace(/^### (.*?)$/gm, (match, content) => {
+        return `<h3>${content.replace(/❯/g, '<span class="terminal-prompt">❯</span>')}</h3>`;
+    });
+    html = html.replace(/^## (.*?)$/gm, (match, content) => {
+        return `<h2>${content.replace(/❯/g, '<span class="terminal-prompt">❯</span>')}</h2>`;
+    });
     html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
 
     // Convert code blocks with language

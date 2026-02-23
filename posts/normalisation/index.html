@@ -98,7 +98,11 @@
         <div class="terminal-body">
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./normalisation/</span>
+                <span class="command typed-text">cd $HOME</span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/normalisation/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
@@ -130,7 +134,7 @@
 <li>When data is inserted the data must be duplicated correctly in all places where there is redundancy. For instance, if two tables exist for in a database, and both tables contain the employee name, then creating a new employee entry requires that both tables be updated with the employee name.</li>
 <li>When data is modified in the database, if the data being changed has redundancy, then all versions of the redundant data must be updated simultaneously. So in the employee example a change to the employee name must happen in both tables simultaneously.</li>
 </ul>
-<h2>> ❯ Aims of Normalisation</h2>
+<h2><span class="terminal-prompt">❯</span> Aims of Normalisation</h2>
 <ul>
 <li>Normalisation ensures that the database is structured in the best possible way.</li>
 <li>To achieve control over data redundancy. There should be no unnecessary duplication of data in different tables.</li>
@@ -138,14 +142,14 @@
 <li>To ensure tables have a flexible structure. E.g. number of classes taken or books borrowed should not be limited.</li>
 <li>To allow data in different tables can be used in complex queries.</li>
 </ul>
-<h2>> ❯ Stages of Normalisation</h2>
+<h2><span class="terminal-prompt">❯</span> Stages of Normalisation</h2>
 <ul>
 <li>First Normal Form 1NF</li>
 <li>Second Normal Form 2NF</li>
 <li>Third Normal Form 3NF</li>
 <li>Boyce-Codd Normal Form BCNF</li>
 </ul>
-<h2>> ❯ First Normal Form: 1NF</h2>
+<h2><span class="terminal-prompt">❯</span> First Normal Form: 1NF</h2>
 <p>A table is in its first normal form if it contains no repeating attributes or groups of attributes. To convert data for unnormalised form to 1NF, simply convert any repeated attributes into part of the candidate key.</p>
 <strong>Non-Normalised Table:</strong>
 <table>
@@ -246,7 +250,7 @@
 <li>Remember to put the primary key from the original relation into both new relations.</li>
 <li>This option is liable to give the best results.</li>
 </ul>
-<h2>> ❯ Second Normal Form: 2NF</h2>
+<h2><span class="terminal-prompt">❯</span> Second Normal Form: 2NF</h2>
 <p>A table is in the second normal form if it's in the first normal form AND no column that is not part of the primary key is dependant only a portion of the primary key.</p>
 <p>The concept of functional dependency in central to normalisation and, in particular, strongly related to 2NF</p>
 <strong>Second Degree Normalised Tables:</strong>
@@ -326,7 +330,7 @@
 <li>One relation for the attributes that are fully dependent upon the key.</li>
 <li>One relation for each part of the key that has partially dependent attributes</li>
 </ul>
-<h2>> ❯ Third Normal Form: 3NF</h2>
+<h2><span class="terminal-prompt">❯</span> Third Normal Form: 3NF</h2>
 <p>A table is in the third normal form if it is the second normal form and there are no non-key columns dependant on other non-key columns that could not act as the primary key.</p>
 <strong>Third Degree Normalised Tables:</strong>
 <strong>ACTOR Table:</strong>

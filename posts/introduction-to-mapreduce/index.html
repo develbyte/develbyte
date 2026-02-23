@@ -98,7 +98,11 @@
         <div class="terminal-body">
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./introduction-to-mapreduce/</span>
+                <span class="command typed-text">cd $HOME</span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/introduction-to-mapreduce/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
@@ -124,12 +128,12 @@
 <h1>Introduction To MapReduce</h1>
 <strong>MapReduce</strong> is a framework for processing large amount of data residing on hundreds of computers, its an extraordinarily powerful paradigm. MapReduce was first introduced by Google in 2004 MapReduce: Simplified Data Processing on Large Clusters.
 <p>In this article we'll see how MapReduce processes the data, I am considering the Word Count program as a example, yeah!! this is the worlds most famous MapReduce program!!</p>
-<h2>> ❯ Overview</h2>
+<h2><span class="terminal-prompt">❯</span> Overview</h2>
 <p>The MapReduce framework operates exclusively on <em>&lt;key, value&gt;</em> pairs, that is, the framework views the input to the job as a set of <em>&lt;key, value&gt;</em> pairs and produces a set of <em>&lt;key, value&gt;</em> pairs as the output of the job, conceivably of different types.</p>
 <p>The key and value classes have to be serializable by the framework and hence need to implement the Writable interface. Additionally, the key classes have to implement the WritableComparable interface to facilitate sorting by the framework.</p>
-<h2>> ❯ Input and Output types of a MapReduce job:</h2>
+<h2><span class="terminal-prompt">❯</span> Input and Output types of a MapReduce job:</h2>
 <em>(input) &lt;k1, v1&gt; -> <strong>map</strong> -> &lt;k2, v2&gt; -> <strong>combine</strong> -> &lt;k2, v2&gt; -> <strong>reduce</strong> -> &lt;k3, v3&gt; (output)</em>
-<h2>> ❯ WordCount.java</h2>
+<h2><span class="terminal-prompt">❯</span> WordCount.java</h2>
 <div class="code-block">
     <div class="code-header">
         <div class="code-window-buttons">

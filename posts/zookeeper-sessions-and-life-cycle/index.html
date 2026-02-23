@@ -98,7 +98,11 @@
         <div class="terminal-body">
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./zookeeper-sessions-and-life-cycle/</span>
+                <span class="command typed-text">cd $HOME</span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/zookeeper-sessions-and-life-cycle/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
@@ -122,18 +126,18 @@
 
                 <!-- START YOUR CONTENT HERE -->
 <h1>Zookeeper Sessions and life cycle</h1>
-<h2>> ❯ Session and request order handling:</h2>
+<h2><span class="terminal-prompt">❯</span> Session and request order handling:</h2>
 <p>Sessions is very important and quite critical for the operation of ZooKeeper. All operations a client submits to ZooKeeper are associated to a session. When a session ends for any reason, the ephemeral nodes created during that session disappear.</p>
 <p>The client initially connects to any server in the ensemble, and only to a single server. It uses a TCP connection to communicate with the server, but the session may be moved to a different server if the client has not heard from its current server for some time. Moving a session to a different server is handled transparently by the ZooKeeper client library.</p>
 <p>Sessions offer order guarantees, which means that requests in a session are executed in FIFO (first in, first out) order. Typically, a client has only a single session open, so its requests are all executed in FIFO order. When a client creates a ZooKeeper handle using a specific language binding, it establishes a session with the service. If a client has multiple concurrent sessions, FIFO ordering is not necessarily preserved across the sessions. Consecutive sessions of the same client, even if they don't overlap in time, also do not necessarily preserve FIFO order.</p>
-<h3>// ❯ Here is how it can happen in this case:</h3>
+<h3><span class="terminal-prompt">❯</span> Here is how it can happen in this case:</h3>
 <ul>
 <li>Client establishes a session and makes two consecutive asynchronous calls to <code class="inline-code">create /tasks</code> and <code class="inline-code">create /workers</code>.</li>
 <li>First session expires.</li>
 <li>Client establishes another session and makes an asynchronous call to <code class="inline-code">create /assign</code>.</li>
 </ul>
 <p>In this sequence of calls, it is possible that only <code class="inline-code">/tasks</code> and <code class="inline-code">/assign</code> have been created, which preserves FIFO ordering for the first session but violates it across sessions.</p>
-<h2>> ❯ States and the Lifetime of a Session</h2>
+<h2><span class="terminal-prompt">❯</span> States and the Lifetime of a Session</h2>
 <p>The lifetime of a session is the period between its creation and its end, whether it is closed gracefully or expires because of a timeout. The possible states of a session are : <em>CONNECTING</em>, <em>CONNECTED</em>, <em>CLOSED</em>, and <em>NOT_CONNECTED</em>.</p>
 <img src="/img/states-and-the-Lifetime-of-a-Session.png" alt="states-and-the-Lifetime-of-a-Session" loading="lazy">
 <!-- END YOUR CONTENT HERE -->

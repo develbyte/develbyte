@@ -655,6 +655,11 @@ body {
     font-weight: 700;
 }
 
+/* Green terminal prompt arrow in headings */
+.terminal-prompt {
+    color: var(--terminal-accent);
+}
+
 .post-content p {
     margin-bottom: var(--spacing-md);
     color: var(--terminal-fg);

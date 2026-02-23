@@ -98,7 +98,11 @@
         <div class="terminal-body">
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./inside-modern-machine-learning-platforms/</span>
+                <span class="command typed-text">cd $HOME</span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/inside-modern-machine-learning-platforms/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
@@ -134,7 +138,7 @@
 <li>A comparison table to help you decide what's right for your org</li>
 </ul>
 <p>Let's get started.</p>
-<h2>> ❯ What is a Machine Learning Platform, Really?</h2>
+<h2><span class="terminal-prompt">❯</span> What is a Machine Learning Platform, Really?</h2>
 <p>At a high level, a Machine Learning Platform is everything that sits between raw data and live predictions. Here's a common breakdown:</p>
 <ol>
 <li><strong>Data Ingestion & Processing:</strong> Scheduled or real-time pipelines (Spark, Airflow, Kafka)</li>
@@ -146,8 +150,8 @@
 <li><strong>Orchestration:</strong> Pipeline DAGs tying all the above together</li>
 </ol>
 <p>This sounds like a lot — and it is. Which is why companies have taken vastly different paths depending on their scale, domain, and engineering maturity.</p>
-<h2>> ❯ The Tech Giants: Heavyweight End-to-End Platforms</h2>
-<h3>// ❯ Uber: Michelangelo</h3>
+<h2><span class="terminal-prompt">❯</span> The Tech Giants: Heavyweight End-to-End Platforms</h2>
+<h3><span class="terminal-prompt">❯</span> Uber: Michelangelo</h3>
 <p>Arguably one of the most referenced ML platforms in the industry.</p>
 <p>Michelangelo isn't just a platform, it's a philosophy of consistency and scale. Designed to democratise ML across teams, The platform covered everything: data pipelines, a feature store, distributed training, a model registry, and serving infrastructure.</p>
 <ul>
@@ -159,7 +163,7 @@
 <p>Michelangelo powers ETA predictions, fraud models, driver allocation, and even supply-demand balancing models.</p>
 <strong>Why it works:</strong> Uber has high QPS, latency-sensitive products and ML is core to business (e.g. pricing, ETA). They needed strong guardrails.
 <strong>Trade-offs:</strong> High engineering investment. Not for small teams.
-<h3>// ❯ Facebook: FBLearner Flow</h3>
+<h3><span class="terminal-prompt">❯</span> Facebook: FBLearner Flow</h3>
 <p>Facebook took a slightly different route. FBLearner was built to let _any engineer_ build and train ML models with minimal boilerplate.</p>
 <p>A <strong>Workflows-as-code</strong> platform, built for internal reusability and speed:</p>
 <ul>
@@ -171,7 +175,7 @@
 <p>FBLearner also focused heavily on reuse: train once, serve anywhere. The internal adoption was massive — 25%+ of engineers were using it within a few years.</p>
 <strong>Why it works:</strong> At Facebook's scale, ML is everywhere. Democratisation and reuse matter more than custom infra per team.
 <strong>Trade-offs:</strong> Deeply tied to Facebook infra. Not transferable.
-<h3>// ❯ Airbnb: Bighead</h3>
+<h3><span class="terminal-prompt">❯</span> Airbnb: Bighead</h3>
 <p>Airbnb opted for modularity with a suite of focused tools:</p>
 <ul>
 <li><strong>Zipline:</strong> Feature engineering as code; supports time-windowed feature computation and training-serving parity.</li>
@@ -182,9 +186,9 @@
 <p>Each component was replaceable, making the platform evolve-friendly. Most importantly, Bighead drastically reduced time-to-production for models.</p>
 <strong>Why it works:</strong> Airbnb needed consistency and productivity, not one-size-fits-all.
 <strong>Trade-offs:</strong> Building many micro-components adds integration overhead.
-<h2>> ❯ The Modular Approach: Open-Source Stacks</h2>
+<h2><span class="terminal-prompt">❯</span> The Modular Approach: Open-Source Stacks</h2>
 <p>Companies without 100+ engineers can still build sophisticated ML platforms by stitching together open-source tools:</p>
-<h3>// ❯ Common OSS Stack:</h3>
+<h3><span class="terminal-prompt">❯</span> Common OSS Stack:</h3>
 <ul>
 <li><strong>Data Ingestion:</strong> Airflow or Dagster for pipelines</li>
 <li><strong>Feature Engineering:</strong> Feast or custom ETL over Snowflake/BigQuery</li>
@@ -196,31 +200,31 @@
 <p>This approach gives full control, and avoids vendor lock-in.</p>
 <strong>Real-World Example:</strong> Instacart's Griffin ML platform combines Feast, Databricks, Ray, MLflow, and a custom orchestrator — scaled to hundreds of models without building from scratch.
 <strong>Trade-offs:</strong> You own integration, observability, and scaling.
-<h2>> ❯ Cloud-Managed ML Platforms</h2>
+<h2><span class="terminal-prompt">❯</span> Cloud-Managed ML Platforms</h2>
 <p>Cloud providers offer full-service ML stacks — great for startups, prototypes, or when internal DevOps resources are scarce.</p>
-<h3>// ❯ AWS SageMaker:</h3>
+<h3><span class="terminal-prompt">❯</span> AWS SageMaker:</h3>
 <ul>
 <li><strong>Feature Store, Model Registry, Pipelines, and Endpoints</strong> all managed</li>
 <li>Tight integration with S3, Glue, CloudWatch, IAM</li>
 <li>Supports Bring-Your-Own-Container (BYOC) for custom model logic</li>
 </ul>
-<h3>// ❯ Google Vertex AI:</h3>
+<h3><span class="terminal-prompt">❯</span> Google Vertex AI:</h3>
 <ul>
 <li>Managed pipelines built on Kubeflow</li>
 <li>Integrated with BigQuery, GCS, AutoML, and Explainable AI</li>
 <li>Feature Store with real-time and batch support</li>
 </ul>
-<h3>// ❯ Azure ML:</h3>
+<h3><span class="terminal-prompt">❯</span> Azure ML:</h3>
 <ul>
 <li>End-to-end model lifecycle with drag-drop UI or code-based SDKs</li>
 <li>Strong MLOps integrations with GitHub Actions and Azure DevOps</li>
 </ul>
 <strong>Best for:</strong> Teams that want to skip infrastructure and focus purely on modeling.
 <strong>Drawbacks:</strong> Opaque internals, higher long-term cost, and limited flexibility.
-<h2>> ❯ Databricks: The Lakehouse Approach to MLOps</h2>
+<h2><span class="terminal-prompt">❯</span> Databricks: The Lakehouse Approach to MLOps</h2>
 <p>Databricks deserves special mention as a platform that blends the benefits of a managed cloud platform with the openness and flexibility of OSS-based design.</p>
 <p>If you don't want to go with self-managed OSS platform but still want OSS stack, Databricks by far the best Platform for all Data and ML Platform, little expensive then the Cloud solution but its worth the money spent.</p>
-<h3>// ❯ Why Databricks Stands Out:</h3>
+<h3><span class="terminal-prompt">❯</span> Why Databricks Stands Out:</h3>
 <ul>
 <li><strong>Unified Lakehouse Architecture:</strong> Combines the data warehouse and data lake into a single platform, making it easier to manage both structured and unstructured data in one place.</li>
 <li><strong>Native MLflow Integration:</strong> As the creators of MLflow, Databricks offers best-in-class experiment tracking, model versioning, and model registry baked right into its platform.</li>
@@ -229,7 +233,7 @@
 <li><strong>Model Deployment:</strong> Supports batch inference via jobs or real-time endpoints with model serving. Integrates with Unity Catalog for governance and lineage.</li>
 <li><strong>Deep Collaboration Features:</strong> Real-time collaborative notebooks with Git integration, commenting, and version history.</li>
 </ul>
-<h3>// ❯ Ideal For:</h3>
+<h3><span class="terminal-prompt">❯</span> Ideal For:</h3>
 <ul>
 <li>Enterprises that want a <strong>data-first ML platform</strong></li>
 <li>Teams already using Spark, Delta Lake, or lakehouse patterns</li>
@@ -241,7 +245,7 @@
 <li>Real-time deployment flexibility: Some teams find KServe or BentoML more flexible for specialized serving use cases.</li>
 </ul>
 <p>Still, for many, Databricks hits the sweet spot of managed infrastructure, OSS compatibility, and platform maturity.</p>
-<h2>> ❯ Comparison Table</h2>
+<h2><span class="terminal-prompt">❯</span> Comparison Table</h2>
 <table>
 <thead>
 <tr>
@@ -296,7 +300,7 @@
 </tr>
 </tbody>
 </table>
-<h2>> ❯ Final Thoughts</h2>
+<h2><span class="terminal-prompt">❯</span> Final Thoughts</h2>
 <p>There's no one right ML platform architecture. What matters is choosing something that aligns with your team's size, experience, and goals.</p>
 <ul>
 <li>If you're Uber or Facebook, you'll likely need to build.</li>

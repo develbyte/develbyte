@@ -98,7 +98,11 @@
         <div class="terminal-body">
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./how-to-implement-singly-linked-list-in-java/</span>
+                <span class="command typed-text">cd $HOME</span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/how-to-implement-singly-linked-list-in-java/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
@@ -124,7 +128,7 @@
 <h1>How to Implement Singly Linked List in Java</h1>
 <p>A <strong>Linked List</strong> is a dynamic data structure. The number of nodes in a list is not fixed and can grow and shrink on demand. Any application which has to deal with an unknown number of objects will need to use a linked list.</p>
 <p>Linked lists and arrays are similar since they both store collections of data. The terminology is that arrays and linked lists store "elements" on behalf of "client" code. The specific type of element is not important since essentially the same structure works to store elements of any type. The size of the array is fixed where Linked List is a dynamic and also Inserting new elements at the front or in middle of an array is potentially expensive because existing elements need to be shifted over to make room.</p>
-<h2>> ❯ Types of Linked List</h2>
+<h2><span class="terminal-prompt">❯</span> Types of Linked List</h2>
 <ul>
 <li>Singly Linked List</li>
 <li>Doubly Linked List</li>
@@ -132,8 +136,8 @@
 </ul>
 <p>Singly Linked List is the most basic types of Linked List where every node holds some data and reference to next Node.</p>
 <img src="/img/linkedlist.png" alt="linkedlist" loading="lazy">
-<h2>> ❯ Implementation of Singly Linked List</h2>
-<h3>// ❯ Node.java</h3>
+<h2><span class="terminal-prompt">❯</span> Implementation of Singly Linked List</h2>
+<h3><span class="terminal-prompt">❯</span> Node.java</h3>
 <div class="code-block">
     <div class="code-header">
         <div class="code-window-buttons">
@@ -149,7 +153,7 @@
 <p>public Node(Object data){ this.data = data;} public Node(Object data, Node nextNode){ this.data=data;this.nextNode=nextNode;} public Object getData(){return data;} public void setData(Object data){this.data=data;} public Node getNextNode(){return nextNode;} public void setNextNode(Node nextNode){this.nextNode=nextNode;} }</p>
 </code></pre>
 </div>
-<h3>// ❯ LinkedList.java</h3>
+<h3><span class="terminal-prompt">❯</span> LinkedList.java</h3>
 <div class="code-block">
     <div class="code-header">
         <div class="code-window-buttons">
@@ -178,7 +182,7 @@
 <p>public int size() { return listCount; } }</p>
 </code></pre>
 </div>
-<h3>// ❯ MainClass.java</h3>
+<h3><span class="terminal-prompt">❯</span> MainClass.java</h3>
 <div class="code-block">
     <div class="code-header">
         <div class="code-window-buttons">

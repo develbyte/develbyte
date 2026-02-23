@@ -98,7 +98,11 @@
         <div class="terminal-body">
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./mapreduce-execution-in-hadoop/</span>
+                <span class="command typed-text">cd $HOME</span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/mapreduce-execution-in-hadoop/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
@@ -123,7 +127,7 @@
                 <!-- START YOUR CONTENT HERE -->
 <h1>MapReduce Execution in Hadoop</h1>
 <p>In this article we have tried to summaries,  how a MapReduce program executes in Hadoop environment.</p>
-<h2>> ❯ MapReduce 1 Execution Sequence:</h2>
+<h2><span class="terminal-prompt">❯</span> MapReduce 1 Execution Sequence:</h2>
 <p>MapReduce execution starts with below command.</p>
 <strong>Step 1:</strong> <code class="inline-code">$ hadoop jar <jar> [mainClass] args...</code>
 <p>This command starts the MapReduce execution in Clients JVM. creates the Job.</p>

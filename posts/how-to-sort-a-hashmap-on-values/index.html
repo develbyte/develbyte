@@ -98,7 +98,11 @@
         <div class="terminal-body">
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./how-to-sort-a-hashmap-on-values/</span>
+                <span class="command typed-text">cd $HOME</span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/how-to-sort-a-hashmap-on-values/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
@@ -124,9 +128,9 @@
 <h1>How to sort a HashMap on Values</h1>
 <p>HashMap doesn't preserve any order by default. If order is required we need to sort it explicitly according to the requirement.</p>
 <p>In this article I have tried to explain how to sort a HasMap based on values.</p>
-<h2>> ❯ HasMap sorting by Value</h2>
+<h2><span class="terminal-prompt">❯</span> HasMap sorting by Value</h2>
 <p>in this example I have used TreeMap to sort the HashMap. unlike a HashMap, a TreeMap guarantees that its elements will be sorted in ascending key order.</p>
-<h3>// ❯ SortHashMap.java</h3>
+<h3><span class="terminal-prompt">❯</span> SortHashMap.java</h3>
 <div class="code-block">
     <div class="code-header">
         <div class="code-window-buttons">
@@ -151,7 +155,7 @@
 <p>// Note: this comparator imposes orderings that are inconsistent with equals. public int compare(String a, String b) { if (base.get(a) &gt;= base.get(b)) { return -1; } else { return 1; } // returning 0 would merge keys } }</p>
 </code></pre>
 </div>
-<h3>// ❯ Output</h3>
+<h3><span class="terminal-prompt">❯</span> Output</h3>
 <div class="code-block">
     <div class="code-header">
         <div class="code-window-buttons">

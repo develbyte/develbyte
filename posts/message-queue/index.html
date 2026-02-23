@@ -98,7 +98,11 @@
         <div class="terminal-body">
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./message-queue/</span>
+                <span class="command typed-text">cd $HOME</span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/message-queue/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
@@ -122,7 +126,7 @@
 
                 <!-- START YOUR CONTENT HERE -->
 <h1>Message Queue</h1>
-<h2>> ❯ What is Message Passing?</h2>
+<h2><span class="terminal-prompt">❯</span> What is Message Passing?</h2>
 <p>Message passing is a technique to enable inter-process communication (IPC), or for inter-thread communication within the same process communication between two distributed or non-distributed parallel processes in synchronous or asynchronous mode, The communications are completed by the sending of messages (functions, signals and data packets) to recipients.</p>
 <p>Most widely used messaging Patterns are:</p>
 <ul>
@@ -132,13 +136,13 @@
 <li>RPC(remote-procedure-call)</li>
 <li>push-pull</li>
 </ul>
-<h2>> ❯ Request Response:</h2>
+<h2><span class="terminal-prompt">❯</span> Request Response:</h2>
 <p>The program that plays the role of servicing requests is called server. Correspondingly, the program that sends requests to a server is called client. We use server or client to refer to the role played by a program. A program can act as both server and client at the same time. this is most widely used in world wide web. we have both synchronuous and asynchronous versions of this.</p>
 <img src="/img/client-server-1.png" alt="client-server" loading="lazy">
-<h2>> ❯ Message Queue:</h2>
+<h2><span class="terminal-prompt">❯</span> Message Queue:</h2>
 <p>Message queues provide and asynchronous Point-to-point communications protocol, which means the sender puts messages in a queue and continue its processing without receiving an immediate response. the receiver can reach out to the messaging queue for receiving the messages. Messages placed onto the queue are stored until the recipient retrieves them. Message queues have implicit or explicit limits on the size of data that may be transmitted in a single message and the number of messages that may remain outstanding on the queue.</p>
 <img src="/img/message-queue-model.png" alt="message-queue-model" loading="lazy">
-<h2>> ❯ Publisher-Subscriber:</h2>
+<h2><span class="terminal-prompt">❯</span> Publisher-Subscriber:</h2>
 <p>Publish–subscribe is a sibling of the message queue paradigm, this paradigm the sender of the message is called Publisher, who send the message to a topic without the knowledge of who are the specific receivers, called subscribers, similarly the subscribers receives the messages only of there interest, the messages gets filtered based on the topic and content. the only subscriber interested the particular topic or attribute, the matching constraints defined by the subscriber.</p>
 <img src="/img/pub-sub-model.png" alt="pub-sub-model" loading="lazy">
 <!-- END YOUR CONTENT HERE -->
