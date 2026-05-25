@@ -38,169 +38,162 @@
     <!-- Resource Preloads -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="styles.css">
-    <link rel="preload" as="script" href="script.js">
+    <link rel="preload" as="style" href="styles.css?v=20260525">
+    <link rel="preload" as="script" href="script.js?v=20260525">
 
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <div class="terminal-shell">
-        <!-- Shell header -->
-        <header class="shell-header">
-            <div class="shell-identity">
-                <span class="shell-user">narendra@develbyte</span>
-                <span class="shell-separator">:</span>
-                <span class="shell-path">~/about</span>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
             </div>
-            <div class="shell-hints">
-                <span><span class="hint-key">H</span> home</span>
-                <span><span class="hint-key">G</span> github</span>
-            </div>
-        </header>
+            <div class="terminal-title">narendra@develbyte: ~/about</div>
+        </div>
 
-        <!-- Navigation chips -->
-        <nav class="shell-nav">
-            <a href="index.html" class="nav-chip">~/blog</a>
-            <span class="nav-dot">/</span>
-            <a href="about.html" class="nav-chip active">whoami</a>
-        </nav>
-
-        <main id="main-content">
-            <article class="post-content">
-                <div class="prompt-line">
-                    <span class="prompt">$</span>
-                    <span class="command">whoami</span>
+        <div class="terminal-body">
+            <div class="content-area fade-in" id="main-content">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">cd $HOME</a>
+                    <span class="nav-separator">•</span>
+                    <a href="about.html" class="nav-link active">whoami</a>
                 </div>
 
-                <section>
-                    <div class="profile-section">
-                        <div class="profile-image-container">
-                            <img src="img/rzp-dp-warn.png"
-                                 alt="Narendra Kumar"
-                                 class="profile-image"
-                                 loading="lazy"
-                                 width="200"
-                                 height="200">
-                        </div>
-                        <div class="profile-text">
-                            <h2>Narendra Kumar</h2>
-                            <p class="profile-subtitle">Systems builder. Platform tinkerer. Distributed architecture troublemaker.</p>
-                        </div>
+                <div class="separator-line">─────────────────────────────────────────────────────────────────────────────────</div>
+
+                <article class="post-content">
+                    <div class="command-line">
+                        <span class="prompt">❯ guest@develbyte:$</span> <span class="command">whoami</span>
                     </div>
 
-                    <p>
-                        Software engineer with a focus on distributed systems, databases, and machine learning infrastructure.
-                        Currently building scalable data platforms and exploring the intersection of systems programming and ML.
-                    </p>
-
-                    <p>
-                        I write about technical deep-dives, paper reviews (#50PaperChallenge), and lessons learned from
-                        building production systems.
-                    </p>
-                </section>
-
-                <section>
-                    <h2><span class="terminal-prompt">$</span> cat topics.txt</h2>
-
-                    <ul>
-                        <li><strong>Distributed Systems</strong> - Consistency models, consensus algorithms, system design</li>
-                        <li><strong>Databases</strong> - Storage engines, query optimization, write amplification</li>
-                        <li><strong>Machine Learning Infrastructure</strong> - ML platforms, model serving, feature stores</li>
-                        <li><strong>Paper Reviews</strong> - Breaking down seminal research papers (#50PaperChallenge)</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2><span class="terminal-prompt">$</span> cat projects.md</h2>
-
-                    <div class="callout callout-tip">
-                        <div class="callout-title">#50PaperChallenge</div>
-                        <div class="callout-content">
-                            Reading and writing about 50 foundational papers in distributed systems, databases,
-                            and computer science. Follow along on the blog.
+                    <section>
+                        <div class="profile-section">
+                            <div class="profile-image-container">
+                                <img src="img/rzp-dp-warn.png"
+                                     alt="Narendra Kumar"
+                                     class="profile-image"
+                                     loading="lazy"
+                                     width="200"
+                                     height="200">
+                            </div>
+                            <div class="profile-text">
+                                <h2>❯ Narendra Kumar</h2>
+                                <p class="profile-subtitle">Systems builder. Platform tinkerer. Distributed architecture troublemaker.</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <p>Papers reviewed so far:</p>
-                    <ul>
-                        <li>
-                            <a href="/posts/why-write-amplification-not-just-throughput-shapes-modern-databases/">
-                                LSM Trees and WiscKey: Write Amplification in Modern Databases
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/posts/why-latency-not-partitions-dictates-database-consistency/">
-                                PACELC: Consistency Tradeoffs in Distributed Systems
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/posts/inside-modern-machine-learning-platforms/">
-                                Modern ML Platform Architectures: A Survey
-                            </a>
-                        </li>
-                    </ul>
-                </section>
+                        <p>
+                            Software engineer with a focus on distributed systems, databases, and machine learning infrastructure.
+                            Currently building scalable data platforms and exploring the intersection of systems programming and ML.
+                        </p>
 
-                <section>
-                    <h2><span class="terminal-prompt">$</span> cat .env</h2>
+                        <p>
+                            I write about technical deep-dives, paper reviews (#50PaperChallenge), and lessons learned from
+                            building production systems.
+                        </p>
+                    </section>
 
-                    <div class="connect-links">
-                        <div class="connect-item">
-                            <span class="connect-label">GITHUB=</span>
-                            <a href="https://github.com/im-naren" target="_blank" rel="noopener noreferrer" class="inline-link">@im-naren</a>
+                    <section>
+                        <h2>❯ What I Write About</h2>
+
+                        <ul>
+                            <li><strong>Distributed Systems</strong> - Consistency models, consensus algorithms, system design</li>
+                            <li><strong>Databases</strong> - Storage engines, query optimization, write amplification</li>
+                            <li><strong>Machine Learning Infrastructure</strong> - ML platforms, model serving, feature stores</li>
+                            <li><strong>Paper Reviews</strong> - Breaking down seminal research papers (#50PaperChallenge)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>❯ Current Projects</h2>
+
+                        <div class="callout callout-info">
+                            <div class="callout-title">[#50PaperChallenge]</div>
+                            <div class="callout-content">
+                                Reading and writing about 50 foundational papers in distributed systems, databases,
+                                and computer science. Follow along on the blog!
+                            </div>
                         </div>
-                        <div class="connect-item">
-                            <span class="connect-label">LINKEDIN=</span>
-                            <a href="https://linkedin.com/in/im-naren" target="_blank" rel="noopener noreferrer" class="inline-link">in/im-naren</a>
+
+                        <p>Papers reviewed so far:</p>
+                        <ul>
+                            <li>
+                                <a href="/posts/why-write-amplification-not-just-throughput-shapes-modern-databases/">
+                                    LSM Trees and WiscKey: Write Amplification in Modern Databases
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/posts/why-latency-not-partitions-dictates-database-consistency/">
+                                    PACELC: Consistency Tradeoffs in Distributed Systems
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/posts/inside-modern-machine-learning-platforms/">
+                                    Modern ML Platform Architectures: A Survey
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>❯ Connect</h2>
+
+                        <div class="connect-links">
+                            <div class="connect-item">
+                                <span class="connect-label">GitHub:</span>
+                                <a href="https://github.com/im-naren" target="_blank" rel="noopener noreferrer">@im-naren</a>
+                            </div>
+                            <div class="connect-item">
+                                <span class="connect-label">LinkedIn:</span>
+                                <a href="https://linkedin.com/in/im-naren" target="_blank" rel="noopener noreferrer">in/im-naren</a>
+                            </div>
+                            <div class="connect-item">
+                                <span class="connect-label">Email:</span>
+                                <a href="mailto:naren.dubey@zoho.com">naren.dubey@zoho.com</a>
+                            </div>
+                            <div class="connect-item">
+                                <span class="connect-label">Blog:</span>
+                                <a href="https://develbyte.in">develbyte.in</a>
+                            </div>
+                            <div class="connect-item">
+                                <span class="connect-label">Resume:</span>
+                                <a href="/resume.html">View HTML</a>
+                                <span class="connect-separator">|</span>
+                                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">View PDF</a>
+                            </div>
                         </div>
-                        <div class="connect-item">
-                            <span class="connect-label">EMAIL=</span>
-                            <a href="mailto:naren.dubey@zoho.com" class="inline-link">naren.dubey@zoho.com</a>
-                        </div>
-                        <div class="connect-item">
-                            <span class="connect-label">BLOG=</span>
-                            <a href="https://develbyte.in" class="inline-link">develbyte.in</a>
-                        </div>
-                        <div class="connect-item">
-                            <span class="connect-label">RESUME=</span>
-                            <a href="/resume.html" class="inline-link">view html</a>
-                            <span class="connect-separator">|</span>
-                            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">view pdf</a>
-                        </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section>
-                    <h2><span class="terminal-prompt">$</span> cat colophon.txt</h2>
+                    <section>
+                        <h2>❯ Colophon</h2>
 
-                    <p>
-                        This blog is built with pure HTML/CSS/JavaScript - no frameworks, no build step,
-                        no npm dependencies. Just open <code class="inline-code">index.html</code> and it works.
-                    </p>
+                        <p>
+                            This blog is built with pure HTML/CSS/JavaScript - no frameworks, no build step,
+                            no npm dependencies. Just open <code class="inline-code">index.html</code> and it works.
+                        </p>
 
-                    <p>
-                        Syntax highlighting powered by <a href="https://prismjs.com/" target="_blank">Prism.js</a>.
-                        Typography set in <a href="https://www.jetbrains.com/lp/mono/" target="_blank">JetBrains Mono</a>.
-                    </p>
-                </section>
+                        <p>
+                            Syntax highlighting powered by <a href="https://prismjs.com/" target="_blank">Prism.js</a>.
+                            Typography set in <a href="https://fonts.google.com/specimen/IBM+Plex+Sans" target="_blank">IBM Plex Sans</a>.
+                        </p>
+                    </section>
 
-                <hr class="section-break">
+                    <hr class="section-break">
 
-                <footer class="post-footer-nav">
-                    <a href="index.html" class="footer-nav-link">$ cd ~/blog</a>
-                </footer>
-            </article>
-        </main>
-
-        <footer class="shell-footer">
-            <span>develbyte.in</span>
-            <span>built with raw html, no frameworks</span>
-        </footer>
+                    <footer class="post-footer-nav">
+                        <a href="index.html" class="footer-nav-link">❯ cd $HOME</a>
+                    </footer>
+                </article>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260525"></script>
 </body>
 </html>
