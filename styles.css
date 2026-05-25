@@ -584,7 +584,6 @@ body {
     flex-direction: column;
     gap: var(--spacing-lg);
     padding: 0 0 var(--spacing-xl);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .resume-page .resume-profile-section {
@@ -648,7 +647,6 @@ body {
     flex-wrap: wrap;
     gap: 0.75rem 1rem;
     padding-top: var(--spacing-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .resume-page .resume-contact-link {
@@ -665,7 +663,6 @@ body {
     padding: 0 0 var(--spacing-xl);
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 0;
     box-shadow: none;
 }
@@ -732,7 +729,6 @@ body {
 .resume-page .resume-secondary-block {
     margin-top: var(--spacing-lg);
     padding-top: var(--spacing-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .resume-page .resume-profile-shell {
@@ -779,6 +775,11 @@ body {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--spacing-lg);
+}
+
+.resume-page .post-footer-nav,
+.resume-page .shell-footer {
+    border-top: none;
 }
 
 .separator-line {
