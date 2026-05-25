@@ -527,7 +527,6 @@ body {
 .resume-page .resume-entry {
     margin-bottom: var(--spacing-xl);
     padding-bottom: var(--spacing-lg);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .resume-page .resume-entry:last-child {
@@ -650,17 +649,40 @@ body {
 }
 
 .resume-page .resume-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     color: var(--terminal-fg);
     font-size: 0.92rem;
     text-decoration: none;
+}
+
+.resume-page .resume-contact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--terminal-dim);
+    flex-shrink: 0;
+}
+
+.resume-page .resume-contact-icon svg {
+    width: 16px;
+    height: 16px;
+    display: block;
 }
 
 .resume-page .resume-contact-link:hover {
     color: var(--terminal-accent);
 }
 
+.resume-page .resume-contact-link:hover .resume-contact-icon {
+    color: var(--terminal-accent);
+}
+
 .resume-page .resume-panel {
-    padding: 0 0 var(--spacing-xl);
+    padding: 0;
     background: transparent;
     border: none;
     border-radius: 0;
