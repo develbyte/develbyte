@@ -149,9 +149,13 @@ body {
 /* Shell layout used by newer standalone pages */
 .terminal-shell {
     max-width: 960px;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 0 var(--spacing-lg);
     min-height: 100vh;
+    background: var(--terminal-bg);
+    border: 1px solid var(--window-border);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .shell-header {
@@ -1610,6 +1614,8 @@ pre[class*="language-"] {
 
     .terminal-shell {
         padding: 0 var(--spacing-sm);
+        margin: 1rem;
+        border-radius: 0;
     }
 
     .shell-header {
