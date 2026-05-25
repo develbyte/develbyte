@@ -23,6 +23,12 @@ Personal technical blog by Narendra Kumar covering distributed systems, database
 
 Open `index.html` directly in your browser - no build step required!
 
+### Agent Workflow
+
+- Read `AGENTS.md` for repo-specific agent instructions.
+- Use `npm run build` after changing markdown, the post template, or generation logic.
+- Use `npm run verify` before wrapping up to confirm source and generated files are in sync.
+
 ### Creating Blog Posts
 
 1. **Create markdown file** in `blog/` directory:
@@ -56,10 +62,22 @@ Open `index.html` directly in your browser - no build step required!
    - Create `posts-metadata.json`
 
 4. **Preview locally**:
-   ```bash
-   npm run serve
-   # Open http://localhost:8000
-   ```
+    ```bash
+    npm run serve
+    # Open http://localhost:8000
+    ```
+
+### Verification
+
+```bash
+npm run verify
+```
+
+This checks that:
+- required repo files exist
+- blog posts have the expected frontmatter
+- each markdown post has a generated `posts/<slug>/index.html`
+- `posts-metadata.json` and `sitemap.xml` still reference the generated posts
 
 ### Deployment
 

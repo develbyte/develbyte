@@ -43,11 +43,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" as="style" href="../../styles.css">
-    <link rel="preload" as="script" href="script.js">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
 
-    <link rel="stylesheet" href="../../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
@@ -84,45 +84,49 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="scanlines"></div>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-            </div>
-            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
-        </div>
 
-        <div class="terminal-body">
+    <div class="terminal-shell">
+        <!-- Shell header -->
+        <header class="shell-header">
+            <div class="shell-identity">
+                <span class="shell-user">narendra@develbyte</span>
+                <span class="shell-separator">:</span>
+                <a href="../../index.html" class="shell-path">~/blog</a>
+                <span class="shell-separator">/</span>
+                <span class="shell-path">posts</span>
+            </div>
+            <div class="shell-hints">
+                <span><span class="hint-key">H</span> home</span>
+                <span><span class="hint-key">G</span> github</span>
+            </div>
+        </header>
+
+        <!-- Navigation chips -->
+        <nav class="shell-nav">
+            <a href="../../index.html" class="nav-chip">~/blog</a>
+            <span class="nav-dot">/</span>
+            <a href="../../about.html" class="nav-chip">whoami</a>
+        </nav>
+
+        <main>
             <div class="prompt-line prompt-line-compact">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+                <span class="prompt">$</span>
+                <span class="command"><a href="../../index.html" class="command-link">cd ~/blog</a></span>
             </div>
             <div class="prompt-line">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./posts/why-latency-not-partitions-dictates-database-consistency/</span>
+                <span class="prompt">$</span>
+                <span class="command">cat ./posts/why-latency-not-partitions-dictates-database-consistency/</span>
             </div>
 
-            <article class="content-area fade-in post-content" id="main-content">
+            <article class="post-content" id="main-content">
                 <header class="post-header">
                     <h1 class="post-main-title">Why Latency, Not Partitions, Dictates Your Database's Consistency [50PaperChallenge]</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">DATE:</span> 2025-11-08</span>
-                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture, database</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 6 min read</span>
+                        <span class="meta-item"><span class="meta-label">date:</span> 2025-11-08</span>
+                        <span class="meta-item"><span class="meta-label">tags:</span> distributed-systems, architecture, database</span>
+                        <span class="meta-item"><span class="meta-label">time:</span> 6 min read</span>
                     </div>
                 </header>
-
-                <!-- Optional: Table of Contents -->
-                <!-- <div class="table-of-contents">
-                    <div class="toc-title">// TABLE OF CONTENTS</div>
-                    <ol>
-                        <li><a href="#section1">Section 1</a></li>
-                        <li><a href="#section2">Section 2</a></li>
-                    </ol>
-                </div> -->
 
                 <!-- START YOUR CONTENT HERE -->
 <h1>Why Latency, Not Partitions, Dictates Your Database’s Consistency</h1>
@@ -136,28 +140,28 @@
 <p>To kick things off, I picked a paper that’s sparked more conversations (and arguments!) in our world than almost any other:</p>
 <a href="https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf">Consistency Tradeoffs in Modern Distributed Database System Design by Daniel Abadi</a>
 <p>Let's unpack that.</p>
-<h2><span class="terminal-prompt">❯</span> The Myth of the All-Powerful CAP Theorem</h2>
+<h2><span class="terminal-prompt">$</span> The Myth of the All-Powerful CAP Theorem</h2>
 <p>For anyone working in distributed systems, the CAP theorem is a foundational concept. It's the go-to framework for explaining the difficult choices engineers face when building databases that can withstand failure. We're taught that in the face of a network partition, we must choose between Consistency and Availability.</p>
 <p>But while the CAP theorem is undoubtedly important, its influence on the day-to-day behavior of many modern databases is widely misunderstood and often overstated. What if the reason systems like DynamoDB or Cassandra were architected for eventual consistency from the ground up has less to do with network partitions and more to do with the non-negotiable demand for low latency?</p>
 <p>This article will follow the clues laid out in Daniel J. Abadi's seminal paper to reveal the true tradeoffs shaping modern distributed databases, uncovering a more complete mental model for how these complex systems actually work.</p>
-<h2><span class="terminal-prompt">❯</span> CAP Is for Failures, Not Everyday Life</h2>
+<h2><span class="terminal-prompt">$</span> CAP Is for Failures, Not Everyday Life</h2>
 <p>The big “aha” for me was this: CAP only kicks in when you’re in failure mode — when network partitions actually happen. For the vast majority of time, when your database nodes can all see and talk to one another, there’s no forced tradeoff. You can have both consistency and availability. If a system relaxes consistency during this “all healthy” state, it’s doing it for other reasons, not because CAP demands it.</p>
 <p>As Abadi bluntly says:</p>
 <div class="callout callout-info"><div class="callout-content">It is wrong to assume that DDBSs that reduce consistency in the absence of any partitions are doing so due to CAP-based decision-making.</div></div>
 <p>So what’s really going on?</p>
-<h2><span class="terminal-prompt">❯</span> The Real Battle: Consistency vs. Latency (AKA, Why Users Hate Waiting)</h2>
+<h2><span class="terminal-prompt">$</span> The Real Battle: Consistency vs. Latency (AKA, Why Users Hate Waiting)</h2>
 <p>The true, always-on tension in distributed databases comes from <strong>replication</strong>. Modern applications need data close to their users, across multiple regions, for both speed and fault tolerance. Replication across datacenters or availability zones is non-negotiable — but it comes with a price.</p>
 <p>To keep replicas perfectly consistent, every write must propagate and be acknowledged by multiple nodes. Over a WAN, that takes time. More nodes, more distance, more latency. To keep applications snappy, many systems instead replicate asynchronously — meaning writes return quickly but replicas may lag behind.And in user-facing applications, even 100 milliseconds can kill engagement.</p>
 <p>The result is a continuous tradeoff: either you wait (and guarantee consistency), or you go fast (and risk reads that see slightly stale data). As Abadi summarizes, <strong>as soon as a distributed database replicates data, a tradeoff between consistency and latency arises</strong>.</p>
 <p>And for modern user-facing apps, latency isn't negotiable. Studies show even a 100‑millisecond delay can measurably hurt engagement and conversions. That's why many "eventually consistent" architectures exist not to survive partitions — but to keep the UI fast.</p>
-<h2><span class="terminal-prompt">❯</span> PNUTS: The Smoking Gun</h2>
+<h2><span class="terminal-prompt">$</span> PNUTS: The Smoking Gun</h2>
 <p>Yahoo's PNUTS database is the clearest example of this. Let's look at how it behaves in two situations.</p>
 <strong>During a partition (the CAP case):</strong>
 <p>PNUTS chooses consistency over availability. If a data item's master node ends up in a minority partition, the system refuses to allow updates to avoid conflicts. That makes PNUTS a CP system during failure.</p>
 <strong>During normal operation:</strong>
 <p>PNUTS prioritizes low latency. It serves reads from any replica to respond quickly, even if the replica's data isn't fully current. This puts it in the "eventually consistent" camp — but for performance reasons, not CAP reasons.</p>
 <p>This split personality is the giveaway: PNUTS's consistency choices have less to do with network partitions and more to do with user latency and throughput. CAP explains its behavior in failure mode, but not its design in steady state.</p>
-<h2><span class="terminal-prompt">❯</span> From CAP to PACELC</h2>
+<h2><span class="terminal-prompt">$</span> From CAP to PACELC</h2>
 <p>To reconcile these two perspectives, Abadi proposed a more complete framework: <strong>PACELC</strong>.</p>
 <strong>If a Partition occurs (P), the system must choose between Availability (A) and Consistency (C). Else (E) — during normal operation — it trades between Latency (L) and Consistency (C).</strong>
 <p>That gives us a much richer vocabulary to describe real systems:</p>
@@ -167,21 +171,26 @@
 <li><strong>VoltDB, H-Store</strong> – <strong>PC/EC</strong>: Never compromise on consistency, paying the full cost in latency and availability.</li>
 </ul>
 <p>PACELC extends CAP into real-world territory — capturing how systems behave not just in the rare event of a failure, but during the 99.9% of time when everything is working.</p>
-<h2><span class="terminal-prompt">❯</span> Ask the Better Question</h2>
+<h2><span class="terminal-prompt">$</span> Ask the Better Question</h2>
 <p>CAP still matters. It tells you how your system behaves when things go wrong. But PACELC reminds us that systems spend most of their lives running normally, where the key constraint is <strong>latency, not partitioning</strong>.</p>
 <p>So, next time you're whiteboarding an architecture or comparing databases, don't just ask if it's CP or AP. Ask a better question:</p>
 <div class="callout callout-info"><div class="callout-content"><strong>In the absence of failures — when it actually matters to users — does it sacrifice my consistency for lower latency?</strong></div></div>
-<h2><span class="terminal-prompt">❯</span> What’s Next for #50PaperChallenge?</h2>
+<h2><span class="terminal-prompt">$</span> What’s Next for #50PaperChallenge?</h2>
 <p>That’s Whitepaper #1 done! Next week, I’m planning to dig into another classic — maybe something on consensus or data pipelines (not decided yet).</p>
 <p>If you found this helpful, or even just interesting, feel free to follow along. And if you have suggestions for what I should cover next, drop them in the comments!</p>
 <p>Onward to the next paper</p>
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">
-                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                    <a href="../../index.html" class="footer-nav-link">$ cd ~/blog</a>
                 </footer>
             </article>
-        </div>
+        </main>
+
+        <footer class="shell-footer">
+            <span>develbyte.in</span>
+            <span>built with raw html, no frameworks</span>
+        </footer>
     </div>
 
     <!-- Prism.js Core -->
@@ -235,6 +244,6 @@
             integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
             crossorigin="anonymous"></script>
 
-    <script src="../../script.js"></script>
+    <script src="../../script.js?v=20260525"></script>
 </body>
 </html>

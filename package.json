@@ -6,6 +6,7 @@
   "scripts": {
     "convert": "node convert-posts.js",
     "build": "node convert-posts.js",
+    "verify": "node verify.js",
     "serve": "python3 -m http.server 8000"
   },
   "engines": {

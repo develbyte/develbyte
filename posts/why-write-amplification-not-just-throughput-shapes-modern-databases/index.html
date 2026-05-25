@@ -43,11 +43,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" as="style" href="../../styles.css">
-    <link rel="preload" as="script" href="script.js">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
 
-    <link rel="stylesheet" href="../../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
@@ -84,50 +84,54 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="scanlines"></div>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-            </div>
-            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
-        </div>
 
-        <div class="terminal-body">
+    <div class="terminal-shell">
+        <!-- Shell header -->
+        <header class="shell-header">
+            <div class="shell-identity">
+                <span class="shell-user">narendra@develbyte</span>
+                <span class="shell-separator">:</span>
+                <a href="../../index.html" class="shell-path">~/blog</a>
+                <span class="shell-separator">/</span>
+                <span class="shell-path">posts</span>
+            </div>
+            <div class="shell-hints">
+                <span><span class="hint-key">H</span> home</span>
+                <span><span class="hint-key">G</span> github</span>
+            </div>
+        </header>
+
+        <!-- Navigation chips -->
+        <nav class="shell-nav">
+            <a href="../../index.html" class="nav-chip">~/blog</a>
+            <span class="nav-dot">/</span>
+            <a href="../../about.html" class="nav-chip">whoami</a>
+        </nav>
+
+        <main>
             <div class="prompt-line prompt-line-compact">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+                <span class="prompt">$</span>
+                <span class="command"><a href="../../index.html" class="command-link">cd ~/blog</a></span>
             </div>
             <div class="prompt-line">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./posts/why-write-amplification-not-just-throughput-shapes-modern-databases/</span>
+                <span class="prompt">$</span>
+                <span class="command">cat ./posts/why-write-amplification-not-just-throughput-shapes-modern-databases/</span>
             </div>
 
-            <article class="content-area fade-in post-content" id="main-content">
+            <article class="post-content" id="main-content">
                 <header class="post-header">
                     <h1 class="post-main-title">Why Write Amplification, Not Just Throughput, Shapes Modern Databases [50PaperChallenge]</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">DATE:</span> 2025-11-15</span>
-                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture, database</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 7 min read</span>
+                        <span class="meta-item"><span class="meta-label">date:</span> 2025-11-15</span>
+                        <span class="meta-item"><span class="meta-label">tags:</span> distributed-systems, architecture, database</span>
+                        <span class="meta-item"><span class="meta-label">time:</span> 7 min read</span>
                     </div>
                 </header>
-
-                <!-- Optional: Table of Contents -->
-                <!-- <div class="table-of-contents">
-                    <div class="toc-title">// TABLE OF CONTENTS</div>
-                    <ol>
-                        <li><a href="#section1">Section 1</a></li>
-                        <li><a href="#section2">Section 2</a></li>
-                    </ol>
-                </div> -->
 
                 <!-- START YOUR CONTENT HERE -->
 <h1>Why Write Amplification, Not Just Throughput, Shapes Modern Databases</h1>
 <em>Lessons from LSM Trees and WiscKey — Paper #2 & #3 of #50PaperChallenge</em>
-<h2><span class="terminal-prompt">❯</span> Introduction: Why This Paper Stayed With Me</h2>
+<h2><span class="terminal-prompt">$</span> Introduction: Why This Paper Stayed With Me</h2>
 <p>In my <strong>#50PaperChallenge</strong> journey, I've been deliberately alternating between <em>foundational theory</em> and <em>systems papers that quietly changed the industry</em>. This pairing — <strong><a href="https://dsf.berkeley.edu/cs286/papers/lsm-acta1996.pdf">LSM Tree (O’Neil et al., 1996)</a></strong> and <strong><a href="https://pages.cs.wisc.edu/~ll/papers/wisckey_tos.pdf">WiscKey: Separating Keys from Values in SSD-Conscious Storage</a></strong> — sits squarely in that second category.</p>
 <p>LSM Trees are everywhere today — RocksDB, Cassandra, HBase, LevelDB, DynamoDB's storage engine — traces its lineage back to the LSM Tree. We configure them, tune them, and occasionally curse them during compaction storms — often without thinking too deeply about why the design works or what exact cost we’re paying for that performance.</p>
 <p>When I first encountered LSM Trees years ago, I mentally bucketed them as “the write-optimized alternative to <a href="https://15445.courses.cs.cmu.edu/fall2021/notes/07-trees.pdf">B-Trees</a>” and moved on.</p>
@@ -137,7 +141,7 @@
 <div class="callout callout-info"><div class="callout-content"><em>What if keys and values don't belong together?</em></div></div>
 <p>This post is my attempt to unpack <strong>what LSM Trees actually optimize for</strong>, why <strong>write amplification is the real villain</strong>, and how WiscKey reframes long-standing trade-offs in modern storage engines.</p>
 <p>If you build databases, data platforms, or even just tune RocksDB configs in production, this is not academic history. This is operational reality.</p>
-<h2><span class="terminal-prompt">❯</span> The Core Problem: Why B-Trees Started to Break</h2>
+<h2><span class="terminal-prompt">$</span> The Core Problem: Why B-Trees Started to Break</h2>
 <p>The LSM Tree was not designed to be "cool."</p>
 <p>It was designed to <strong>survive write-heavy workloads</strong>.</p>
 <p>It’s tempting to frame the LSM Tree as an elegant data structure. That misses the point.</p>
@@ -150,7 +154,7 @@
 <p>The LSM Tree doesn’t eliminate work. It reorders work.</p>
 <p>Instead of paying the cost at write time, it batches writes in memory, flushes them sequentially, and defers reconciliation to background merges. This isn’t about reducing total I/O. It’s about turning chaotic I/O into something the storage device can survive.</p>
 <p>That distinction becomes important later.</p>
-<h2><span class="terminal-prompt">❯</span> What LSM Trees Actually Optimize For</h2>
+<h2><span class="terminal-prompt">$</span> What LSM Trees Actually Optimize For</h2>
 <p>At a high level, an <strong>LSM Tree trades read complexity for write efficiency</strong>.</p>
 <p>One thing I had to unlearn while rereading the paper is the idea that LSM Trees make writes “fast.”</p>
 <p>They don’t — at least not in the way we often mean it.</p>
@@ -158,14 +162,14 @@
 <p>That deferred cost is the price you pay for smooth ingestion curves.</p>
 <p>This is why production LSM systems feel stable until they don’t. Everything looks fine — until compaction debt builds up faster than your disks can pay it down.</p>
 <p>And this is where write amplification stops being an abstract metric and starts becoming an operational problem.</p>
-<h3><span class="terminal-prompt">❯</span> Write Amplification: The Cost That Refuses to Disappear</h3>
+<h3>Write Amplification: The Cost That Refuses to Disappear</h3>
 <p>At a database level, write amplification is simple to define:</p>
 <div class="callout callout-info"><div class="callout-content">How many bytes did the system write internally for every byte the user asked it to store?</div></div>
 <p>In LSM Trees, amplification primarily comes from compaction. Data is written once to the memtable, flushed to disk, and then rewritten multiple times as it moves through levels. In leveled compaction schemes, it’s not unusual to see effective amplification in the 5–10× range under steady state, and higher under skewed workloads.</p>
 <p>What’s easy to miss is that this is only half the story.</p>
 <p>Those database-level rewrites land on storage devices that have their own internal write amplification due to flash translation layers, garbage collection, and wear leveling. When you stack the two, the physical device may end up writing far more than your database metrics suggest.</p>
 <p>The LSM Tree paper focuses on the database side. WiscKey is interesting because it implicitly acknowledges that the cost of rewriting data is no longer abstract once SSD endurance enters the picture.</p>
-<h3><span class="terminal-prompt">❯</span> Why WiscKey Feels Like an Obvious Idea in Hindsight</h3>
+<h3>Why WiscKey Feels Like an Obvious Idea in Hindsight</h3>
 <p>WiscKey starts from a slightly uncomfortable observation: during compaction, most of the I/O cost often comes from rewriting values, not keys — even though values don’t meaningfully participate in ordering decisions.</p>
 <p>So it asks a question that feels almost naïve once you read it:</p>
 <p>Why are we forcing large values through the merge path at all?</p>
@@ -174,7 +178,7 @@
 <p>Compaction now rewrites mostly keys and pointers — small, fixed-size data — while values remain untouched unless garbage collected later. The paper shows that for value-heavy workloads, this can reduce database-level write amplification by an order of magnitude.</p>
 <p>What WiscKey does not claim is equally important. It doesn’t say this design is universally better. It introduces new problems: value-log garbage collection, potential read amplification, and more complex crash recovery paths.</p>
 <p>Once again, the theme is not elimination of cost — it’s redistribution of cost.</p>
-<h2><span class="terminal-prompt">❯</span> Where Industry Mental Models Often Go Wrong</h2>
+<h2><span class="terminal-prompt">$</span> Where Industry Mental Models Often Go Wrong</h2>
 <p>One reason these papers still matter is that the industry tends to compress them into slogans.</p>
 <p>“LSM Trees are bad at reads.” “<a href="https://15445.courses.cs.cmu.edu/fall2021/notes/07-trees.pdf">B-Trees</a> don’t scale for writes.” “SSDs make random I/O cheap.”</p>
 <p>Each statement contains a grain of truth and a lot of missing context.</p>
@@ -194,7 +198,7 @@
 <li>Batched reads</li>
 <li>Deferred cleanup</li>
 </ul>
-<h3><span class="terminal-prompt">❯</span> What This Changes for Me as a Practitioner</h3>
+<h3>What This Changes for Me as a Practitioner</h3>
 <p>After revisiting these papers, I find myself thinking less about “which engine is faster” and more about where the inevitable work shows up.</p>
 <p>When I look at an LSM-based system now, the first questions I ask are not about peak throughput, but about:</p>
 <ul>
@@ -205,7 +209,7 @@
 </ul>
 <p>If large values dominate your workload and compaction is your bottleneck, designs inspired by WiscKey are not exotic — they’re rational. If predictable read latency matters more than ingestion speed, a classic <a href="https://15445.courses.cs.cmu.edu/fall2021/notes/07-trees.pdf">B-Tree</a> or hybrid design may still be the right call.</p>
 <p>None of these choices are abstract. They surface directly in on-call rotations, hardware refresh cycles, and customer-facing latency charts.</p>
-<h2><span class="terminal-prompt">❯</span> Closing Thought</h2>
+<h2><span class="terminal-prompt">$</span> Closing Thought</h2>
 <p>Storage engine design is never about winning. It is about choosing which costs you are willing to pay, and when.</p>
 <p>LSM Trees accept complexity to buy sustained write bandwidth. WiscKey pushes that logic further, questioning assumptions that held when disks, not flash, defined the cost model.</p>
 <p>I will end this entry in the #50PaperChallenge with a question rather than a conclusion:</p>
@@ -214,10 +218,15 @@
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">
-                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                    <a href="../../index.html" class="footer-nav-link">$ cd ~/blog</a>
                 </footer>
             </article>
-        </div>
+        </main>
+
+        <footer class="shell-footer">
+            <span>develbyte.in</span>
+            <span>built with raw html, no frameworks</span>
+        </footer>
     </div>
 
     <!-- Prism.js Core -->
@@ -271,6 +280,6 @@
             integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
             crossorigin="anonymous"></script>
 
-    <script src="../../script.js"></script>
+    <script src="../../script.js?v=20260525"></script>
 </body>
 </html>

@@ -43,11 +43,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" as="style" href="../../styles.css">
-    <link rel="preload" as="script" href="script.js">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
 
-    <link rel="stylesheet" href="../../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
@@ -84,60 +84,59 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="scanlines"></div>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-            </div>
-            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
-        </div>
 
-        <div class="terminal-body">
+    <div class="terminal-shell">
+        <!-- Shell header -->
+        <header class="shell-header">
+            <div class="shell-identity">
+                <span class="shell-user">narendra@develbyte</span>
+                <span class="shell-separator">:</span>
+                <a href="../../index.html" class="shell-path">~/blog</a>
+                <span class="shell-separator">/</span>
+                <span class="shell-path">posts</span>
+            </div>
+            <div class="shell-hints">
+                <span><span class="hint-key">H</span> home</span>
+                <span><span class="hint-key">G</span> github</span>
+            </div>
+        </header>
+
+        <!-- Navigation chips -->
+        <nav class="shell-nav">
+            <a href="../../index.html" class="nav-chip">~/blog</a>
+            <span class="nav-dot">/</span>
+            <a href="../../about.html" class="nav-chip">whoami</a>
+        </nav>
+
+        <main>
             <div class="prompt-line prompt-line-compact">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+                <span class="prompt">$</span>
+                <span class="command"><a href="../../index.html" class="command-link">cd ~/blog</a></span>
             </div>
             <div class="prompt-line">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./posts/how-to-find-out-next-and-previous-day-of-week-in-oracle/</span>
+                <span class="prompt">$</span>
+                <span class="command">cat ./posts/how-to-find-out-next-and-previous-day-of-week-in-oracle/</span>
             </div>
 
-            <article class="content-area fade-in post-content" id="main-content">
+            <article class="post-content" id="main-content">
                 <header class="post-header">
                     <h1 class="post-main-title">How to Find out Next and Previous Day of Week in Oracle</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">DATE:</span> 2015-02-03</span>
-                        <span class="meta-item"><span class="meta-label">TAGS:</span> oracle, sql, database</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 1 min read</span>
+                        <span class="meta-item"><span class="meta-label">date:</span> 2015-02-03</span>
+                        <span class="meta-item"><span class="meta-label">tags:</span> oracle, sql, database</span>
+                        <span class="meta-item"><span class="meta-label">time:</span> 1 min read</span>
                     </div>
                 </header>
-
-                <!-- Optional: Table of Contents -->
-                <!-- <div class="table-of-contents">
-                    <div class="toc-title">// TABLE OF CONTENTS</div>
-                    <ol>
-                        <li><a href="#section1">Section 1</a></li>
-                        <li><a href="#section2">Section 2</a></li>
-                    </ol>
-                </div> -->
 
                 <!-- START YOUR CONTENT HERE -->
 <h1>How to Find out Next and Previous Day of Week in Oracle</h1>
 <p>I have seen people writing number of lines of code to find out the date on a specific day in current or previous week, most often we need Friday the last working day of the week. We have a pretty simple way to find out in Oracle Queries.</p>
-<h2><span class="terminal-prompt">❯</span> Logic:</h2>
+<h2><span class="terminal-prompt">$</span> Logic:</h2>
 <ul>
 <li>Add a number of the day you want the date for in your current date, assuming Monday as day 1, Tuesday as day 2 and so on.</li>
 </ul>
 <div class="code-block">
     <div class="code-header">
-        <div class="code-window-buttons">
-            <span class="code-btn-close"></span>
-            <span class="code-btn-minimize"></span>
-            <span class="code-btn-maximize"></span>
-        </div>
         <span class="code-lang">sql</span>
         <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
     </div>
@@ -150,11 +149,6 @@
 </ul>
 <div class="code-block">
     <div class="code-header">
-        <div class="code-window-buttons">
-            <span class="code-btn-close"></span>
-            <span class="code-btn-minimize"></span>
-            <span class="code-btn-maximize"></span>
-        </div>
         <span class="code-lang">sql</span>
         <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
     </div>
@@ -164,11 +158,6 @@
 <p>So our Query will look something like this</p>
 <div class="code-block">
     <div class="code-header">
-        <div class="code-window-buttons">
-            <span class="code-btn-close"></span>
-            <span class="code-btn-minimize"></span>
-            <span class="code-btn-maximize"></span>
-        </div>
         <span class="code-lang">sql</span>
         <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
     </div>
@@ -181,10 +170,15 @@
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">
-                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                    <a href="../../index.html" class="footer-nav-link">$ cd ~/blog</a>
                 </footer>
             </article>
-        </div>
+        </main>
+
+        <footer class="shell-footer">
+            <span>develbyte.in</span>
+            <span>built with raw html, no frameworks</span>
+        </footer>
     </div>
 
     <!-- Prism.js Core -->
@@ -238,6 +232,6 @@
             integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
             crossorigin="anonymous"></script>
 
-    <script src="../../script.js"></script>
+    <script src="../../script.js?v=20260525"></script>
 </body>
 </html>

@@ -43,11 +43,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" as="style" href="../../styles.css">
-    <link rel="preload" as="script" href="script.js">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
 
-    <link rel="stylesheet" href="../../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
@@ -84,56 +84,60 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="scanlines"></div>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-            </div>
-            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
-        </div>
 
-        <div class="terminal-body">
+    <div class="terminal-shell">
+        <!-- Shell header -->
+        <header class="shell-header">
+            <div class="shell-identity">
+                <span class="shell-user">narendra@develbyte</span>
+                <span class="shell-separator">:</span>
+                <a href="../../index.html" class="shell-path">~/blog</a>
+                <span class="shell-separator">/</span>
+                <span class="shell-path">posts</span>
+            </div>
+            <div class="shell-hints">
+                <span><span class="hint-key">H</span> home</span>
+                <span><span class="hint-key">G</span> github</span>
+            </div>
+        </header>
+
+        <!-- Navigation chips -->
+        <nav class="shell-nav">
+            <a href="../../index.html" class="nav-chip">~/blog</a>
+            <span class="nav-dot">/</span>
+            <a href="../../about.html" class="nav-chip">whoami</a>
+        </nav>
+
+        <main>
             <div class="prompt-line prompt-line-compact">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+                <span class="prompt">$</span>
+                <span class="command"><a href="../../index.html" class="command-link">cd ~/blog</a></span>
             </div>
             <div class="prompt-line">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./posts/zookeeper-namespace-and-operations/</span>
+                <span class="prompt">$</span>
+                <span class="command">cat ./posts/zookeeper-namespace-and-operations/</span>
             </div>
 
-            <article class="content-area fade-in post-content" id="main-content">
+            <article class="post-content" id="main-content">
                 <header class="post-header">
                     <h1 class="post-main-title">Zookeeper Namespace And Operations</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">DATE:</span> 2016-10-27</span>
-                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture, database</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 5 min read</span>
+                        <span class="meta-item"><span class="meta-label">date:</span> 2016-10-27</span>
+                        <span class="meta-item"><span class="meta-label">tags:</span> distributed-systems, architecture, database</span>
+                        <span class="meta-item"><span class="meta-label">time:</span> 5 min read</span>
                     </div>
                 </header>
 
-                <!-- Optional: Table of Contents -->
-                <!-- <div class="table-of-contents">
-                    <div class="toc-title">// TABLE OF CONTENTS</div>
-                    <ol>
-                        <li><a href="#section1">Section 1</a></li>
-                        <li><a href="#section2">Section 2</a></li>
-                    </ol>
-                </div> -->
-
                 <!-- START YOUR CONTENT HERE -->
 <h1>Zookeeper Namespace And Operations</h1>
-<h2><span class="terminal-prompt">❯</span> Zookeper data Model:</h2>
+<h2><span class="terminal-prompt">$</span> Zookeper data Model:</h2>
 <p>ZooKeeper has a hierarchal name space(as shown below), much like a distributed file system. The only difference is that each node in the namespace can have data associated with it as well as children. It is like having a file system that allows a file to also be a directory.</p>
 <img src="/img/zookeeper-data-model.png" alt="zookeeper-data-model" loading="lazy">
 <p>The root node contains four more nodes, and three of those nodes have nodes under them. The leaf nodes are the data.</p>
-<h2><span class="terminal-prompt">❯</span> Znode:</h2>
+<h2><span class="terminal-prompt">$</span> Znode:</h2>
 <p>Every node in a ZooKeeper tree is referred to as a znode.Znodes maintain a stat structure that includes version numbers for data changes, acl changes. The stat structure also has timestamps. The version number, together with the timestamp, allows ZooKeeper to validate the cache and to coordinate updates. Each time a znode's data changes, the version number increases.</p>
 <p>Znodes may or may not contain data. If a znode contains any data, the data is stored as a  byte  array.  The  exact  format  of  the  byte  array  is  specific  to  each  application,  and ZooKeeper does not directly provide support to parse it. The absence of data often conveys important information about a znode. For Example :- in a typical master-worker application the absence of a master znode means that no master is currently elected.</p>
-<h3><span class="terminal-prompt">❯</span> The ZooKeeper API exposes the following operations:</h3>
+<h3>The ZooKeeper API exposes the following operations:</h3>
 <ul>
 <li><code class="inline-code">create /path data</code> - Creates a znode named with /path  and containing data</li>
 <li><code class="inline-code">delete /path</code> - Deletes the znode  /path</li>
@@ -143,22 +147,22 @@
 <li><code class="inline-code">getChildren /path</code> - Returns the list of children under /path</li>
 </ul>
 <p>One important note is that ZooKeeper does not allow partial writes or reads of the znode data. When setting the data of a znode or reading it, the content of the znode is replaced or read entirely.</p>
-<h2><span class="terminal-prompt">❯</span> Different Modes of Znode:</h2>
+<h2><span class="terminal-prompt">$</span> Different Modes of Znode:</h2>
 <p>Znodes can be created with four different modes: persistent, ephemeral, presistent_sequential and ephemeral_sequential</p>
-<h3><span class="terminal-prompt">❯</span> Persistent and ephemeral znodes</h3>
+<h3>Persistent and ephemeral znodes</h3>
 <p>A znode can be either persistent or ephemeral. A persistent znode /path can be deleted only through a call to delete. An ephemeral znode, in contrast, is deleted if the client that created it crashes or simply closes its connection to ZooKeeper.</p>
 <p>Persistent znodes are useful when the znode stores some data on behalf of an application and this data needs to be preserved even after its creator is no longer part of the system.</p>
 <p>Ephemeral znodes convey information about some aspect of the application that must exist only while the session of its creator is valid.</p>
-<h3><span class="terminal-prompt">❯</span> Sequential znodes:</h3>
+<h3>Sequential znodes:</h3>
 <p>A sequential znode is assigned a unique, monotonically increasing integer. This sequence number is appended to the path used to create the znode. For example, if a client creates a sequential znode with the path /tasks/ task-, ZooKeeper assigns a sequence number, say 1, and appends it to the path. The path of the znode becomes /tasks/task-1. Sequential znodes provide an easy way to create znodes with unique names. They also provide a way to easily see the creation order of znodes.</p>
-<h2><span class="terminal-prompt">❯</span> Version:</h2>
+<h2><span class="terminal-prompt">$</span> Version:</h2>
 <p>Each znode has a version number associated with it that is incremented every time its data changes. A couple of operations in the API can be executed conditionally: setData and delete. Both calls take a version as an input parameter, and the operation succeeds only if the version passed by the client matches the current version on the server. The use of versions is important when multiple ZooKeeper clients might be trying to perform operations over the same znode.</p>
-<h2><span class="terminal-prompt">❯</span> Watch:</h2>
+<h2><span class="terminal-prompt">$</span> Watch:</h2>
 <p>A watch is a one-shot operation, which means that it triggers one notification for any changes to znodes. Registering to receive a notification for a given znode consists of setting a watch. To receive multiple notifications over time, the client must set a new watch upon receiving each notification.</p>
-<h2><span class="terminal-prompt">❯</span> Data Access:</h2>
+<h2><span class="terminal-prompt">$</span> Data Access:</h2>
 <p>The data stored at each znode in a namespace is read and written atomically. Reads get all the data bytes associated with a znode and a write replaces all the data. Each node has an Access Control List (ACL) that restricts who can do what.</p>
 <p>ZooKeeper was not designed to be a general database or large object store. Instead, it manages coordination data. This data can come in the form of configuration, status information, rendezvous, etc.</p>
-<h2><span class="terminal-prompt">❯</span> Semantics of Watches :</h2>
+<h2><span class="terminal-prompt">$</span> Semantics of Watches :</h2>
 <p>We can set watches with the three calls that read the state of ZooKeeper: <code class="inline-code">exists</code>, <code class="inline-code">getData</code>, and <code class="inline-code">getChildren</code>.The following list details the events that a watch can trigger and the calls that enable them:</p>
 <ul>
 <li><strong>Created event</strong>: Enabled with a call to exists.</li>
@@ -166,13 +170,13 @@
 <li><strong>Changed event</strong>: Enabled with a call to exists and <code class="inline-code">getData</code>.</li>
 <li><strong>Child event</strong>: Enabled with a call to <code class="inline-code">getChildren</code>.</li>
 </ul>
-<h2><span class="terminal-prompt">❯</span> Remove Watches:</h2>
+<h2><span class="terminal-prompt">$</span> Remove Watches:</h2>
 <p>We can remove the watches registered on a znode with a call to <code class="inline-code">removeWatches</code>. Also, a ZooKeeper client can remove watches locally even if there is no server connection by setting the local flag to true. The following list details the events which will be triggered after the successful watch removal.</p>
 <ul>
 <li><strong>Child Remove event</strong>: Watcher which was added with a call to <code class="inline-code">getChildren</code>.</li>
 <li><strong>Data Remove event</strong>: Watcher which was added with a call to exists or <code class="inline-code">getData</code>.</li>
 </ul>
-<h2><span class="terminal-prompt">❯</span> ACL Permissions :</h2>
+<h2><span class="terminal-prompt">$</span> ACL Permissions :</h2>
 <p>ZooKeeper supports the following permissions:</p>
 <ul>
 <li><code class="inline-code">CREATE</code>: you can create a child node</li>
@@ -184,10 +188,15 @@
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">
-                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                    <a href="../../index.html" class="footer-nav-link">$ cd ~/blog</a>
                 </footer>
             </article>
-        </div>
+        </main>
+
+        <footer class="shell-footer">
+            <span>develbyte.in</span>
+            <span>built with raw html, no frameworks</span>
+        </footer>
     </div>
 
     <!-- Prism.js Core -->
@@ -241,6 +250,6 @@
             integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
             crossorigin="anonymous"></script>
 
-    <script src="../../script.js"></script>
+    <script src="../../script.js?v=20260525"></script>
 </body>
 </html>

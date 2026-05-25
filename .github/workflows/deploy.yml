@@ -40,12 +40,11 @@ jobs:
           # Copy static files
           cp index.html deploy/
           cp about.html deploy/
-          cp resume.html deploy/
-          cp resume.pdf deploy/
           cp styles.css deploy/
           cp script.js deploy/
           cp favicon.svg deploy/
           cp favicon.ico deploy/
+          cp resume.pdf deploy/
           cp CNAME deploy/
           cp .nojekyll deploy/
           # Copy SEO and metadata files

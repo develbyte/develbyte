@@ -43,11 +43,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" as="style" href="../../styles.css">
-    <link rel="preload" as="script" href="script.js">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
 
-    <link rel="stylesheet" href="../../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
@@ -84,71 +84,80 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="scanlines"></div>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-            </div>
-            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
-        </div>
 
-        <div class="terminal-body">
+    <div class="terminal-shell">
+        <!-- Shell header -->
+        <header class="shell-header">
+            <div class="shell-identity">
+                <span class="shell-user">narendra@develbyte</span>
+                <span class="shell-separator">:</span>
+                <a href="../../index.html" class="shell-path">~/blog</a>
+                <span class="shell-separator">/</span>
+                <span class="shell-path">posts</span>
+            </div>
+            <div class="shell-hints">
+                <span><span class="hint-key">H</span> home</span>
+                <span><span class="hint-key">G</span> github</span>
+            </div>
+        </header>
+
+        <!-- Navigation chips -->
+        <nav class="shell-nav">
+            <a href="../../index.html" class="nav-chip">~/blog</a>
+            <span class="nav-dot">/</span>
+            <a href="../../about.html" class="nav-chip">whoami</a>
+        </nav>
+
+        <main>
             <div class="prompt-line prompt-line-compact">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+                <span class="prompt">$</span>
+                <span class="command"><a href="../../index.html" class="command-link">cd ~/blog</a></span>
             </div>
             <div class="prompt-line">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./posts/zookeeper-introduction-to-zookeeper/</span>
+                <span class="prompt">$</span>
+                <span class="command">cat ./posts/zookeeper-introduction-to-zookeeper/</span>
             </div>
 
-            <article class="content-area fade-in post-content" id="main-content">
+            <article class="post-content" id="main-content">
                 <header class="post-header">
                     <h1 class="post-main-title">Zookeeper Introduction to Zookeeper</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">DATE:</span> 2016-10-20</span>
-                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture, database</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 2 min read</span>
+                        <span class="meta-item"><span class="meta-label">date:</span> 2016-10-20</span>
+                        <span class="meta-item"><span class="meta-label">tags:</span> distributed-systems, architecture, database</span>
+                        <span class="meta-item"><span class="meta-label">time:</span> 2 min read</span>
                     </div>
                 </header>
-
-                <!-- Optional: Table of Contents -->
-                <!-- <div class="table-of-contents">
-                    <div class="toc-title">// TABLE OF CONTENTS</div>
-                    <ol>
-                        <li><a href="#section1">Section 1</a></li>
-                        <li><a href="#section2">Section 2</a></li>
-                    </ol>
-                </div> -->
 
                 <!-- START YOUR CONTENT HERE -->
 <h1>Zookeeper Introduction to Zookeeper</h1>
 <strong>Zookeper</strong> is an open-source, centralised co-ordination service which is used to co-ordinate the services and manage the configurations of applications accross a large number of hosts over a distributed environment.
 <p>Co-ordinating between the services in a distributed application is a complex process. ZooKeeper was designed to be a robust service that enables application developers to focus mainly on their  application logic rather than coordination. It exposes a simple API, similar to filesystem API, that allows developers to implement common co‐ordination tasks, such as electing a master server,managing group membership, and managing metadata.</p>
 <p>Zookeper is open-sorced to Apache by Yahoo. Apache Zookeper have became standard for organising the services in Hadoop, kafka and other distributed frameworks.</p>
-<h2><span class="terminal-prompt">❯</span> What is a distributed application?</h2>
+<h2><span class="terminal-prompt">$</span> What is a distributed application?</h2>
 <p>Distributed applications are the type of application comprised of multiple software components running independently and concurrently across multiple physical machines. Distributed applications are required to do resource intensive computions which is difficult or impossible to do in a non-distributed environment. The group is machines running the distributed applications are togethere called as cluster and each machine individually called as Nodes. Distributed applications provides scalability and performance along with other benifits, But it can also easly lead to various complexities like Race Condition, DeadLock, Inconsistency, This is where Zookeeper comes to rescue. Zookeper helps to create co-ordianation between the tasks and maintain shared data with robust syncronisation technique.</p>
 <p>Let's look at some examples where ZooKeeper has been useful to get a better sense of where it is applicable:</p>
-<h2><span class="terminal-prompt">❯</span> 1. Apache HBase</h2>
+<h2><span class="terminal-prompt">$</span> 1. Apache HBase</h2>
 <p>HBase is a data store typically used alongside Hadoop. In HBase, ZooKeeper is used to  elect  a  cluster  master,  to  keep  track  of  available  servers,  and  to  keep  cluster metadata.</p>
-<h2><span class="terminal-prompt">❯</span> 2. Apache Kafka</h2>
+<h2><span class="terminal-prompt">$</span> 2. Apache Kafka</h2>
 <p>Kafka is a pub-sub messaging system. It uses ZooKeeper to detect crashes, to implement topic discovery, and to maintain production and consumption state for topics.</p>
-<h2><span class="terminal-prompt">❯</span> 3. Apache Solr</h2>
+<h2><span class="terminal-prompt">$</span> 3. Apache Solr</h2>
 <p>Solr is an enterprise search platform. In its distributed form, called SolrCloud, it uses ZooKeeper to store metadata about the cluster and coordinate the updates to this metadata.</p>
-<h2><span class="terminal-prompt">❯</span> 4. Yahoo! Fetching Service</h2>
+<h2><span class="terminal-prompt">$</span> 4. Yahoo! Fetching Service</h2>
 <p>Part of a crawler implementation, the Fetching Service  fetches web pages efficiently by  caching content while making sure that web server policies, such as those in robots.txt files, are preserved. This service uses ZooKeeper for tasks such as master election, crash detection, and metadata storage.</p>
-<h2><span class="terminal-prompt">❯</span> 5. Facebook Messages</h2>
+<h2><span class="terminal-prompt">$</span> 5. Facebook Messages</h2>
 <p>This is a Facebook application that integrates communication channels: email, SMS, Facebook Chat, and the existing Facebook Inbox. It uses ZooKeeper as a controller for implementing sharding and failover, and also for service discovery.</p>
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">
-                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                    <a href="../../index.html" class="footer-nav-link">$ cd ~/blog</a>
                 </footer>
             </article>
-        </div>
+        </main>
+
+        <footer class="shell-footer">
+            <span>develbyte.in</span>
+            <span>built with raw html, no frameworks</span>
+        </footer>
     </div>
 
     <!-- Prism.js Core -->
@@ -202,6 +211,6 @@
             integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
             crossorigin="anonymous"></script>
 
-    <script src="../../script.js"></script>
+    <script src="../../script.js?v=20260525"></script>
 </body>
 </html>

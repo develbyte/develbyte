@@ -221,10 +221,12 @@ function markdownToHtml(md) {
 
     // Convert headers (wrap ❯ in green span)
     html = html.replace(/^### (.*?)$/gm, (match, content) => {
-        return `<h3>${content.replace(/❯/g, '<span class="terminal-prompt">❯</span>')}</h3>`;
+        const cleaned = content.replace(/❯\s*/g, '');
+        return `<h3>${cleaned}</h3>`;
     });
     html = html.replace(/^## (.*?)$/gm, (match, content) => {
-        return `<h2>${content.replace(/❯/g, '<span class="terminal-prompt">❯</span>')}</h2>`;
+        const cleaned = content.replace(/❯\s*/g, '');
+        return `<h2><span class="terminal-prompt">$</span> ${cleaned}</h2>`;
     });
     html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
 
@@ -238,11 +240,6 @@ function markdownToHtml(md) {
 
         return `<div class="code-block">
     <div class="code-header">
-        <div class="code-window-buttons">
-            <span class="code-btn-close"></span>
-            <span class="code-btn-minimize"></span>
-            <span class="code-btn-maximize"></span>
-        </div>
         <span class="code-lang">${language}</span>
         <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
     </div>
@@ -391,9 +388,11 @@ function convertPost(mdFile) {
     // Fix paths for posts/{slug}/ subdirectory (two levels deep)
     html = html.replace(/href="favicon\.svg"/g, 'href="../../favicon.svg"');
     html = html.replace(/href="favicon\.ico"/g, 'href="../../favicon.ico"');
-    html = html.replace(/href="styles\.css"/g, 'href="../../styles.css"');
-    html = html.replace(/src="script\.js"/g, 'src="../../script.js"');
+    html = html.replace(/href="styles\.css\?v=20260525"/g, 'href="../../styles.css?v=20260525"');
+    html = html.replace(/src="script\.js\?v=20260525"/g, 'src="../../script.js?v=20260525"');
+    html = html.replace(/href="script\.js\?v=20260525"/g, 'href="../../script.js?v=20260525"');
     html = html.replace(/href="index\.html"/g, 'href="../../index.html"');
+    html = html.replace(/href="about\.html"/g, 'href="../../about.html"');
 
     // Insert content
     const contentStart = html.indexOf('<!-- START YOUR CONTENT HERE -->');

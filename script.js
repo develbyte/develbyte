@@ -1,9 +1,5 @@
 // ═══════════════════════════════════════════════════════════════
-// TERMINAL BLOG - INTERACTIVE ENHANCEMENTS
-// ═══════════════════════════════════════════════════════════════
-
-// ═══════════════════════════════════════════════════════════════
-// SEARCH FUNCTIONALITY (INDEX PAGE)
+// DEVELBYTE - Terminal Interactions
 // ═══════════════════════════════════════════════════════════════
 
 function initializeSearch() {
@@ -15,12 +11,10 @@ function initializeSearch() {
 
     const posts = postsList.querySelectorAll('.post-line');
 
-    // Handle search filtering
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
         let visibleCount = 0;
 
-        // Filter posts
         posts.forEach((post) => {
             const title = post.dataset.title?.toLowerCase() || '';
             const tags = post.dataset.tags?.toLowerCase() || '';
@@ -37,7 +31,6 @@ function initializeSearch() {
             }
         });
 
-        // Announce results to screen readers
         if (statusElement) {
             if (query) {
                 statusElement.textContent = `${visibleCount} post${visibleCount !== 1 ? 's' : ''} found`;
@@ -48,18 +41,59 @@ function initializeSearch() {
     });
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize search functionality
-    initializeSearch();
+function initializeKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
 
-    // Auto-focus search input on page load (only on index page)
+        switch (e.key) {
+            case '/': {
+                e.preventDefault();
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.focus();
+                break;
+            }
+            case 'h':
+            case 'H': {
+                window.location.href = window.location.pathname.includes('/posts/')
+                    ? '../../index.html'
+                    : 'index.html';
+                break;
+            }
+            case 'a':
+            case 'A': {
+                window.location.href = window.location.pathname.includes('/posts/')
+                    ? '../../about.html'
+                    : 'about.html';
+                break;
+            }
+            case 'g':
+            case 'G': {
+                window.open('https://github.com/im-naren', '_blank');
+                break;
+            }
+            case 'Escape': {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput && document.activeElement === searchInput) {
+                    searchInput.value = '';
+                    searchInput.dispatchEvent(new Event('input'));
+                    searchInput.blur();
+                }
+                break;
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeSearch();
+    initializeKeyboardShortcuts();
+
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.focus();
     }
 
-    // Click anywhere on search prompt to focus input
     const searchPrompt = document.querySelector('.search-prompt');
     if (searchPrompt && searchInput) {
         searchPrompt.addEventListener('click', () => {
@@ -67,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Setup copy buttons with event delegation
     document.addEventListener('click', (e) => {
         const copyBtn = e.target.closest('[data-copy-btn]');
         if (!copyBtn) return;
@@ -78,69 +111,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const codeElement = codeBlock.querySelector('code');
         if (!codeElement) return;
 
-        const code = codeElement.textContent;
-
-        navigator.clipboard.writeText(code).then(() => {
+        navigator.clipboard.writeText(codeElement.textContent).then(() => {
             const originalText = copyBtn.textContent;
             copyBtn.textContent = 'copied!';
-            copyBtn.style.color = 'var(--terminal-bright)';
             copyBtn.setAttribute('aria-label', 'Code copied to clipboard');
 
             setTimeout(() => {
                 copyBtn.textContent = originalText;
-                copyBtn.style.color = '';
                 copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
             }, 2000);
-        }).catch(err => {
-            console.error('Failed to copy code:', err);
+        }).catch(() => {
             copyBtn.textContent = 'error';
             copyBtn.setAttribute('aria-label', 'Failed to copy code');
 
-            // Reset error state after 2 seconds
             setTimeout(() => {
                 copyBtn.textContent = 'copy';
-                copyBtn.style.color = '';
                 copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
             }, 2000);
         });
     });
 
-    // Smooth scroll for anchor links
-    const links = document.querySelectorAll('a[href^="#"]');
-
-    links.forEach(link => {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
             if (href === '#') return;
 
             e.preventDefault();
             const target = document.querySelector(href);
-
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-
-                // Update URL without jumping
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 history.pushState(null, null, href);
             }
         });
     });
 });
 
-// Enhanced terminal boot animation
-window.addEventListener('load', () => {
-    // Add glow effect to terminal window
-    const terminalWindow = document.querySelector('.terminal-window');
-    if (terminalWindow) {
-        setTimeout(() => {
-            terminalWindow.style.transition = 'box-shadow 0.5s ease';
-        }, 300);
-    }
-});
-
-// Performance optimization: Lazy load images
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -159,9 +164,3 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
-
-// Console Easter egg
-console.log('%c┌──────────────────────────────────────┐', 'color: #00ff41; font-family: monospace;');
-console.log('%c│  Welcome to the terminal blog!      │', 'color: #00ff41; font-family: monospace;');
-console.log('%c│  Built with ❤️ and green phosphor   │', 'color: #00ff41; font-family: monospace;');
-console.log('%c└──────────────────────────────────────┘', 'color: #00ff41; font-family: monospace;');

@@ -43,11 +43,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" as="style" href="../../styles.css">
-    <link rel="preload" as="script" href="script.js">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
 
-    <link rel="stylesheet" href="../../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
@@ -84,49 +84,53 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="scanlines"></div>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-            </div>
-            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
-        </div>
 
-        <div class="terminal-body">
+    <div class="terminal-shell">
+        <!-- Shell header -->
+        <header class="shell-header">
+            <div class="shell-identity">
+                <span class="shell-user">narendra@develbyte</span>
+                <span class="shell-separator">:</span>
+                <a href="../../index.html" class="shell-path">~/blog</a>
+                <span class="shell-separator">/</span>
+                <span class="shell-path">posts</span>
+            </div>
+            <div class="shell-hints">
+                <span><span class="hint-key">H</span> home</span>
+                <span><span class="hint-key">G</span> github</span>
+            </div>
+        </header>
+
+        <!-- Navigation chips -->
+        <nav class="shell-nav">
+            <a href="../../index.html" class="nav-chip">~/blog</a>
+            <span class="nav-dot">/</span>
+            <a href="../../about.html" class="nav-chip">whoami</a>
+        </nav>
+
+        <main>
             <div class="prompt-line prompt-line-compact">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+                <span class="prompt">$</span>
+                <span class="command"><a href="../../index.html" class="command-link">cd ~/blog</a></span>
             </div>
             <div class="prompt-line">
-                <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./posts/message-queue/</span>
+                <span class="prompt">$</span>
+                <span class="command">cat ./posts/message-queue/</span>
             </div>
 
-            <article class="content-area fade-in post-content" id="main-content">
+            <article class="post-content" id="main-content">
                 <header class="post-header">
                     <h1 class="post-main-title">Message Queue</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">DATE:</span> 2016-09-20</span>
-                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture, database</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 2 min read</span>
+                        <span class="meta-item"><span class="meta-label">date:</span> 2016-09-20</span>
+                        <span class="meta-item"><span class="meta-label">tags:</span> distributed-systems, architecture, database</span>
+                        <span class="meta-item"><span class="meta-label">time:</span> 2 min read</span>
                     </div>
                 </header>
 
-                <!-- Optional: Table of Contents -->
-                <!-- <div class="table-of-contents">
-                    <div class="toc-title">// TABLE OF CONTENTS</div>
-                    <ol>
-                        <li><a href="#section1">Section 1</a></li>
-                        <li><a href="#section2">Section 2</a></li>
-                    </ol>
-                </div> -->
-
                 <!-- START YOUR CONTENT HERE -->
 <h1>Message Queue</h1>
-<h2><span class="terminal-prompt">❯</span> What is Message Passing?</h2>
+<h2><span class="terminal-prompt">$</span> What is Message Passing?</h2>
 <p>Message passing is a technique to enable inter-process communication (IPC), or for inter-thread communication within the same process communication between two distributed or non-distributed parallel processes in synchronous or asynchronous mode, The communications are completed by the sending of messages (functions, signals and data packets) to recipients.</p>
 <p>Most widely used messaging Patterns are:</p>
 <ul>
@@ -136,22 +140,27 @@
 <li>RPC(remote-procedure-call)</li>
 <li>push-pull</li>
 </ul>
-<h2><span class="terminal-prompt">❯</span> Request Response:</h2>
+<h2><span class="terminal-prompt">$</span> Request Response:</h2>
 <p>The program that plays the role of servicing requests is called server. Correspondingly, the program that sends requests to a server is called client. We use server or client to refer to the role played by a program. A program can act as both server and client at the same time. this is most widely used in world wide web. we have both synchronuous and asynchronous versions of this.</p>
 <img src="/img/client-server-1.png" alt="client-server" loading="lazy">
-<h2><span class="terminal-prompt">❯</span> Message Queue:</h2>
+<h2><span class="terminal-prompt">$</span> Message Queue:</h2>
 <p>Message queues provide and asynchronous Point-to-point communications protocol, which means the sender puts messages in a queue and continue its processing without receiving an immediate response. the receiver can reach out to the messaging queue for receiving the messages. Messages placed onto the queue are stored until the recipient retrieves them. Message queues have implicit or explicit limits on the size of data that may be transmitted in a single message and the number of messages that may remain outstanding on the queue.</p>
 <img src="/img/message-queue-model.png" alt="message-queue-model" loading="lazy">
-<h2><span class="terminal-prompt">❯</span> Publisher-Subscriber:</h2>
+<h2><span class="terminal-prompt">$</span> Publisher-Subscriber:</h2>
 <p>Publish–subscribe is a sibling of the message queue paradigm, this paradigm the sender of the message is called Publisher, who send the message to a topic without the knowledge of who are the specific receivers, called subscribers, similarly the subscribers receives the messages only of there interest, the messages gets filtered based on the topic and content. the only subscriber interested the particular topic or attribute, the matching constraints defined by the subscriber.</p>
 <img src="/img/pub-sub-model.png" alt="pub-sub-model" loading="lazy">
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">
-                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                    <a href="../../index.html" class="footer-nav-link">$ cd ~/blog</a>
                 </footer>
             </article>
-        </div>
+        </main>
+
+        <footer class="shell-footer">
+            <span>develbyte.in</span>
+            <span>built with raw html, no frameworks</span>
+        </footer>
     </div>
 
     <!-- Prism.js Core -->
@@ -205,6 +214,6 @@
             integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
             crossorigin="anonymous"></script>
 
-    <script src="../../script.js"></script>
+    <script src="../../script.js?v=20260525"></script>
 </body>
 </html>
