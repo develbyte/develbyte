@@ -365,6 +365,7 @@ body {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    flex-wrap: wrap;
 }
 
 .connect-label {
@@ -382,6 +383,43 @@ body {
 
 .inline-link:hover {
     text-decoration: underline;
+}
+
+.connect-separator {
+    color: var(--terminal-dim);
+}
+
+.resume-highlight-list {
+    margin: 0;
+    padding-left: var(--spacing-lg);
+}
+
+.resume-highlight-list li:last-child {
+    margin-bottom: 0;
+}
+
+.resume-entry {
+    margin-bottom: var(--spacing-xl);
+}
+
+.resume-entry:last-child {
+    margin-bottom: 0;
+}
+
+.resume-entry h3 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.resume-meta {
+    color: var(--terminal-dim);
+    font-size: var(--font-size-small);
+    margin-bottom: var(--spacing-sm);
+}
+
+.resume-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-xl);
 }
 
 .separator-line {
@@ -1371,6 +1409,11 @@ pre[class*="language-"] {
     .profile-image {
         width: 100px;
         height: 100px;
+    }
+
+    .resume-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
     }
 }
 

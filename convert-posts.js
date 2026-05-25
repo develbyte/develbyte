@@ -446,6 +446,14 @@ function generateSitemap(postsInfo) {
         <priority>0.8</priority>
     </url>
 
+    <!-- Resume page -->
+    <url>
+        <loc>${baseURL}/resume.html</loc>
+        <lastmod>${now}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 `;
 
     // Add blog posts
