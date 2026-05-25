@@ -618,6 +618,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-sm);
+    align-self: flex-end;
+    justify-content: flex-end;
 }
 
 .resume-page .resume-action-link {
@@ -1800,6 +1802,11 @@ pre[class*="language-"] {
 
     .resume-page .resume-panel {
         padding: var(--spacing-sm);
+    }
+
+    .resume-page .resume-action-row {
+        align-self: center;
+        justify-content: center;
     }
 
     .resume-page .resume-profile-shell {
