@@ -40,6 +40,7 @@ jobs:
           # Copy static files
           cp index.html deploy/
           cp about.html deploy/
+          cp resume.html deploy/
           cp styles.css deploy/
           cp script.js deploy/
           cp favicon.svg deploy/
