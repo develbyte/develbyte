@@ -84,82 +84,133 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <div class="terminal-shell">
-        <!-- Shell header -->
-        <header class="shell-header">
-            <div class="shell-identity">
-                <span class="shell-user">narendra@develbyte</span>
-                <span class="shell-separator">:</span>
-                <a href="index.html" class="shell-path">~/blog</a>
-                <span class="shell-separator">/</span>
-                <span class="shell-path">posts</span>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
             </div>
-            <div class="shell-hints">
-                <span><span class="hint-key">H</span> home</span>
-                <span><span class="hint-key">G</span> github</span>
-            </div>
-        </header>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
 
-        <!-- Navigation chips -->
-        <nav class="shell-nav">
-            <a href="index.html" class="nav-chip">~/blog</a>
-            <span class="nav-dot">/</span>
-            <a href="about.html" class="nav-chip">whoami</a>
-        </nav>
-
-        <main>
+        <div class="terminal-body">
             <div class="prompt-line prompt-line-compact">
-                <span class="prompt">$</span>
-                <span class="command"><a href="index.html" class="command-link">cd ~/blog</a></span>
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
             </div>
             <div class="prompt-line">
-                <span class="prompt">$</span>
-                <span class="command">cat ./posts/POST_SLUG/</span>
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/POST_SLUG/</span>
             </div>
 
-            <article class="post-content" id="main-content">
+            <article class="content-area fade-in post-content" id="main-content">
                 <header class="post-header">
                     <h1 class="post-main-title">YOUR POST TITLE HERE</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">date:</span> YYYY-MM-DD</span>
-                        <span class="meta-item"><span class="meta-label">tags:</span> tag1, tag2, tag3</span>
-                        <span class="meta-item"><span class="meta-label">time:</span> X min read</span>
+                        <span class="meta-item"><span class="meta-label">DATE:</span> YYYY-MM-DD</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> tag1, tag2, tag3</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> X min read</span>
                     </div>
                 </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
 
                 <!-- START YOUR CONTENT HERE -->
 
                 <section id="introduction">
-                    <h2><span class="terminal-prompt">$</span> Introduction</h2>
+                    <h2>❯ Introduction</h2>
                     <p>
-                        Your introduction paragraph goes here.
+                        Your introduction paragraph goes here. Write engaging content that hooks the reader.
+                    </p>
+
+                    <p>
+                        Additional paragraphs provide more context and background.
                     </p>
                 </section>
 
-                <section id="main-section">
-                    <h2><span class="terminal-prompt">$</span> Main Section Title</h2>
+                <section id="main-content">
+                    <h2>❯ Main Section Title</h2>
 
-                    <h3>Subsection Title</h3>
+                    <h3>❯ Subsection Title</h3>
                     <p>Regular paragraph text with <code class="inline-code">inline code</code> and <a href="#">links</a>.</p>
 
-                    <!-- Code Block Example -->
+                    <!-- Code Block Example - Prism.js automatically highlights -->
+                    <!-- Just add class="language-xxx" to the <code> tag -->
                     <div class="code-block">
                         <div class="code-header">
+                            <div class="code-window-buttons">
+                                <span class="code-btn-close"></span>
+                                <span class="code-btn-minimize"></span>
+                                <span class="code-btn-maximize"></span>
+                            </div>
                             <span class="code-lang">javascript</span>
                             <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
                         </div>
-                        <pre><code class="language-javascript">function example() {
+                        <pre><code class="language-javascript">// Example function - Prism.js auto-highlights!
+function example() {
     const message = "Hello, World!";
     return message;
 }</code></pre>
                     </div>
 
+                    <!-- Rust Example -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-window-buttons">
+                                <span class="code-btn-close"></span>
+                                <span class="code-btn-minimize"></span>
+                                <span class="code-btn-maximize"></span>
+                            </div>
+                            <span class="code-lang">rust</span>
+                            <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
+                        </div>
+                        <pre><code class="language-rust">fn main() {
+    let x = 42;
+    println!("The answer is {}", x);
+}</code></pre>
+                    </div>
+
+                    <!-- Python Example -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="code-window-buttons">
+                                <span class="code-btn-close"></span>
+                                <span class="code-btn-minimize"></span>
+                                <span class="code-btn-maximize"></span>
+                            </div>
+                            <span class="code-lang">python</span>
+                            <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
+                        </div>
+                        <pre><code class="language-python">def greet(name: str) -> str:
+    """Return a greeting message."""
+    return f"Hello, {name}!"
+
+if __name__ == "__main__":
+    print(greet("World"))</code></pre>
+                    </div>
+
+                    <!-- Unordered List Example -->
                     <ul>
                         <li>First item</li>
                         <li>Second item</li>
                         <li>Third item</li>
                     </ul>
+
+                    <!-- Ordered List Example -->
+                    <ol>
+                        <li>Step one</li>
+                        <li>Step two</li>
+                        <li>Step three</li>
+                    </ol>
 
                     <!-- Callout Examples -->
                     <div class="callout callout-info">
@@ -207,11 +258,18 @@
                     </table>
                     <p class="caption">Table 1: Description of your table</p>
 
+                    <!-- Image Example -->
+                    <div class="image-container">
+                        <img src="path/to/image.png" alt="Descriptive alt text">
+                        <p class="caption">Figure 1: Description of your image</p>
+                    </div>
+
+                    <!-- Horizontal Rule -->
                     <hr class="section-break">
                 </section>
 
                 <section id="conclusion">
-                    <h2><span class="terminal-prompt">$</span> Conclusion</h2>
+                    <h2>❯ Conclusion</h2>
                     <p>
                         Wrap up your post with key takeaways and final thoughts.
                     </p>
@@ -220,15 +278,10 @@
                 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">
-                    <a href="index.html" class="footer-nav-link">$ cd ~/blog</a>
+                    <a href="index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
                 </footer>
             </article>
-        </main>
-
-        <footer class="shell-footer">
-            <span>develbyte.in</span>
-            <span>built with raw html, no frameworks</span>
-        </footer>
+        </div>
     </div>
 
     <!-- Prism.js Core -->

@@ -84,49 +84,45 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <div class="terminal-shell">
-        <!-- Shell header -->
-        <header class="shell-header">
-            <div class="shell-identity">
-                <span class="shell-user">narendra@develbyte</span>
-                <span class="shell-separator">:</span>
-                <a href="../../index.html" class="shell-path">~/blog</a>
-                <span class="shell-separator">/</span>
-                <span class="shell-path">posts</span>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
             </div>
-            <div class="shell-hints">
-                <span><span class="hint-key">H</span> home</span>
-                <span><span class="hint-key">G</span> github</span>
-            </div>
-        </header>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
 
-        <!-- Navigation chips -->
-        <nav class="shell-nav">
-            <a href="../../index.html" class="nav-chip">~/blog</a>
-            <span class="nav-dot">/</span>
-            <a href="../../about.html" class="nav-chip">whoami</a>
-        </nav>
-
-        <main>
+        <div class="terminal-body">
             <div class="prompt-line prompt-line-compact">
-                <span class="prompt">$</span>
-                <span class="command"><a href="../../index.html" class="command-link">cd ~/blog</a></span>
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
             </div>
             <div class="prompt-line">
-                <span class="prompt">$</span>
-                <span class="command">cat ./posts/why-latency-not-partitions-dictates-database-consistency/</span>
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/why-latency-not-partitions-dictates-database-consistency/</span>
             </div>
 
-            <article class="post-content" id="main-content">
+            <article class="content-area fade-in post-content" id="main-content">
                 <header class="post-header">
                     <h1 class="post-main-title">Why Latency, Not Partitions, Dictates Your Database's Consistency [50PaperChallenge]</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">date:</span> 2025-11-08</span>
-                        <span class="meta-item"><span class="meta-label">tags:</span> distributed-systems, architecture, database</span>
-                        <span class="meta-item"><span class="meta-label">time:</span> 6 min read</span>
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2025-11-08</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture, database</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 6 min read</span>
                     </div>
                 </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
 
                 <!-- START YOUR CONTENT HERE -->
 <h1>Why Latency, Not Partitions, Dictates Your Database’s Consistency</h1>
@@ -182,15 +178,10 @@
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">
-                    <a href="../../index.html" class="footer-nav-link">$ cd ~/blog</a>
+                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
                 </footer>
             </article>
-        </main>
-
-        <footer class="shell-footer">
-            <span>develbyte.in</span>
-            <span>built with raw html, no frameworks</span>
-        </footer>
+        </div>
     </div>
 
     <!-- Prism.js Core -->

@@ -65,69 +65,68 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <div class="terminal-shell">
-        <!-- Shell header: identity + keyboard hints -->
-        <header class="shell-header">
-            <div class="shell-identity">
-                <span class="shell-user">narendra@develbyte</span>
-                <span class="shell-separator">:</span>
-                <span class="shell-path">~/blog</span>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
             </div>
-            <div class="shell-hints">
-                <span><span class="hint-key">/</span> search</span>
-                <span><span class="hint-key">G</span> github</span>
-                <span><span class="hint-key">A</span> about</span>
-            </div>
-        </header>
+            <div class="terminal-title">narendra@develbyte: ~/blog</div>
+        </div>
 
-        <!-- Navigation chips -->
-        <nav class="shell-nav">
-            <a href="index.html" class="nav-chip active">~/blog</a>
-            <span class="nav-dot">/</span>
-            <a href="about.html" class="nav-chip">whoami</a>
-        </nav>
-
-        <main id="main-content">
-            <!-- ASCII Art -->
-            <div class="ascii-header">
-                <pre>
+        <div class="terminal-body">
+            <div class="content-area fade-in" id="main-content">
+                <!-- ASCII Art Header -->
+                <div class="ascii-header">
+                    <pre>
 ▗▄▄▄ ▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▖   ▗▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖
 ▐▌  █▐▌   ▐▌  ▐▌▐▌   ▐▌   ▐▌ ▐▌▝▚▞▘   █  ▐▌
 ▐▌  █▐▛▀▀▘▐▌  ▐▌▐▛▀▀▘▐▌   ▐▛▀▚▖ ▐▌    █  ▐▛▀▀▘
 ▐▙▄▄▀▐▙▄▄▖ ▝▚▞▘ ▐▙▄▄▖▐▙▄▄▖▐▙▄▞▘ ▐▌    █  ▐▙▄▄▖
-                </pre>
-            </div>
+                    </pre>
+                </div>
 
-            <!-- Blog Info -->
-            <div class="blog-info">
-                <span class="post-count">14</span> posts indexed
-            </div>
+                <!-- Navigation -->
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link active">cd $HOME</a>
+                    <span class="nav-separator">•</span>
+                    <a href="about.html" class="nav-link">whoami</a>
+                </div>
 
-            <div class="separator-line">────────────────────────────────────────────────────────────────────────</div>
+                <!-- Blog Info -->
+                <div class="blog-info">
+                    BLOG • <span class="post-count">14</span> posts indexed • Last updated: 2025-11-15
+                </div>
 
-            <!-- Search -->
-            <div class="search-prompt">
-                <span class="prompt">$</span>
-                <span class="command-text">grep -i "</span><span class="input-wrapper"><input
-                    type="text"
-                    id="searchInput"
-                    class="search-input"
-                    placeholder=""
-                    autocomplete="off"
-                    aria-label="Search blog posts by title or tags"
-                    aria-describedby="search-description"
-                    role="searchbox"
-                ><span class="block-cursor">█</span></span><span class="command-text">" ./posts/*</span>
-            </div>
+                <div class="separator-line">─────────────────────────────────────────────────────────────────────────────────</div>
 
-            <span id="search-description" class="sr-only">
-                Type to filter posts by title, tags, or content. Results update as you type.
-            </span>
-            <div id="search-results-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+                <!-- Interactive Search Prompt -->
+                <div class="search-prompt">
+                    <span class="prompt">❯ guest@develbyte:$</span>
+                    <span class="command-text">find . -iname "*</span><span class="input-wrapper"><input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder=""
+                        autocomplete="off"
+                        aria-label="Search blog posts by title or tags"
+                        aria-describedby="search-description"
+                        role="searchbox"
+                    ><span class="block-cursor">█</span></span><span class="command-text">*" -exec ls -alh {} +</span>
+                </div>
 
-            <!-- Post List -->
-            <div class="posts-list-compact" id="postsList">
+                <!-- Screen reader only text -->
+                <span id="search-description" class="sr-only">
+                    Type to filter posts by title, tags, or content. Results update as you type.
+                </span>
+
+                <!-- Screen reader announcements -->
+                <div id="search-results-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+                <!-- Compact Posts List -->
+                <div class="posts-list-compact" id="postsList">
                     <div class="post-line" data-tags="distributed-systems architecture database 50PaperChallenge storage-engines lsm-trees" data-title="Why Write Amplification, Not Just Throughput, Shapes Modern Databases [50PaperChallenge]">
                         <span class="post-date-compact">[2025-11-15]</span>
                         <a href="/posts/why-write-amplification-not-just-throughput-shapes-modern-databases/" class="post-title-compact">Why Write Amplification, Not Just Throughput, Shapes Modern Databases [50PaperChallenge]</a>
@@ -259,13 +258,8 @@
                         </span>
                     </div>
                 </div>
-        </main>
-
-        <!-- Footer -->
-        <footer class="shell-footer">
-            <span>develbyte.in</span>
-            <span>built with raw html, no frameworks</span>
-        </footer>
+            </div>
+        </div>
     </div>
 
     <script src="script.js?v=20260525"></script>
