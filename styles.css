@@ -26,7 +26,8 @@
     --separator: #21262d;
 
     /* Typography */
-    --font-mono: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    --font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
     --font-size-base: 15px;
     --font-size-small: 13px;
     --font-size-large: 18px;
@@ -61,7 +62,7 @@ html {
 }
 
 body {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     background: #000;
     color: var(--terminal-fg);
     line-height: var(--line-height-base);
@@ -135,6 +136,7 @@ body {
 }
 
 .terminal-title {
+    font-family: var(--font-mono);
     font-size: var(--font-size-small);
     color: var(--terminal-dim);
     flex: 1;
@@ -176,6 +178,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    font-family: var(--font-mono);
 }
 
 .shell-user {
@@ -200,6 +203,7 @@ body {
     gap: 0.6rem;
     font-size: 11px;
     color: var(--terminal-dim);
+    font-family: var(--font-mono);
 }
 
 .hint-key {
@@ -217,6 +221,7 @@ body {
     gap: var(--spacing-sm);
     width: min(100%, var(--content-max-width));
     margin: 0 auto var(--spacing-md);
+    font-family: var(--font-mono);
 }
 
 .nav-chip {
@@ -302,10 +307,12 @@ body {
 .prompt {
     color: var(--terminal-accent);
     font-weight: 500;
+    font-family: var(--font-mono);
 }
 
 .command {
     color: var(--terminal-fg);
+    font-family: var(--font-mono);
 }
 
 .command-link {
@@ -313,6 +320,7 @@ body {
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
+    font-family: var(--font-mono);
 }
 
 .command-link:hover {
@@ -394,6 +402,7 @@ body {
     align-items: center;
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-md);
+    font-family: var(--font-mono);
 }
 
 .nav-link {
@@ -420,6 +429,7 @@ body {
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-small);
     color: var(--terminal-dim);
+    font-family: var(--font-mono);
 }
 
 .blog-info .post-count {
@@ -815,6 +825,7 @@ body {
 .command-line {
     margin-bottom: var(--spacing-md);
     color: var(--terminal-fg);
+    font-family: var(--font-mono);
 }
 
 .prompt-symbol {
@@ -856,6 +867,7 @@ body {
     font-size: var(--font-size-small);
     flex-shrink: 0;
     min-width: 90px;
+    font-family: var(--font-mono);
 }
 
 .post-title-compact {
@@ -883,6 +895,7 @@ body {
     border-radius: 3px;
     font-size: 12px;
     border: 1px solid rgba(88, 166, 255, 0.2);
+    font-family: var(--font-mono);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1128,6 +1141,7 @@ body {
     text-align: center;
     flex: 1;
     letter-spacing: 0.5px;
+    font-family: var(--font-mono);
 }
 
 .code-copy {
