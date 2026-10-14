@@ -3,7 +3,7 @@
     <!-- Homepage -->
     <url>
         <loc>https://develbyte.in/</loc>
-        <lastmod>2026-05-25</lastmod>
+        <lastmod>2026-10-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -11,7 +11,7 @@
     <!-- About page -->
     <url>
         <loc>https://develbyte.in/about.html</loc>
-        <lastmod>2026-05-25</lastmod>
+        <lastmod>2026-10-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -19,7 +19,7 @@
     <!-- Resume page -->
     <url>
         <loc>https://develbyte.in/resume.html</loc>
-        <lastmod>2026-05-25</lastmod>
+        <lastmod>2026-10-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -40,10 +40,82 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- "Inside Modern Machine Learning Platforms: A Survey Across the Industry" -->
+    <!-- Inside Modern Machine Learning Platforms: A Survey Across the Industry -->
     <url>
         <loc>https://develbyte.in/posts/inside-modern-machine-learning-platforms/</loc>
         <lastmod>2025-04-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- 5 Goal Setting Frameworks for Engineering Managers -->
+    <url>
+        <loc>https://develbyte.in/posts/5-goal-setting-frameworks-for-engineering-managers/</loc>
+        <lastmod>2023-05-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- System Design #4: MySQL vs PostgresSQL — Exploring Design Differences -->
+    <url>
+        <loc>https://develbyte.in/posts/system-design-4-mysql-vs-postgresql/</loc>
+        <lastmod>2023-05-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- System Design #3: Google File System - Architecture, Design Decisions and Tradeoffs -->
+    <url>
+        <loc>https://develbyte.in/posts/system-design-3-google-file-system/</loc>
+        <lastmod>2023-05-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Delivering Effective Feedback -->
+    <url>
+        <loc>https://develbyte.in/posts/delivering-effective-feedback/</loc>
+        <lastmod>2023-05-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- 7 Must-Read Books for Data Engineers -->
+    <url>
+        <loc>https://develbyte.in/posts/7-must-read-books-for-data-engineers/</loc>
+        <lastmod>2023-05-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- System Design #2: The Problem -->
+    <url>
+        <loc>https://develbyte.in/posts/system-design-2-the-problem/</loc>
+        <lastmod>2023-05-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- System Design #1: Introduction -->
+    <url>
+        <loc>https://develbyte.in/posts/system-design-1-introduction/</loc>
+        <lastmod>2023-04-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Improving the Code Review Process — Best Practices and Metrics for Success -->
+    <url>
+        <loc>https://develbyte.in/posts/improving-the-code-review-process/</loc>
+        <lastmod>2023-04-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- The Bell Curve Dilemma of a Manager -->
+    <url>
+        <loc>https://develbyte.in/posts/the-bell-curve-dilemma-of-a-manager/</loc>
+        <lastmod>2023-04-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -72,66 +144,10 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- Message Queue -->
-    <url>
-        <loc>https://develbyte.in/posts/message-queue/</loc>
-        <lastmod>2016-09-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Normalisation -->
-    <url>
-        <loc>https://develbyte.in/posts/normalisation/</loc>
-        <lastmod>2015-09-14</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- How to sort a HashMap on Values -->
-    <url>
-        <loc>https://develbyte.in/posts/how-to-sort-a-hashmap-on-values/</loc>
-        <lastmod>2015-05-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- How to Implement Singly Linked List in Java -->
-    <url>
-        <loc>https://develbyte.in/posts/how-to-implement-singly-linked-list-in-java/</loc>
-        <lastmod>2015-05-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Introduction To MapReduce -->
-    <url>
-        <loc>https://develbyte.in/posts/introduction-to-mapreduce/</loc>
-        <lastmod>2015-05-14</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- HDFS Architecture -->
-    <url>
-        <loc>https://develbyte.in/posts/hdfs-architecture/</loc>
-        <lastmod>2015-05-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
     <!-- MapReduce Execution in Hadoop -->
     <url>
         <loc>https://develbyte.in/posts/mapreduce-execution-in-hadoop/</loc>
         <lastmod>2015-03-10</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- How to Find out Next and Previous Day of Week in Oracle -->
-    <url>
-        <loc>https://develbyte.in/posts/how-to-find-out-next-and-previous-day-of-week-in-oracle/</loc>
-        <lastmod>2015-02-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

@@ -1,6 +1,6 @@
 ---
 slug: inside-modern-machine-learning-platforms
-title: "Inside Modern Machine Learning Platforms: A Survey Across the Industry"
+title: Inside Modern Machine Learning Platforms: A Survey Across the Industry
 authors: narendra
 tags: [distributed-systems, architecture, machine-learning]
 date: 2025-04-13
@@ -183,8 +183,3 @@ There's no one right ML platform architecture. What matters is choosing somethin
 Regardless of what you pick, the trends are clear: feature stores are no longer optional, monitoring is essential, and modularity is king. And as the tooling ecosystem matures, the barrier to building solid ML infra is lower than ever.
 
 Have thoughts or want to share how your company does it? I'd love to hear from you.
-
----
-
-*Can also read on [Medium](https://medium.com/develbyte/inside-modern-machine-learning-platforms-a-surveyacross-the-industry-fe2ed51e38c6)*
-

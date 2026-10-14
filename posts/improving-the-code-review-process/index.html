@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HDFS Architecture - DevelByte Blog</title>
-    <meta name="description" content="HDFS Architecture The Hadoop Distributed File System (HDFS) is a highly fault tolerant file system designed and optimized to be deployed on a distribu...">
+    <title>Improving the Code Review Process — Best Practices and Metrics for Success - DevelByte Blog</title>
+    <meta name="description" content="Improving the Code Review Process — Best Practices and Metrics for Success Maintaining a balance between feature delivery and code quality is a consta...">
     <meta name="author" content="Narendra Kumar">
 
     <!-- Content Security Policy -->
@@ -16,23 +16,23 @@
                    img-src 'self' https://github.com data:;">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://develbyte.in/hdfs-architecture/">
+    <link rel="canonical" href="https://develbyte.in/improving-the-code-review-process/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="HDFS Architecture">
-    <meta property="og:description" content="HDFS Architecture The Hadoop Distributed File System (HDFS) is a highly fault tolerant file system designed and optimized to be deployed on a distribu...">
+    <meta property="og:title" content="Improving the Code Review Process — Best Practices and Metrics for Success">
+    <meta property="og:description" content="Improving the Code Review Process — Best Practices and Metrics for Success Maintaining a balance between feature delivery and code quality is a consta...">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://develbyte.in/hdfs-architecture/">
+    <meta property="og:url" content="https://develbyte.in/improving-the-code-review-process/">
     <meta property="og:image" content="https://develbyte.in/og-image.png">
     <meta property="og:site_name" content="DevelByte">
-    <meta property="article:published_time" content="2015-05-03">
+    <meta property="article:published_time" content="2023-04-21">
     <meta property="article:author" content="Narendra Kumar">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@im-naren">
-    <meta name="twitter:title" content="HDFS Architecture">
-    <meta name="twitter:description" content="HDFS Architecture The Hadoop Distributed File System (HDFS) is a highly fault tolerant file system designed and optimized to be deployed on a distribu...">
+    <meta name="twitter:title" content="Improving the Code Review Process — Best Practices and Metrics for Success">
+    <meta name="twitter:description" content="Improving the Code Review Process — Best Practices and Metrics for Success Maintaining a balance between feature delivery and code quality is a consta...">
     <meta name="twitter:image" content="https://develbyte.in/og-image.png">
 
     <!-- Favicon -->
@@ -60,11 +60,11 @@
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": "HDFS Architecture",
-      "description": "HDFS Architecture The Hadoop Distributed File System (HDFS) is a highly fault tolerant file system designed and optimized to be deployed on a distribu...",
+      "headline": "Improving the Code Review Process — Best Practices and Metrics for Success",
+      "description": "Improving the Code Review Process — Best Practices and Metrics for Success Maintaining a balance between feature delivery and code quality is a consta...",
       "image": "https://develbyte.in/og-image.png",
-      "datePublished": "2015-05-03",
-      "dateModified": "2015-05-03",
+      "datePublished": "2023-04-21",
+      "dateModified": "2023-04-21",
       "author": {
         "@type": "Person",
         "name": "Narendra Kumar",
@@ -77,7 +77,7 @@
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://develbyte.in/hdfs-architecture/"
+        "@id": "https://develbyte.in/improving-the-code-review-process/"
       }
     }
     </script>
@@ -102,16 +102,16 @@
             </div>
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./posts/hdfs-architecture/</span>
+                <span class="command typed-text">cat ./posts/improving-the-code-review-process/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
                 <header class="post-header">
-                    <h1 class="post-main-title">HDFS Architecture</h1>
+                    <h1 class="post-main-title">Improving the Code Review Process — Best Practices and Metrics for Success</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">DATE:</span> 2015-05-03</span>
-                        <span class="meta-item"><span class="meta-label">TAGS:</span> distributed-systems, architecture</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 2 min read</span>
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2023-04-21</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> software-engineering, code-review, best-practices</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 3 min read</span>
                     </div>
                 </header>
 
@@ -125,13 +125,38 @@
                 </div> -->
 
                 <!-- START YOUR CONTENT HERE -->
-<h1>HDFS Architecture</h1>
-<p>The Hadoop Distributed File System (HDFS) is a highly fault tolerant file system designed and optimized to be deployed on a distributed infrastructure established with a bunch commodity hardware. HDFS provides high throughput access to application data and is best suited for applications that have large data sets. Unlike existing distributed file systems HDFS have loosen up a few POSIX Standards to enable streaming access to file system data. HDFS was originally developed as an infrastructure for the Apache Nutch web search engine project.</p>
-<h2><span class="terminal-prompt">$</span> Inside HDFS</h2>
-<img src="/img/hdfs-architecture.png" alt="hdfs-architecture.png" loading="lazy">
-<p>HDFS is based on Master-Slave Architecture. A typical HDFS cluster consists one NameNode and multiple DataNodes generally one per node in the cluster. The NameNode is the arbitrator and repository for all <strong>HDFS metadata</strong>. The system is designed in such a way that user data never flows through the NameNode. NameNode acts as the master in Master-Slave Architectural pattern and manages the file system namespace and regulates access to files by client Applications. DataNode manages the user data stored on the node that they run on. A file is split into one or more blocks and set of blocks are stored in DataNodes. The NameNode executes file system namespace operations like opening, closing, and renaming files and directories. It also determines the mapping of blocks to DataNodes from the heartbeats and block reports sent by DataNodes. DataNodes executes read, write requests and performs block creation, block deletion, and block replication only when NameNode commands them to.</p>
-<h2><span class="terminal-prompt">$</span> Deployment</h2>
-<p>NameNode and DataNode are software programs designed in java, so it can execute on any machine having java installed (typically Unix/Linux), it can be deployed on a wide range of machines. In real time scenarios NameNodes are deployed on a high end dedicated machines and all other machines in the cluster are commodity hardware running DataNode program. Each cluster consists of one NameNode and multiple DataNodes. There could be multiple NameNodes within a cluster in some special scenarios, In order to scale name services horizontally federation uses multiple independent NameNodes within a cluster these NameNodes does not require coordination between each other. The DataNodes are used as common storage among the NameNodes, and all the DataNodes are required to be registered with all the NameNodes and send periodic heartbeats and block reports to the NameNodes.</p>
+<h1>Improving the Code Review Process — Best Practices and Metrics for Success</h1>
+<p>Maintaining a balance between feature delivery and code quality is a constant challenge in today’s fast-paced development environment. Code reviews play a crucial role in ensuring the quality of the code being produced.</p>
+<p>Code reviews not only help identify and fix errors early in the development cycle, but they also provide an opportunity for developers to learn and share knowledge with each other and improve their coding skills.</p>
+<p>However, code reviews can also be time-consuming and frustrating if not done correctly.</p>
+<p>Let’s look at some high-level things which can help improve the state of code review in any team/organisation. In the subsequent blog we’ll dig deeper into each of the items and also look at some of the industry best practices.</p>
+<h2><span class="terminal-prompt">$</span> Principles</h2>
+<p>First of all, set some ground rules, it’s essential to establish a set of principles or guidelines for development.</p>
+<img src="/img/code-review-principles.jpeg" alt="Illustration accompanying the principles section" loading="lazy">
+<p>The rules must have absolute authority.</p>
+<p>Most teams commit this mistake: they assume that everyone is on the same page about “what is good code” — but nope! Folks in the same team might have a very different understanding of what is good code or design because it depends on their background, previous experience, the programming language, or the kind of system/product.</p>
+<p>It’s always helpful to document the rules which everyone agreed upon.</p>
+<p>The rules should outline the standards and practices that are expected to be followed. These principles can include things like code style, naming conventions, and best practices for error handling.</p>
+<p>Having a shared understanding of these principles will make the code review process more efficient and effective and resolve conflicts.</p>
+<h2><span class="terminal-prompt">$</span> Expectations from Requesters and Reviewers</h2>
+<p>It’s crucial to set clear expectations for both the requester and the reviewer in the code review process.</p>
+<img src="/img/code-review-expectations.jpeg" alt="Illustration accompanying requester and reviewer expectations" loading="lazy">
+<p>The requester should provide a clear description of the changes made and any relevant context.</p>
+<p>The reviewer should be clear about what they are looking for in the code review and what level of scrutiny they will apply.</p>
+<p>It’s also essential to establish a timeline for the review process, so both parties know what to expect.</p>
+<h2><span class="terminal-prompt">$</span> Best Practices and Checklist</h2>
+<p>Having a checklist of best practices to follow during the code review process can help ensure consistency and completeness.</p>
+<p>This checklist can include items like checking for code style consistency, verifying that the code is properly commented, and testing the code for potential issues. By having a checklist, reviewers can quickly identify any potential issues and ensure that the code meets the established principles.</p>
+<h2><span class="terminal-prompt">$</span> Tracking</h2>
+<p>Tracking the whole process is important. The objective is not to find faults but challenges individuals face so that they can be worked upon.</p>
+<strong>Response Time and Quality of Comments are two of the most critical metrics to begin with.</strong>
+<img src="/img/code-review-metrics.jpeg" alt="Illustration accompanying the tracking section" loading="lazy">
+<p>Reviewers should ensure they unblock the PR as soon as they can. It does not mean they should jump on it every time they get a notification. But if you are not in the middle of a focused task, you should do a code review shortly after it comes in.</p>
+<p>One business day is the maximum time it should take for the reviewer to respond to a code review request. The developer should do this first thing in the morning.</p>
+<p>Quality of comments refers to the depth and thoroughness of the feedback provided.</p>
+<p>By tracking these metrics, you can identify any bottlenecks in the code review process and ensure that the feedback provided is of high quality.</p>
+<h2><span class="terminal-prompt">$</span> Conclusion</h2>
+<p>In conclusion, the code review process is an essential part of the development cycle. By establishing a set of principles and best practices, setting clear expectations, and tracking metrics like response time and quality of comments, you can ensure that the code review process is efficient and effective. By doing so, you can improve the quality of your code and ensure that your team delivers high-quality software to your customers.</p>
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">

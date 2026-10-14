@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design #1: Introduction - DevelByte Blog</title>
+    <meta name="description" content="System Design 1 : Introduction ![Photo by [Christina @ wocintechchat.com](https://unsplash.com/@wocintechchat?utm_source=medium&utm_medium=referral) o...">
+    <meta name="author" content="Narendra Kumar">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' https://cdnjs.cloudflare.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   img-src 'self' https://github.com data:;">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://develbyte.in/system-design-1-introduction/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="System Design #1: Introduction">
+    <meta property="og:description" content="System Design 1 : Introduction ![Photo by [Christina @ wocintechchat.com](https://unsplash.com/@wocintechchat?utm_source=medium&utm_medium=referral) o...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://develbyte.in/system-design-1-introduction/">
+    <meta property="og:image" content="https://develbyte.in/og-image.png">
+    <meta property="og:site_name" content="DevelByte">
+    <meta property="article:published_time" content="2023-04-29">
+    <meta property="article:author" content="Narendra Kumar">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@im-naren">
+    <meta name="twitter:title" content="System Design #1: Introduction">
+    <meta name="twitter:description" content="System Design 1 : Introduction ![Photo by [Christina @ wocintechchat.com](https://unsplash.com/@wocintechchat?utm_source=medium&utm_medium=referral) o...">
+    <meta name="twitter:image" content="https://develbyte.in/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="alternate icon" href="../../favicon.ico">
+
+    <!-- Resource Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
+
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet"
+          integrity="sha384-wFjoQjtV1y5jVHbt0p35Ui8aV8GVpEZkyF99OXWqP/eNJDU93D3Ugxkoyh6Y2I4A"
+          crossorigin="anonymous" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "System Design #1: Introduction",
+      "description": "System Design 1 : Introduction ![Photo by [Christina @ wocintechchat.com](https://unsplash.com/@wocintechchat?utm_source=medium&utm_medium=referral) o...",
+      "image": "https://develbyte.in/og-image.png",
+      "datePublished": "2023-04-29",
+      "dateModified": "2023-04-29",
+      "author": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in/about.html"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://develbyte.in/system-design-1-introduction/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="prompt-line prompt-line-compact">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/system-design-1-introduction/</span>
+            </div>
+
+            <article class="content-area fade-in post-content" id="main-content">
+                <header class="post-header">
+                    <h1 class="post-main-title">System Design #1: Introduction</h1>
+                    <div class="post-meta-full">
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2023-04-29</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> system-design, architecture, scalability</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 12 min read</span>
+                    </div>
+                </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
+
+                <!-- START YOUR CONTENT HERE -->
+<h1>System Design #1 : Introduction</h1>
+<img src="https://unsplash.com/@wocintechchat?utm_source=medium&utm_medium=referral" alt="Photo by <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Christina @ wocintechchat.com" loading="lazy"> on [Unsplash</a>](/img/system-design-1-introduction-01.jpg)
+<p>Hey there 👋 , fellow software engineer !!</p>
+<p>Welcome to my series where I share what I’ve learned from my work and the books I’ve read. Speaking of books, have you checked out “Designing Data-Intensive Applications”? It’s seriously one of the best and most comprehensive books out there. But enough about books, let’s talk about us.</p>
+<p>At some point through your quest of software engineering, you would have build a system if not you would be building one in future. Hope I would be able to help you learn a thing or two.</p>
+<p>If you have any feedback or want to start a discussion, hit me up on my Twitter <a href="https://twitter.com/_imnaren">@_imnaren</a> or on <a href="https://www.linkedin.com/in/im-naren">LinkedIn</a>. I’m always down for a good chat.</p>
+<p>Lets start with the basics question — What is System design and why its important.</p>
+<p>System design is the process of defining the architecture, modules, interfaces, and data for a system to satisfy specified requirements. It is a high-level view of the system that focuses on the logical and functional aspects of the software. The main goal of system design is to define the architecture of the system and ensure that it meets the requirements of the stakeholders.</p>
+<p>When designing a system the biggest and most important concern is the <strong>Functionality of the software itself</strong>, This is the part where business and domain level expertise required with problem solving and tech knowledge. While solving functional requirements there are various generic concerns every application developer needs to think about these concerns can be broadly categorized into 3 categories — Reliability, scalability and maintainability.</p>
+<p>In your design discussion you would have came across arguments like</p>
+<p>“this is not maintainable, it requires too many steps to onboard”</p>
+<p>“How would you scale this, the workload is expected to grow 10x by end of the year”</p>
+<p>“there is a single point of failure, its not fault-tolerance”</p>
+<p>A lot of time this terms are just thrown in the discussion without a clear understanding of what these terms actually mean in the interest of thoughtful engineering</p>
+<p>Before getting into the techniques and optimisations its important to come on the same page about what these terms actually means, how to measure and track them.</p>
+<h2><span class="terminal-prompt">$</span> Reliability</h2>
+<p>Reliability refers to the ability of a software system to operate continuously and perform its intended tasks without errors or failures. In other words, a reliable software system is one that can be trusted to work correctly and consistently over time, even in the face of unexpected events or changing conditions.</p>
+<strong>Fault-tolerant and resilience</strong> are frequently used to refer to reliability of the system.
+<strong>Fault and failures</strong> are also very frequently used interchangeably but they are not same, if the system is not designed well an un-expected fault can cause failure.
+<p>For example, If the size of an input record flowing in Kafka is larger then the threshold limit, can cause a the whole pipeline to stop, if the system is not designed to tolerate this kind of exceptions.</p>
+<p>To achieve reliability, software systems must be designed with robustness, fault tolerance, and error handling in mind. This means that the system should be able to detect and recover from errors, handle unexpected events gracefully, and continue to operate even in the face of partial failures or other problems.</p>
+<p>It is impossible to design a system with 0 probability of faults. therefore the goal should be to minimise fault and maximise reliability, There are some standard techniques to achieve the same.</p>
+<ul>
+<li><strong>Redundancy:</strong> One common technique for improving system reliability is redundancy. This involves duplicating critical components or subsystems, so that if one fails, the other can take over. There are different types of redundancy, such as hot standby, cold standby, and active-active redundancy, depending on the level of redundancy and the cost of maintaining it.</li>
+<li><strong>Testing and validation:</strong> Another key technique for ensuring system reliability is testing and validation. This involves testing the system under various conditions, including normal and abnormal scenarios, to ensure that it behaves as expected. There are different types of testing, such as unit testing, integration testing, and system testing, each focusing on different levels of the system and types of functionality.</li>
+<li><strong>Fault-tolerant design:</strong> Fault-tolerant design involves designing the system to be able to continue operating even in the presence of faults or errors. This can involve techniques such as error detection, error correction, and graceful degradation, which allow the system to continue functioning even if some components are not working correctly.</li>
+<li><strong>Monitoring and recovery:</strong> Monitoring and recovery techniques involve continuously monitoring the system for potential failures or errors, and taking corrective action as needed. This can involve techniques such as logging, alerting, and automated recovery, which can minimize downtime and ensure that the system remains available and reliable.</li>
+<li><strong>Security and access control:</strong> Ensuring the security and access control of the system is another important technique for improving reliability. This involves securing the system at different levels, such as network, application, and data storage, and implementing access controls to prevent unauthorised access or modification of the system.</li>
+</ul>
+<p>KPIs to measure and track reliability of a system:</p>
+<ul>
+<li><strong>Mean Time Between Failures (MTBF):</strong> This metric measures the average time between system failures. A higher MTBF indicates a more reliable system.</li>
+<li><strong>Mean Time to Failure (MTTF):</strong> This metric measures the average time until the system experiences its first failure. A higher MTTF indicates a more reliable system.</li>
+<li><strong>Mean Time to Repair (MTTR):</strong> This metric measures the average time required to repair a system failure. A lower MTTR indicates a more reliable system.</li>
+<li><strong>Availability:</strong> This metric measures the percentage of time that the system is available and functioning correctly. A higher availability indicates a more reliable system.</li>
+<li><strong>Error Rate:</strong> This metric measures the percentage of transactions or operations that result in errors or failures. A lower error rate indicates a more reliable system.</li>
+<li><strong>Fault Tolerance:</strong> This metric measures the system’s ability to continue functioning even in the face of partial failures or errors. A higher level of fault tolerance indicates a more reliable system.</li>
+<li><strong>Recovery Time Objective (RTO):</strong> This metric measures the amount of time required to recover from a system failure and restore normal operation. A lower RTO indicates a more reliable system.</li>
+<li><strong>Recovery Point Objective (RPO):</strong> This metric measures the amount of data loss that can be tolerated in the event of a system failure. A lower RPO indicates a more reliable system.</li>
+</ul>
+<h2><span class="terminal-prompt">$</span> Scalability</h2>
+<p>Scalability refers to the ability of a software system to handle increasing workloads or demand without experiencing a significant decrease in performance or service quality. In other words, a scalable system is one that can grow and adapt to changing needs and requirements, without sacrificing performance or reliability.</p>
+<p>To understand scalability its important to understand Workload and performance, Workload and performance are related concepts, but they are not the same thing.</p>
+<strong>Workload</strong> refers to the amount of work that a system or application is expected to handle. Workload can be measured in various ways, such as the <strong>number of transactions per second, the number of concurrent users, or the size of the data set being processed</strong>. Workload is typically a measure of the demand placed on the system, and is usually expressed as a quantity over a period of time.
+<strong>Performance</strong>, on the other hand, refers to how well a system or application is meeting its expected goals and requirements. Performance can be measured in various ways, such as <strong>response time, throughput, or error rate</strong>. Most recommended practice to measure performance in terms on median not mean. The mean does not tell you how many users actually experienced that delay. Percentiles <em>95th</em>, <em>99th</em> and <em>99.9th</em> (<em>p95</em>, <em>p99</em> and <em>p999</em>) are good to figure out how bad your outliners are.
+<p>Here are some techniques that can be used to design a scalable system:</p>
+<ul>
+<li><strong>Horizontal scaling (scaling out):</strong> One common technique for scaling a system is horizontal scaling, which involves adding more instances of the system in a distributed environment. This can be achieved by replicating the system across multiple servers, each handling a portion of the workload, and using load balancing techniques to distribute requests evenly across them.</li>
+<li><strong>Vertical scaling (scaling up):</strong> Another technique for scaling a system is vertical scaling, which involves adding more resources to a single instance of the system. This can be achieved by increasing the amount of memory, processing power, or storage capacity available to the system, either by upgrading the hardware or by using virtualisation technologies.</li>
+<li><strong>Caching:</strong> Caching is another technique that can be used to improve the scalability of a system. By storing frequently accessed data in memory or on disk, the system can reduce the number of requests that need to be processed, improving performance and reducing the load on the system.</li>
+<li><strong>Database sharding:</strong> Database sharding is a technique for scaling the database layer of a system. This involves partitioning the data across multiple database instances, each handling a portion of the data, and using a shard key to route requests to the correct instance.</li>
+<li><strong>Asynchronous processing:</strong> Asynchronous processing is a technique that can be used to improve the scalability of a system by reducing the amount of time spent waiting for I/O operations to complete. By using non-blocking I/O and event-driven architectures, the system can handle more requests in parallel, improving throughput and reducing response times.</li>
+</ul>
+<p>These are just a few examples of techniques that can be used to design a scalable system. The specific techniques used will depend on the requirements, constraints, and priorities of the system and its stakeholders.</p>
+<p>KPIs to measure and track reliability of a system:</p>
+<ul>
+<li><strong>Response Time:</strong> This metric measures the time it takes for the system to respond to a user request or transaction. A lower response time indicates a more scalable system.</li>
+<li><strong>Throughput:</strong> This metric measures the number of transactions or requests that the system can handle in a given period of time. A higher throughput indicates a more scalable system.</li>
+<li><strong>Resource Utilisation:</strong> This metric measures the amount of resources, such as CPU, memory, and disk, that the system is using. A lower resource utilisation indicates a more scalable system.</li>
+<li><strong>Concurrency:</strong> This metric measures the number of users or transactions that the system can handle simultaneously. A higher concurrency indicates a more scalable system.</li>
+<li><strong>Elasticity:</strong> This metric measures the system’s ability to automatically scale up or down in response to changes in demand or workload. A higher level of elasticity indicates a more scalable system.</li>
+<li><strong>Latency:</strong> This metric measures the delay or lag time between a user request and the system’s response. A lower latency indicates a more scalable system.</li>
+</ul>
+<h2><span class="terminal-prompt">$</span> Maintainability</h2>
+<p>Maintainability refers to the ease with which a software system can be modified, updated, repaired, or enhanced over time without introducing new errors or bugs, or breaking existing functionality. It is an important aspect of software design and development, as software systems are constantly evolving and changing to meet the changing needs of users and stakeholders.</p>
+<p>There are several techniques to design a highly maintainable system. Some of these techniques are:</p>
+<ul>
+<li><strong>Modularity</strong>: Modular design is a technique of breaking down a complex system into smaller, more manageable parts, or modules. This allows developers to work on different parts of the system independently, without affecting the rest of the system. Modular design makes it easier to locate and fix bugs or make changes to specific parts of the system without impacting the whole system.</li>
+<li><strong>Abstraction</strong>: Abstraction is a technique of hiding implementation details and exposing only the essential features of a system or module. This technique helps to reduce the complexity of a system, making it easier to maintain and understand.</li>
+<li><strong>Encapsulation</strong>: Encapsulation is a technique of grouping data and methods that operate on that data into a single unit, or class. This technique helps to keep the internal details of a module or component hidden from other parts of the system, reducing the risk of unintended changes and making it easier to maintain.</li>
+<li><strong>Standardisation</strong>: Standardisation involves defining and following a set of coding standards, best practices, and conventions for software development. This helps to ensure that the system is consistent and predictable, making it easier to maintain over time.</li>
+<li><strong>Documentation</strong>: Documentation is a critical aspect of maintaining a software system. It involves creating and maintaining clear, concise, and up-to-date documentation of the system’s design, architecture, code, and processes. Good documentation makes it easier for developers to understand and maintain the system over time.</li>
+</ul>
+<p>By applying these techniques and others, developers can design highly maintainable systems that are easier to modify, update, and repair over time.</p>
+<p>KPIs to measure and track maintainability of a system:</p>
+<ul>
+<li><strong>Mean Time to Repair (MTTR)</strong>: This KPI measures the average time it takes to fix a system after a failure occurs. A low MTTR indicates that the system is easy to diagnose and repair, which is a sign of good maintainability.</li>
+<li><strong>Mean Time Between Failures (MTBF)</strong>: This KPI measures the average time between system failures. A high MTBF indicates that the system is reliable and well-maintained.</li>
+<li><strong>Code Complexity</strong>: Code complexity measures the degree of difficulty in understanding and maintaining the code of a system. High code complexity can indicate that the system is difficult to maintain.</li>
+<li><strong>Code Duplication</strong>: Code duplication measures the amount of duplicated code in a system. High levels of code duplication can indicate poor design and maintainability.</li>
+<li><strong>Test Coverage</strong>: Test coverage measures the percentage of the system that is covered by automated tests. High test coverage can indicate that the system is well-tested and easier to maintain.</li>
+<li><strong>Technical Debt</strong>: Technical debt measures the cost of maintaining the system over time. High levels of technical debt can indicate poor design and maintainability.</li>
+</ul>
+<p>Are you ready to take your skills to the next level? In the upcoming blog posts, we’ll be diving deeper into the techniques and KPIs we’ve discussed so far. We’ll even try our hand at designing some systems! So grab your favorite drink and get ready to join us for an exciting journey. We can’t wait to see you in the next one</p>
+<!-- END YOUR CONTENT HERE -->
+
+                <footer class="post-footer-nav">
+                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+    <!-- Prism.js Core -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+            integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+            crossorigin="anonymous"></script>
+    <!-- Prism.js Language Support -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"
+            integrity="sha384-JyDgFjMbyrE/TGiEUSXW3CLjQOySrsoiUNAlXTFdIsr/XUfaB7E+eYlR+tGQ9bCO"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"
+            integrity="sha384-9WmlN8ABpoFSSHvBGGjhvB3E/D8UkNB9HpLJjBQFC2VSQsM1odiQDv4NbEo+7l15"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"
+            integrity="sha384-Uh6n44GRSQeQSMIIfAjlbqojWR7F5KALTHNsspuLDrNCsXpDPRdZbJ5A42AP/cA4"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"
+            integrity="sha384-D44bgYYKvaiDh4cOGlj1dbSDpSctn2FSUj118HZGmZEShZcO2v//Q5vvhNy206pp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"
+            integrity="sha384-PeOqKNW/piETaCg8rqKFy+Pm6KEk7e36/5YZE5XO/OaFdO+/Aw3O8qZ9qDPKVUgx"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"
+            integrity="sha384-WJdEkJKrbsqw0evQ4GB6mlsKe5cGTxBOw4KAEIa52ZLB7DDpliGkwdme/HMa5n1m"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"
+            integrity="sha384-YxCco6ByOY5rJ3jD18514fa8w5so07zigIyV6tZa3CWSE5vYrbDSuFkZ5zOknnZ6"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"
+            integrity="sha384-DioAMZB4yk91W6LuFit5wJDh8c5Ov09f/MBvja94y0PodMqTpTZeBeejqpRUru7D"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"
+            integrity="sha384-gaD4ncierlmWk42Z3BmTp37/z+Dqt8V4Wf74UjTvFeo+M+SgnEI6Ysd98pWhksQv"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"
+            integrity="sha384-NiOrAquf32LSG3Vuig99LKS03EZPUuM8a51NOp+XXsqx08hUVo3wbNWALY7K/2J8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"
+            integrity="sha384-RhrmFFMb0ZCHImjFMpR/UE3VEtIVTCtNrtKQqXCzqXZNJala02N3UbVhi+qzw3CY"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"
+            integrity="sha384-AKAiycghK0jDCjD+aavMHzDkLzRR7Yzcwh3+xL/295cvyVMe+cxQfyQC8xxGGcI8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"
+            integrity="sha384-/MKWdycCDliku23mP5sYXbZNuXrzgmQO/jsVxwPFn99dVOaXRyKsqDjarqpueGAp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"
+            integrity="sha384-44ggPevoK6FC5kDMdbbWoMCAFkSCwaRoXXtKMkslR2lf8Ra3OSzCRrFIyeK+TQBi"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"
+            integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
+            crossorigin="anonymous"></script>
+
+    <script src="../../script.js?v=20260525"></script>
+</body>
+</html>

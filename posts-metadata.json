@@ -27,7 +27,7 @@
   },
   {
     "slug": "inside-modern-machine-learning-platforms",
-    "title": "\"Inside Modern Machine Learning Platforms: A Survey Across the Industry\"",
+    "title": "Inside Modern Machine Learning Platforms: A Survey Across the Industry",
     "date": "2025-04-13",
     "tags": [
       "distributed-systems",
@@ -35,6 +35,107 @@
       "machine-learning"
     ],
     "readingTime": "7 min read"
+  },
+  {
+    "slug": "5-goal-setting-frameworks-for-engineering-managers",
+    "title": "5 Goal Setting Frameworks for Engineering Managers",
+    "date": "2023-05-27",
+    "tags": [
+      "engineering-management",
+      "leadership",
+      "goal-setting"
+    ],
+    "readingTime": "4 min read"
+  },
+  {
+    "slug": "system-design-4-mysql-vs-postgresql",
+    "title": "System Design #4: MySQL vs PostgresSQL — Exploring Design Differences",
+    "date": "2023-05-26",
+    "tags": [
+      "system-design",
+      "database",
+      "mysql",
+      "postgresql"
+    ],
+    "readingTime": "9 min read"
+  },
+  {
+    "slug": "system-design-3-google-file-system",
+    "title": "System Design #3: Google File System - Architecture, Design Decisions and Tradeoffs",
+    "date": "2023-05-21",
+    "tags": [
+      "system-design",
+      "distributed-systems",
+      "hadoop",
+      "storage"
+    ],
+    "readingTime": "9 min read"
+  },
+  {
+    "slug": "delivering-effective-feedback",
+    "title": "Delivering Effective Feedback",
+    "date": "2023-05-18",
+    "tags": [
+      "leadership",
+      "management",
+      "feedback"
+    ],
+    "readingTime": "5 min read"
+  },
+  {
+    "slug": "7-must-read-books-for-data-engineers",
+    "title": "7 Must-Read Books for Data Engineers",
+    "date": "2023-05-17",
+    "tags": [
+      "data-engineering",
+      "books",
+      "career"
+    ],
+    "readingTime": "4 min read"
+  },
+  {
+    "slug": "system-design-2-the-problem",
+    "title": "System Design #2: The Problem",
+    "date": "2023-05-08",
+    "tags": [
+      "system-design",
+      "architecture",
+      "requirements"
+    ],
+    "readingTime": "5 min read"
+  },
+  {
+    "slug": "system-design-1-introduction",
+    "title": "System Design #1: Introduction",
+    "date": "2023-04-29",
+    "tags": [
+      "system-design",
+      "architecture",
+      "scalability"
+    ],
+    "readingTime": "12 min read"
+  },
+  {
+    "slug": "improving-the-code-review-process",
+    "title": "Improving the Code Review Process — Best Practices and Metrics for Success",
+    "date": "2023-04-21",
+    "tags": [
+      "software-engineering",
+      "code-review",
+      "best-practices"
+    ],
+    "readingTime": "3 min read"
+  },
+  {
+    "slug": "the-bell-curve-dilemma-of-a-manager",
+    "title": "The Bell Curve Dilemma of a Manager",
+    "date": "2023-04-19",
+    "tags": [
+      "leadership",
+      "management",
+      "performance-management"
+    ],
+    "readingTime": "5 min read"
   },
   {
     "slug": "zookeeper-sessions-and-life-cycle",
@@ -70,81 +171,10 @@
     "readingTime": "2 min read"
   },
   {
-    "slug": "message-queue",
-    "title": "Message Queue",
-    "date": "2016-09-20",
-    "tags": [
-      "distributed-systems",
-      "architecture",
-      "database"
-    ],
-    "readingTime": "2 min read"
-  },
-  {
-    "slug": "normalisation",
-    "title": "Normalisation",
-    "date": "2015-09-14",
-    "tags": [
-      "system-design",
-      "database"
-    ],
-    "readingTime": "5 min read"
-  },
-  {
-    "slug": "how-to-sort-a-hashmap-on-values",
-    "title": "How to sort a HashMap on Values",
-    "date": "2015-05-25",
-    "tags": [
-      "algorithms"
-    ],
-    "readingTime": "1 min read"
-  },
-  {
-    "slug": "how-to-implement-singly-linked-list-in-java",
-    "title": "How to Implement Singly Linked List in Java",
-    "date": "2015-05-15",
-    "tags": [
-      "algorithms"
-    ],
-    "readingTime": "3 min read"
-  },
-  {
-    "slug": "introduction-to-mapreduce",
-    "title": "Introduction To MapReduce",
-    "date": "2015-05-14",
-    "tags": [
-      "distributed-systems",
-      "architecture"
-    ],
-    "readingTime": "2 min read"
-  },
-  {
-    "slug": "hdfs-architecture",
-    "title": "HDFS Architecture",
-    "date": "2015-05-03",
-    "tags": [
-      "distributed-systems",
-      "architecture"
-    ],
-    "readingTime": "2 min read"
-  },
-  {
     "slug": "mapreduce-execution-in-hadoop",
     "title": "MapReduce Execution in Hadoop",
     "date": "2015-03-10",
     "tags": [],
-    "readingTime": "1 min read"
-  },
-  {
-    "slug": "how-to-find-out-next-and-previous-day-of-week-in-oracle",
-    "title": "How to Find out Next and Previous Day of Week in Oracle",
-    "date": "2015-02-03",
-    "tags": [
-      "oracle",
-      "sql",
-      "database",
-      "hadoop"
-    ],
     "readingTime": "1 min read"
   }
 ]

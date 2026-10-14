@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design #3: Google File System - Architecture, Design Decisions and Tradeoffs - DevelByte Blog</title>
+    <meta name="description" content="System Design 3: Google File System  Architecture, Design Decisions and Tradeoffs ![Photo by [Pawel Czerwinski](https://unsplash.com/ja/@pawel_czerwin...">
+    <meta name="author" content="Narendra Kumar">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' https://cdnjs.cloudflare.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   img-src 'self' https://github.com data:;">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://develbyte.in/system-design-3-google-file-system/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="System Design #3: Google File System - Architecture, Design Decisions and Tradeoffs">
+    <meta property="og:description" content="System Design 3: Google File System  Architecture, Design Decisions and Tradeoffs ![Photo by [Pawel Czerwinski](https://unsplash.com/ja/@pawel_czerwin...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://develbyte.in/system-design-3-google-file-system/">
+    <meta property="og:image" content="https://develbyte.in/og-image.png">
+    <meta property="og:site_name" content="DevelByte">
+    <meta property="article:published_time" content="2023-05-21">
+    <meta property="article:author" content="Narendra Kumar">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@im-naren">
+    <meta name="twitter:title" content="System Design #3: Google File System - Architecture, Design Decisions and Tradeoffs">
+    <meta name="twitter:description" content="System Design 3: Google File System  Architecture, Design Decisions and Tradeoffs ![Photo by [Pawel Czerwinski](https://unsplash.com/ja/@pawel_czerwin...">
+    <meta name="twitter:image" content="https://develbyte.in/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="alternate icon" href="../../favicon.ico">
+
+    <!-- Resource Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
+
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet"
+          integrity="sha384-wFjoQjtV1y5jVHbt0p35Ui8aV8GVpEZkyF99OXWqP/eNJDU93D3Ugxkoyh6Y2I4A"
+          crossorigin="anonymous" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "System Design #3: Google File System - Architecture, Design Decisions and Tradeoffs",
+      "description": "System Design 3: Google File System  Architecture, Design Decisions and Tradeoffs ![Photo by [Pawel Czerwinski](https://unsplash.com/ja/@pawel_czerwin...",
+      "image": "https://develbyte.in/og-image.png",
+      "datePublished": "2023-05-21",
+      "dateModified": "2023-05-21",
+      "author": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in/about.html"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://develbyte.in/system-design-3-google-file-system/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="prompt-line prompt-line-compact">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/system-design-3-google-file-system/</span>
+            </div>
+
+            <article class="content-area fade-in post-content" id="main-content">
+                <header class="post-header">
+                    <h1 class="post-main-title">System Design #3: Google File System - Architecture, Design Decisions and Tradeoffs</h1>
+                    <div class="post-meta-full">
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2023-05-21</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> system-design, distributed-systems, hadoop</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 9 min read</span>
+                    </div>
+                </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
+
+                <!-- START YOUR CONTENT HERE -->
+<h1>System Design #3: Google File System - Architecture, Design Decisions and Tradeoffs</h1>
+<img src="https://unsplash.com/ja/@pawel_czerwinski?utm_source=medium&utm_medium=referral" alt="Photo by <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Pawel Czerwinski" loading="lazy"> on [Unsplash</a>](/img/system-design-3-google-file-system-01.jpg)
+<p>Hello 👋 there!</p>
+<p>This is the third blog in the system design series. In the previous blog, we discussed <a href="https://medium.com/develbyte/system-design-1-introduction-e227e1389073">the fundamental concerns of system design</a> and <a href="https://medium.com/develbyte/system-design-2-the-problem-7435bebce926">how to analyse the requirements</a></p>
+<p>If you have any feedback or would like to start a discussion, feel free to hit me up on my Twitter <a href="https://twitter.com/_imnaren">@_imnaren</a> or on <a href="https://www.linkedin.com/in/im-naren">LinkedIn</a>. I’m always down for a good chat.</p>
+<h2><span class="terminal-prompt">$</span> Introduction</h2>
+<p>Today, we’re diving deep into the fascinating world of the Google File System (GFS). Have you ever wondered how Google manages to store and process vast amounts of data? Well, my friend, the answer lies in their ingenious file system design. In this article, we’ll explore the various design decisions and tradeoffs that make the GFS a robust and efficient storage solution. So, buckle up and get ready to uncover the secrets behind Google’s data magic!</p>
+<h2><span class="terminal-prompt">$</span> System Assumptions</h2>
+<p>To understand the design and functionality of the Google File System (GFS), it’s essential to be aware of the assumptions on which it is built. These assumptions shape the system’s architecture and behaviour:</p>
+<ol>
+<li><strong>Failures are common</strong>: GFS operates in an environment where failures are considered a common occurrence. The system is designed to handle failures gracefully and ensure data availability and reliability even in the face of frequent component failures.</li>
+<li><strong>Large files</strong>: GFS is primarily optimised for handling large files rather than numerous small files. It is designed to efficiently store and process files that range from gigabytes to terabytes in size.</li>
+<li><strong>Sequential access</strong>: GFS is designed to cater to data access patterns that predominantly involve sequential access and streaming rather than random access. It prioritises optimising data retrieval for large-scale sequential processing.</li>
+<li><strong>Batch processing</strong>: GFS assumes that workloads using the system involve batch processing, where large amounts of data are processed in parallel. It caters to the requirements of applications like data analytics or distributed processing systems that operate on massive datasets in a batch-oriented manner.</li>
+</ol>
+<h2><span class="terminal-prompt">$</span> High-level Architecture</h2>
+<p>At a high level, the architecture of GFS consists of three main components: clients, the master server, and chunk servers. Let’s take a closer look at each of these components:</p>
+<ul>
+<li><strong>Clients</strong>: Clients are applications or services that interact with GFS to perform read and write operations on files. They communicate with the master server to obtain file metadata and access the desired data.</li>
+<li><strong>Master Server</strong>: The master server is the central coordinator in the GFS architecture. It manages the file system namespace, including file and chunk metadata, and handles operations such as file creation, deletion, and replication.</li>
+<li><strong>Chunk Servers</strong>: Chunk servers store the actual data chunks that make up the files in GFS. They are responsible for handling read and write requests from clients, as well as ensuring data reliability and availability by replicating chunks across multiple chunk servers.</li>
+</ul>
+<img src="/img/system-design-3-google-file-system-02.png" alt="" loading="lazy">
+<h2><span class="terminal-prompt">$</span> Key Design Decisions</h2>
+<h3>Decoupling Data and Control Flow</h3>
+<p>GFS separates the flow of data and control to achieve scalability and fault tolerance. The control flow is managed by the master server, which handles metadata operations and maintains the overall system state. On the other hand, the data flow occurs directly between the clients and the chunk servers, allowing for parallel data access and reducing the load on the master server.</p>
+<h3>Single Master</h3>
+<p>GFS adopts a single master server architecture to coordinate and manage the file system. Although having a single point of control may raise concerns about potential bottlenecks or single points of failure, GFS mitigates these risks through replication. The master’s metadata is replicated on multiple machines, ensuring fault tolerance and high availability. In case of a failure, a standby machine can quickly take over the role of the master.</p>
+<h3>Metadata</h3>
+<p>The master server in GFS is responsible for maintaining the metadata associated with files and chunks. Metadata includes information such as file organisation, access control lists, file-to-chunk mappings, and locations of replicas. By centrally managing metadata, GFS ensures consistency and coherence in accessing and manipulating file data.</p>
+<h3>Atomic Operations and Log</h3>
+<p>GFS performs atomic operations on its file system to ensure consistency and recoverability. These atomic operations treat multiple changes to the file system as a single indivisible operation, thereby maintaining integrity. Additionally, GFS maintains an operation log, which records all mutations to the file system. This log enables crash recovery and ensures consistency in the event of failures.</p>
+<h3>Chunk Leases and Chunk Replicas</h3>
+<p>GFS introduces the concept of chunk leases to enable efficient coordination between clients and chunk servers. A lease grants a client exclusive rights to perform mutation operations on a chunk for a specified period. The primary replica of a chunk is responsible for coordinating operations among replicas to maintain consistency.</p>
+<h3>Consistency Model and Guarantees by GFS</h3>
+<p>GFS follows a relaxed consistency model, prioritising high read throughput over strict consistency. While data in GFS may be slightly outdated in certain scenarios, such as after an append operation, GFS provides guarantees to ensure consistency for most practical purposes. These guarantees include maintaining atomicity within a chunk and ensuring consistency during data mutation operations.</p>
+<h3>Replica Placement</h3>
+<p>GFS strategically places chunk replicas across different racks in the distributed system. This placement policy aims to ensure data durability and availability, even in the event of rack failures. By spreading replicas across multiple failure domains, GFS reduces the risk of data loss and ensures reliable data access.</p>
+<h3>Garbage Collection</h3>
+<p>GFS incorporates garbage collection mechanisms to reclaim storage space from deleted files and chunks. The master server periodically identifies and removes unreferenced chunks, optimising storage utilisation and preventing unnecessary data retention.</p>
+<p>If you have followed the first Blog in this series we discussed <a href="https://medium.com/develbyte/system-design-1-introduction-e227e1389073">three main concerns of systems design</a> lets see how GFS fairs with that</p>
+<h2><span class="terminal-prompt">$</span> Scalability: Handling the Data Deluge</h2>
+<p>When it comes to dealing with mind-boggling amounts of data, scalability is the name of the game. Google understands this better than anyone else, and that’s why they built the GFS to handle their ever-growing storage needs. One of the key design decisions behind GFS is its ability to scale horizontally by distributing data across multiple commodity servers.</p>
+<p>By using a distributed architecture, GFS achieves high fault tolerance and improved performance. The system divides files into fixed-size chunks, which are then replicated across multiple servers. This replication ensures data durability and availability even in the face of hardware failures. Furthermore, GFS leverages data partitioning to distribute the load across servers, enabling efficient parallel processing of large datasets.</p>
+<h2><span class="terminal-prompt">$</span> Consistency vs. Performance: The Balancing Act</h2>
+<p>Maintaining consistency in a distributed file system is a complex challenge. Google had to make careful tradeoffs between consistency and performance to optimize the GFS for their specific use cases. In GFS, consistency is achieved through the concept of <em>lease</em> and <em>record append</em> operations.</p>
+<p>When a client wants to modify a file, it first acquires a lease from the master server. This lease grants the client exclusive access to the file, ensuring consistency during the modification process. However, this approach introduces some latency due to communication with the master server. To mitigate this, GFS allows clients to cache data locally, reducing the frequency of master server interactions and improving performance.</p>
+<p>Additionally, GFS supports record append operations, which are optimized for write-intensive workloads, such as logging. By allowing multiple clients to append records concurrently, GFS achieves high write throughput without sacrificing consistency.</p>
+<h2><span class="terminal-prompt">$</span> Fault Tolerance: Safeguarding Your Data</h2>
+<p>Imagine a scenario where a server storing your critical data suddenly fails. Scary, right? Well, fear not, because fault tolerance is a top priority in the design of GFS. Google recognized that hardware failures are inevitable, so they implemented mechanisms to ensure data reliability and availability.</p>
+<p>In GFS, each chunk of data is replicated across multiple servers, typically three. These replicas are stored on different machines to guard against single-point failures. If one replica becomes inaccessible, GFS seamlessly switches to using an alternative replica, preventing data loss and minimizing downtime.</p>
+<p>Furthermore, GFS employs a <em>heartbeat</em> mechanism to detect failed servers promptly. When a server fails to respond to heartbeats, it is considered offline, and the master server initiates the replication of the lost chunks to other healthy servers. This proactive approach to fault tolerance guarantees data integrity and minimizes the impact of hardware failures.</p>
+<h2><span class="terminal-prompt">$</span> Tradeoffs: Optimizing for Google’s Needs</h2>
+<p>In any large-scale system like GFS, there are bound to be tradeoffs. Google made specific design decisions to tailor GFS to their unique requirements, which may differ from those of other organizations. Let’s explore some of these tradeoffs.</p>
+<ol>
+<li><strong>Metadata Scalability vs. Consistency</strong>: GFS sacrifices strong consistency in metadata operations to achieve scalability. Metadata, such as file and chunk locations, is stored in the master server. While this enables efficient metadata updates, it introduces a single point of failure. However, Google mitigates this risk by replicating the master server and using failover mechanisms to ensure continuous operation.</li>
+</ol>
+<ol>
+<li><strong>Read Performance vs. Consistency</strong>: GFS prioritizes read performance over strong consistency. By allowing clients to read data directly from chunk replicas, GFS reduces latency and achieves high read throughput. However, this approach may result in clients reading slightly outdated data in certain situations. Google determined that the benefits of improved read performance outweighed the need for strict consistency in their use cases.</li>
+</ol>
+<ol>
+<li><strong>Cost Efficiency vs. Redundancy</strong>: GFS uses commodity hardware to keep costs low. While this approach offers excellent cost efficiency, it also means that individual server failures are more common. By relying on replication and fault tolerance mechanisms, Google ensures data durability without the need for expensive, high-end hardware.</li>
+</ol>
+<h2><span class="terminal-prompt">$</span> Conclusion</h2>
+<p>And there you have it! We’ve delved into the intricacies of the Google File System, exploring its design decisions and the tradeoffs made to create a highly scalable, fault-tolerant, and efficient storage solution. Google’s emphasis on scalability, fault tolerance, and performance has enabled them to handle immense amounts of data with ease.</p>
+<p>The Google File System continues to evolve and adapt to the ever-changing needs of Google’s data-driven ecosystem. As technology advances, we can expect further refinements and optimizations to make GFS even more robust and reliable.</p>
+<p>So, the next time you perform a Google search or stream a video on YouTube, remember the incredible infrastructure that powers these services. The Google File System is a testament to the ingenuity and expertise required to build a storage solution that can handle the demands of a digital age.</p>
+<p>Now, it’s your turn to explore and appreciate the remarkable world of GFS. Happy exploring!</p>
+<!-- END YOUR CONTENT HERE -->
+
+                <footer class="post-footer-nav">
+                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+    <!-- Prism.js Core -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+            integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+            crossorigin="anonymous"></script>
+    <!-- Prism.js Language Support -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"
+            integrity="sha384-JyDgFjMbyrE/TGiEUSXW3CLjQOySrsoiUNAlXTFdIsr/XUfaB7E+eYlR+tGQ9bCO"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"
+            integrity="sha384-9WmlN8ABpoFSSHvBGGjhvB3E/D8UkNB9HpLJjBQFC2VSQsM1odiQDv4NbEo+7l15"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"
+            integrity="sha384-Uh6n44GRSQeQSMIIfAjlbqojWR7F5KALTHNsspuLDrNCsXpDPRdZbJ5A42AP/cA4"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"
+            integrity="sha384-D44bgYYKvaiDh4cOGlj1dbSDpSctn2FSUj118HZGmZEShZcO2v//Q5vvhNy206pp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"
+            integrity="sha384-PeOqKNW/piETaCg8rqKFy+Pm6KEk7e36/5YZE5XO/OaFdO+/Aw3O8qZ9qDPKVUgx"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"
+            integrity="sha384-WJdEkJKrbsqw0evQ4GB6mlsKe5cGTxBOw4KAEIa52ZLB7DDpliGkwdme/HMa5n1m"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"
+            integrity="sha384-YxCco6ByOY5rJ3jD18514fa8w5so07zigIyV6tZa3CWSE5vYrbDSuFkZ5zOknnZ6"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"
+            integrity="sha384-DioAMZB4yk91W6LuFit5wJDh8c5Ov09f/MBvja94y0PodMqTpTZeBeejqpRUru7D"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"
+            integrity="sha384-gaD4ncierlmWk42Z3BmTp37/z+Dqt8V4Wf74UjTvFeo+M+SgnEI6Ysd98pWhksQv"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"
+            integrity="sha384-NiOrAquf32LSG3Vuig99LKS03EZPUuM8a51NOp+XXsqx08hUVo3wbNWALY7K/2J8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"
+            integrity="sha384-RhrmFFMb0ZCHImjFMpR/UE3VEtIVTCtNrtKQqXCzqXZNJala02N3UbVhi+qzw3CY"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"
+            integrity="sha384-AKAiycghK0jDCjD+aavMHzDkLzRR7Yzcwh3+xL/295cvyVMe+cxQfyQC8xxGGcI8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"
+            integrity="sha384-/MKWdycCDliku23mP5sYXbZNuXrzgmQO/jsVxwPFn99dVOaXRyKsqDjarqpueGAp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"
+            integrity="sha384-44ggPevoK6FC5kDMdbbWoMCAFkSCwaRoXXtKMkslR2lf8Ra3OSzCRrFIyeK+TQBi"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"
+            integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
+            crossorigin="anonymous"></script>
+
+    <script src="../../script.js?v=20260525"></script>
+</body>
+</html>

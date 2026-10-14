@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to sort a HashMap on Values - DevelByte Blog</title>
-    <meta name="description" content="How to sort a HashMap on Values HashMap doesn't preserve any order by default. If order is required we need to sort it explicitly according to the req...">
+    <title>7 Must-Read Books for Data Engineers - DevelByte Blog</title>
+    <meta name="description" content="7 MustRead Books for Data Engineers ![Photo by [Tom Hermans](https://unsplash.com/es/@tomhermans?utm_source=medium&utm_medium=referral) on [Unsplash](...">
     <meta name="author" content="Narendra Kumar">
 
     <!-- Content Security Policy -->
@@ -16,23 +16,23 @@
                    img-src 'self' https://github.com data:;">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://develbyte.in/how-to-sort-a-hashmap-on-values/">
+    <link rel="canonical" href="https://develbyte.in/7-must-read-books-for-data-engineers/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="How to sort a HashMap on Values">
-    <meta property="og:description" content="How to sort a HashMap on Values HashMap doesn't preserve any order by default. If order is required we need to sort it explicitly according to the req...">
+    <meta property="og:title" content="7 Must-Read Books for Data Engineers">
+    <meta property="og:description" content="7 MustRead Books for Data Engineers ![Photo by [Tom Hermans](https://unsplash.com/es/@tomhermans?utm_source=medium&utm_medium=referral) on [Unsplash](...">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://develbyte.in/how-to-sort-a-hashmap-on-values/">
+    <meta property="og:url" content="https://develbyte.in/7-must-read-books-for-data-engineers/">
     <meta property="og:image" content="https://develbyte.in/og-image.png">
     <meta property="og:site_name" content="DevelByte">
-    <meta property="article:published_time" content="2015-05-25">
+    <meta property="article:published_time" content="2023-05-17">
     <meta property="article:author" content="Narendra Kumar">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@im-naren">
-    <meta name="twitter:title" content="How to sort a HashMap on Values">
-    <meta name="twitter:description" content="How to sort a HashMap on Values HashMap doesn't preserve any order by default. If order is required we need to sort it explicitly according to the req...">
+    <meta name="twitter:title" content="7 Must-Read Books for Data Engineers">
+    <meta name="twitter:description" content="7 MustRead Books for Data Engineers ![Photo by [Tom Hermans](https://unsplash.com/es/@tomhermans?utm_source=medium&utm_medium=referral) on [Unsplash](...">
     <meta name="twitter:image" content="https://develbyte.in/og-image.png">
 
     <!-- Favicon -->
@@ -60,11 +60,11 @@
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": "How to sort a HashMap on Values",
-      "description": "How to sort a HashMap on Values HashMap doesn't preserve any order by default. If order is required we need to sort it explicitly according to the req...",
+      "headline": "7 Must-Read Books for Data Engineers",
+      "description": "7 MustRead Books for Data Engineers ![Photo by [Tom Hermans](https://unsplash.com/es/@tomhermans?utm_source=medium&utm_medium=referral) on [Unsplash](...",
       "image": "https://develbyte.in/og-image.png",
-      "datePublished": "2015-05-25",
-      "dateModified": "2015-05-25",
+      "datePublished": "2023-05-17",
+      "dateModified": "2023-05-17",
       "author": {
         "@type": "Person",
         "name": "Narendra Kumar",
@@ -77,7 +77,7 @@
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://develbyte.in/how-to-sort-a-hashmap-on-values/"
+        "@id": "https://develbyte.in/7-must-read-books-for-data-engineers/"
       }
     }
     </script>
@@ -102,16 +102,16 @@
             </div>
             <div class="prompt-line">
                 <span class="prompt">❯ guest@develbyte:$</span>
-                <span class="command typed-text">cat ./posts/how-to-sort-a-hashmap-on-values/</span>
+                <span class="command typed-text">cat ./posts/7-must-read-books-for-data-engineers/</span>
             </div>
 
             <article class="content-area fade-in post-content" id="main-content">
                 <header class="post-header">
-                    <h1 class="post-main-title">How to sort a HashMap on Values</h1>
+                    <h1 class="post-main-title">7 Must-Read Books for Data Engineers</h1>
                     <div class="post-meta-full">
-                        <span class="meta-item"><span class="meta-label">DATE:</span> 2015-05-25</span>
-                        <span class="meta-item"><span class="meta-label">TAGS:</span> algorithms</span>
-                        <span class="meta-item"><span class="meta-label">TIME:</span> 1 min read</span>
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2023-05-17</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> data-engineering, books, career</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 4 min read</span>
                     </div>
                 </header>
 
@@ -125,41 +125,73 @@
                 </div> -->
 
                 <!-- START YOUR CONTENT HERE -->
-<h1>How to sort a HashMap on Values</h1>
-<p>HashMap doesn't preserve any order by default. If order is required we need to sort it explicitly according to the requirement.</p>
-<p>In this article I have tried to explain how to sort a HasMap based on values.</p>
-<h2><span class="terminal-prompt">$</span> HasMap sorting by Value</h2>
-<p>in this example I have used TreeMap to sort the HashMap. unlike a HashMap, a TreeMap guarantees that its elements will be sorted in ascending key order.</p>
-<h3>SortHashMap.java</h3>
-<div class="code-block">
-    <div class="code-header">
-        <span class="code-lang">java</span>
-        <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
-    </div>
-    <pre><code class="language-java">import java.util.Comparator;
-<p>import java.util.HashMap; import java.util.Map; import java.util.TreeMap;</p>
-<p>public class SortHashMap {</p>
-<p>public static void main(String[] args) {</p>
-<p>HashMap&amp;lt;String,Integer&amp;gt; map = new HashMap&amp;lt;String,Integer&amp;gt;(); ValueComparator vcmp =  new ValueComparator(map); TreeMap&amp;lt;String,Integer&amp;gt; sorted_map = new TreeMap&amp;lt;String,Integer&amp;gt;(vcmp);</p>
-<p>map.put("naren",96); map.put("ram",97); map.put("manish",970); map.put("kumar",97); map.put("shruti",97); map.put("rohit",760); map.put("vatsal",444);</p>
-<p>System.out.println("unsorted map: "+map);</p>
-<p>sorted_map.putAll(map);</p>
-<p>System.out.println("results: "+sorted_map); } }</p>
-<p>class ValueComparator implements Comparator&lt;String&gt; {</p>
-<p>Map&amp;lt;String, Integer&amp;gt; base; public ValueComparator(Map&amp;lt;String, Integer&amp;gt; base) { this.base = base; }</p>
-<p>// Note: this comparator imposes orderings that are inconsistent with equals. public int compare(String a, String b) { if (base.get(a) &gt;= base.get(b)) { return -1; } else { return 1; } // returning 0 would merge keys } }</p>
-</code></pre>
-</div>
-<h3>Output</h3>
-<div class="code-block">
-    <div class="code-header">
-        <span class="code-lang">java</span>
-        <button class="code-copy" data-copy-btn aria-label="Copy code to clipboard">copy</button>
-    </div>
-    <pre><code class="language-java">unsorted map: {manish=970, kumar=97, ram=97, rohit=760, shruti=97, vatsal=444, naren=96}
-<p>results: {manish=970, rohit=760, vatsal=444, shruti=97, ram=97, kumar=97, naren=96}</p>
-</code></pre>
-</div>
+<h1>7 Must-Read Books for Data Engineers</h1>
+<img src="https://unsplash.com/es/@tomhermans?utm_source=medium&utm_medium=referral" alt="Photo by <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Tom Hermans" loading="lazy"> on [Unsplash</a>](/img/7-must-read-books-for-data-engineers-01.jpg)
+<p>As a data engineer, staying up-to-date with the latest trends, technologies, and best practices is essential for building a successful career in the field. Books can be an invaluable resource for expanding your knowledge and skills as a data engineer. In this article, we will explore seven must-read books that every data engineer should consider.</p>
+<h2><span class="terminal-prompt">$</span> 1. “Fundamentals of Data Engineering” by Evanthia Dimara and Spiros Antonatos</h2>
+<p>“Fundamentals of Data Engineering” provides a comprehensive introduction to the core concepts and techniques in data engineering. The book covers essential topics such as data modeling, ETL (Extract, Transform, Load) processes, data quality, and data integration. It offers a solid foundation for data engineers starting their journey in the field.</p>
+<p>Key Concepts:</p>
+<ul>
+<li>Data modeling techniques and best practices.</li>
+<li>Extracting, transforming, and loading data in various formats.</li>
+<li>Ensuring data quality and integrity.</li>
+<li>Integrating data from different sources and systems.</li>
+</ul>
+<h2><span class="terminal-prompt">$</span> 2. “Designing Data-Intensive Applications” by Martin Kleppmann</h2>
+<p>“Designing Data-Intensive Applications” is a renowned book that explores the principles and best practices for building robust and scalable data systems. Martin Kleppmann delves into various topics, including data storage, distributed systems, reliability, and data processing. This book is highly recommended for data engineers working on complex data projects.</p>
+<p>Key Concepts:</p>
+<ul>
+<li>Different data storage models and trade-offs.</li>
+<li>Distributed systems and their challenges.</li>
+<li>Techniques for ensuring reliability and fault tolerance.</li>
+<li>Data processing approaches and frameworks.</li>
+</ul>
+<h2><span class="terminal-prompt">$</span> 3. “Data Management at Scale” by Piethein Strengholt</h2>
+<p>“Data Management at Scale” provides practical guidance on managing large-scale data systems effectively. Piethein Strengholt covers topics such as data modeling, storage, processing, and analysis. The book explores technologies like Hadoop, distributed databases, and cloud-based data platforms. It offers valuable insights into handling data at scale, including data governance, data lineage, and data security.</p>
+<p>Key Concepts:</p>
+<ul>
+<li>Data modeling for scalability and performance.</li>
+<li>Storage technologies for handling large datasets.</li>
+<li>Processing frameworks and techniques for big data.</li>
+<li>Data governance, lineage, and security in large-scale systems.</li>
+</ul>
+<h2><span class="terminal-prompt">$</span> 4. “Spark: The Definitive Guide” by Bill Chambers and Matei Zaharia</h2>
+<p>“Spark: The Definitive Guide” is a comprehensive resource for data engineers working with Apache Spark. The book covers various aspects of Spark, including data ingestion, data transformation, data processing, and machine learning. It provides detailed examples and best practices for leveraging Spark’s capabilities to build scalable and efficient data pipelines.</p>
+<p>Key Concepts:</p>
+<ul>
+<li>Data ingestion techniques and data formats.</li>
+<li>Transforming and processing data using Spark.</li>
+<li>Machine learning with Spark.</li>
+<li>Optimising Spark performance and scalability.</li>
+</ul>
+<h2><span class="terminal-prompt">$</span> 5. “Data Mesh: Creating a Data-Driven Organisation” by Zhamak Dehghani</h2>
+<p>“Data Mesh: Creating a Data-Driven Organisation” introduces the concept of data mesh, which is a new approach to designing and operating data platforms. Zhamak Dehghani explores the idea of decentralising data ownership and treating data as a product. The book provides insights into organising data teams, establishing domain-oriented decentralised architectures, and promoting self-serve data infrastructure.</p>
+<p>Key Concepts:</p>
+<ul>
+<li>Decentralised data ownership and domain-oriented data teams.</li>
+<li>Treating data as a product and enabling self-serve data infrastructure.</li>
+<li>Domain-driven decentralised architectures.</li>
+<li>Data team collaboration and autonomy.</li>
+</ul>
+<h2><span class="terminal-prompt">$</span> 6. “The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling” by Ralph Kimball and Margy Ross</h2>
+<p>“The Data Warehouse Toolkit” is a classic reference for designing and building data warehouses. Ralph Kimball and Margy Ross cover dimensional modeling, ETL processes, and data warehouse architecture. The book provides practical techniques for building effective data warehouses and dimensional data models. It is a must-read for data engineers involved in data warehousing projects.</p>
+<p>Key Concepts:</p>
+<ul>
+<li>Dimensional modeling techniques and best practices.</li>
+<li>Extracting, transforming, and loading data into a data warehouse.</li>
+<li>Data warehouse architecture and design principles.</li>
+<li>Optimising data retrieval and analysis using dimensional models.</li>
+</ul>
+<h2><span class="terminal-prompt">$</span> 7. “Streaming Systems: The What, Where, When, and How of Large-Scale Data Processing” by Tyler Akidau, Slava Chernyak, and Reuven Lax</h2>
+<p>“Streaming Systems” focuses on the principles and practices of building scalable and reliable streaming data systems. The authors explore concepts such as event time, windowing, fault tolerance, and processing guarantees. The book provides insights into popular stream processing frameworks like Apache Kafka and Apache Beam. It is an essential resource for data engineers working with real-time data processing and stream analytics.</p>
+<p>Key Concepts:</p>
+<ul>
+<li>Event time processing and handling out-of-order data.</li>
+<li>Windowing operations for segmenting and processing streaming data.</li>
+<li>Fault tolerance mechanisms for reliable stream processing.</li>
+<li>Stream processing frameworks and their use cases.</li>
+</ul>
+<p>These seven books cover a wide range of topics and provide valuable insights and practical knowledge for data engineers. Whether you are a beginner or an experienced professional, these books will help you enhance your skills, understand industry best practices, and stay ahead in the rapidly evolving field of data engineering.</p>
 <!-- END YOUR CONTENT HERE -->
 
                 <footer class="post-footer-nav">

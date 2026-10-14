@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design #4: MySQL vs PostgresSQL — Exploring Design Differences - DevelByte Blog</title>
+    <meta name="description" content="System Design 4: MySQL vs PostgresSQL — Exploring Design Differences ![](/img/systemdesign4mysqlvspostgresql01.png) Hello 👋 there! This another blog...">
+    <meta name="author" content="Narendra Kumar">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' https://cdnjs.cloudflare.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   img-src 'self' https://github.com data:;">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://develbyte.in/system-design-4-mysql-vs-postgresql/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="System Design #4: MySQL vs PostgresSQL — Exploring Design Differences">
+    <meta property="og:description" content="System Design 4: MySQL vs PostgresSQL — Exploring Design Differences ![](/img/systemdesign4mysqlvspostgresql01.png) Hello 👋 there! This another blog...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://develbyte.in/system-design-4-mysql-vs-postgresql/">
+    <meta property="og:image" content="https://develbyte.in/og-image.png">
+    <meta property="og:site_name" content="DevelByte">
+    <meta property="article:published_time" content="2023-05-26">
+    <meta property="article:author" content="Narendra Kumar">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@im-naren">
+    <meta name="twitter:title" content="System Design #4: MySQL vs PostgresSQL — Exploring Design Differences">
+    <meta name="twitter:description" content="System Design 4: MySQL vs PostgresSQL — Exploring Design Differences ![](/img/systemdesign4mysqlvspostgresql01.png) Hello 👋 there! This another blog...">
+    <meta name="twitter:image" content="https://develbyte.in/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="alternate icon" href="../../favicon.ico">
+
+    <!-- Resource Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
+
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet"
+          integrity="sha384-wFjoQjtV1y5jVHbt0p35Ui8aV8GVpEZkyF99OXWqP/eNJDU93D3Ugxkoyh6Y2I4A"
+          crossorigin="anonymous" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "System Design #4: MySQL vs PostgresSQL — Exploring Design Differences",
+      "description": "System Design 4: MySQL vs PostgresSQL — Exploring Design Differences ![](/img/systemdesign4mysqlvspostgresql01.png) Hello 👋 there! This another blog...",
+      "image": "https://develbyte.in/og-image.png",
+      "datePublished": "2023-05-26",
+      "dateModified": "2023-05-26",
+      "author": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in/about.html"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://develbyte.in/system-design-4-mysql-vs-postgresql/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="prompt-line prompt-line-compact">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/system-design-4-mysql-vs-postgresql/</span>
+            </div>
+
+            <article class="content-area fade-in post-content" id="main-content">
+                <header class="post-header">
+                    <h1 class="post-main-title">System Design #4: MySQL vs PostgresSQL — Exploring Design Differences</h1>
+                    <div class="post-meta-full">
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2023-05-26</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> system-design, database, mysql</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 9 min read</span>
+                    </div>
+                </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
+
+                <!-- START YOUR CONTENT HERE -->
+<h1>System Design #4: MySQL vs PostgresSQL — Exploring Design Differences</h1>
+<img src="/img/system-design-4-mysql-vs-postgresql-01.png" alt="" loading="lazy">
+<p>Hello 👋 there!</p>
+<p>This another blog in the system design series. In the previous blog, we discussed</p>
+<ul>
+<li><a href="https://medium.com/develbyte/system-design-1-introduction-e227e1389073">The fundamentals</a></li>
+<li><a href="https://medium.com/develbyte/system-design-2-the-problem-7435bebce926">Analysing the Problem</a></li>
+<li><a href="https://medium.com/develbyte/system-design-3-google-file-system-design-decisions-and-tradeoffs-93c422d19d1d">Google File System</a></li>
+</ul>
+<p>If you have any feedback or would like to start a discussion, feel free to hit me up on my Twitter <a href="https://twitter.com/_imnaren">@_imnaren</a> or on <a href="https://www.linkedin.com/in/im-naren">LinkedIn</a>. I’m always down for a good chat.</p>
+<p>Designing a solution often involves analyzing the differences between NoSQL and RDBMS databases. However, we often overlook the distinctions between two RDBMS systems that may seem similar at first glance but are actually developed with different design choices in mind. In this blog, we will dive into the differences between two of the most popular RDBMS systems — MySQL and PostgreSQL (PostgresSQL).</p>
+<p>When comparing MySQL and Postgres, it becomes evident that they have distinct design philosophies and architectural approaches. Let’s delve into the various aspects where these systems differ, how they handle tradeoffs, and provide examples of how MySQL emphasises simplicity while Postgres offers advanced features.</p>
+<h2><span class="terminal-prompt">$</span> Design Philosophy</h2>
+<p>MySQL, developed by Oracle Corporation, <strong>emphasises simplicity and ease of use</strong>. Its design philosophy revolves around providing a straightforward and user-friendly experience. This approach makes MySQL an excellent choice for beginners and developers who prefer a simple and intuitive database solution.</p>
+<p>MySQL’s design philosophy also <strong>prioritises performance and speed</strong>. It aims to deliver efficient and fast data retrieval and manipulation, which makes it particularly suitable for applications with a heavy emphasis on read operations. The focus on performance and efficiency has made MySQL a popular option for web applications and content management systems.</p>
+<p>On the other hand, Postgres (short for PostgreSQL) has a design philosophy that<strong> emphasises standards compliance and robustness</strong>. Developed by the Postgres Global Development Group, Postgres is known for its adherence to SQL standards and its focus on providing a wide range of advanced features.</p>
+<p>Postgres <strong>aims to be a comprehensive and feature-rich database management system</strong>. It offers support for various data types, including structured, semi-structured, and unstructured data, making it versatile for handling complex data models. Additionally, Postgres provides advanced indexing options and built-in support for data integrity constraints, making it well-suited for applications that require strict validation and consistency.</p>
+<p>The design philosophy of Postgres <strong>also emphasises extensibility</strong>. It allows users to define custom data types, functions, and procedural languages, enabling them to tailor the database to their specific needs. This extensibility makes Postgres a powerful choice for applications that require complex data processing and specialised functionalities.</p>
+<p>In summary, MySQL’s design philosophy centers around simplicity, ease of use, and performance, making it suitable for applications that prioritise quick data retrieval and manipulation. Postgres, on the other hand, focuses on standards compliance, robustness, and extensibility, making it an ideal choice for applications with complex data requirements and advanced features.</p>
+<h2><span class="terminal-prompt">$</span> Architecture</h2>
+<h3>Data Storage Handling</h3>
+<p>MySQL and Postgres have different approaches to storage handling.</p>
+<p>MySQL follows a table-based storage architecture, where data is stored in individual tables comprising rows and columns.It uses a pluggable storage engine system, which allows users to choose the most appropriate storage engine for their specific needs.</p>
+<p>For example, MySQL offers InnoDB as the default storage engine, which provides support for transactions, concurrency control, and crash recovery. In contrast, MyISAM, another storage engine for MySQL, focuses more on read performance but does not support transactions.</p>
+<p>In contrast, Postgres adopts a heap-based storage model, where data is stored in pages within disk blocks. It combines tables, indexes, and a transaction log to manage data storage and retrieval. Postgres employs a Write-Ahead Logging (WAL) mechanism, which ensures data durability and recovery in the event of a system crash. Additionally, Postgres supports advanced data types and provides extensibility options, allowing users to define custom data types and operators.</p>
+<p>On the other hand, Postgres utilizes a single storage engine that handles all data storage operations. It implements a transactional storage engine that ensures ACID (Atomicity, Consistency, Isolation, Durability) properties for data manipulation operations.</p>
+<h3>SQL Standards: Query Language</h3>
+<p>MySQL introduces some proprietary features and extensions while maintaining a significant level of SQL standards compliance. It provides a user-friendly and intuitive query language, making it easy for developers to write SQL statements. MySQL supports various SQL functionalities and offers extensions like stored procedures and user-defined functions (UDFs) to enhance its capabilities.</p>
+<p>Postgres, on the other hand, strives for strict adherence to SQL standards. It provides robust SQL support and is highly compliant with standards. Postgres offers advanced SQL features, including complex joins, subqueries, window functions, and recursive queries. Its adherence to SQL standards ensures portability and compatibility across different database systems.</p>
+<h3>Query Processing</h3>
+<p>Both MySQL and Postgres employ a cost-based query optimiser to generate efficient execution plans for queries. However, their approaches and optimisation techniques differ.</p>
+<p>MySQL’s query optimiser considers factors such as available indexes, table size, and selectivity to generate the best execution plan. It focuses on minimizing disk I/O and CPU usage to improve query performance. MySQL also supports query caching, which can significantly speed up repetitive queries.</p>
+<p>Postgres takes a more comprehensive approach to query processing. It employs advanced optimisation techniques like query rewriting, join reordering, and subquery flattening. Postgres utilizes statistical information about tables and indexes to estimate the cost of query plans accurately. Additionally, Postgres allows users to influence the query optimiser’s decisions using configuration parameters and query hints.</p>
+<h3>Transaction Management</h3>
+<p>MySQL and Postgres handle transactions differently, each with its own trade-offs.</p>
+<p>MySQL’s transaction management relies on the concept of storage engines. Different storage engines have varying levels of transactional support. For example, InnoDB provides full ACID properties, while MyISAM does not support transactions. This allows users to choose the appropriate storage engine based on their specific transactional requirements.</p>
+<p>Postgres, at its core, provides transaction support with multi-version concurrency control (MVCC). It allows multiple transactions to operate concurrently without blocking each other. Postgres ensures data consistency by providing isolation levels, such as Read Committed and Serialisable, to maintain data integrity and prevent conflicts.</p>
+<h3>Metadata Management</h3>
+<p>MySQL and Postgres have very similar approaches to metadata management.</p>
+<p>MySQL stores metadata information, such as schema and table definitions, in system tables within the database. It provides SQL statements and utilities to query and modify metadata, making it accessible and straightforward to manage.</p>
+<p>Postgres stores metadata in a system catalog known as the “system catalog tables.” These catalog tables contain information about schemas, tables, indexes, constraints, and other database objects. Postgres provides a rich set of system catalog views and functions to query and manipulate metadata. This enables users to have fine-grained control over database objects and their properties.</p>
+<h3>Concurrency Control</h3>
+<p>MySQL primarily utilizes locking mechanisms to control concurrent access to data. It employs table-level locks, row-level locks, and other locking strategies to handle concurrency. While effective, this approach can lead to contention and potential performance bottlenecks in highly concurrent environments.</p>
+<p>Postgres, with its MVCC model, uses a combination of read and write locks to manage concurrency. It allows concurrent reads and provides snapshot isolation, ensuring that transactions only see a consistent view of the data. This enables a higher level of concurrency and minimizes contention among transactions.</p>
+<h3>Indexing and Query Optimisation</h3>
+<p>MySQL and Postgres employ different indexing strategies and query optimisation techniques.</p>
+<p>MySQL supports various indexing techniques, including B-tree, hash, and full-text indexes. It allows users to choose the appropriate index type based on their specific requirements. For instance, B-tree indexes are suitable for range queries, while hash indexes provide fast lookups for equality-based queries. MySQL’s query optimiser utilizes available indexes to generate efficient query plans.</p>
+<p>Postgres also supports B-tree and hash indexes but goes beyond that with additional indexing options. It provides advanced indexing techniques like Generalised Inverted Index (GIN), which is suitable for handling complex data types and full-text search. Postgres also supports Generalised Search Tree (GiST) indexes, allowing users to define custom indexing methods for specialised data types and structures. Postgres’s query optimiser leverages these indexes along with other optimisation techniques to generate efficient query plans.</p>
+<h3>Extensibility and Customisability</h3>
+<p>Postgres excels in terms of extensibility and customisability. It offers a rich ecosystem of extensions, allowing users to enhance the database’s functionality with additional features. Postgres also supports the creation of user-defined data types, operators, and functions, enabling users to define custom behavior and tailor the database to their specific needs.</p>
+<p>MySQL also provides some extensibility options, such as user-defined functions (UDFs) and stored procedures. However, its extensibility capabilities are not as extensive as those offered by Postgres.</p>
+<h3>Modularity</h3>
+<p>Postgres is renowned for its modular architecture, allowing users to add or remove components based on their requirements. Users can enable or disable specific features and functionalities, tailoring the database system to their needs. This modularity ensures a lean and efficient database system that meets specific use cases.</p>
+<p>MySQL, while moderately modular, does not offer the same level of granularity when enabling or disabling specific components. However, the pluggable storage engine system in MySQL provides flexibility in choosing the storage engine that best suits the workload.</p>
+<h3>Ease of Use</h3>
+<p>MySQL emphasises simplicity and ease of use. It provides a user-friendly interface, straightforward installation process, and intuitive administration tools. MySQL’s design choices focus on delivering a user-friendly experience, making it accessible for developers and administrators.</p>
+<p>Postgres, while feature-rich, has a steeper learning curve compared to MySQL. It offers a comprehensive set of functionalities and advanced features, which can be advantageous for experienced users and complex use cases. However, it may require more effort to set up and configure initially.</p>
+<h3>Performance Tuning</h3>
+<p>Both MySQL and Postgres offer options for performance tuning and optimisation.</p>
+<p>MySQL provides a variety of tuning options and configuration parameters to optimise performance. It offers tools and utilities for monitoring and diagnosing performance issues. MySQL’s design choices focus on delivering high-speed data access and efficient resource utilisation.</p>
+<p>Postgres also provides performance tuning options and configuration parameters to optimise its performance. It offers various statistics views, monitoring tools, and query analysis capabilities to identify and resolve performance bottlenecks.</p>
+<h3>High Availability</h3>
+<p>Both MySQL and Postgres offer high availability solutions to ensure system uptime and data redundancy.</p>
+<p>MySQL provides options like replication, which allows data to be replicated across multiple servers, providing fault tolerance and scalability. It also offers tools like MySQL Cluster and Group Replication for automatic failover and high availability setups.</p>
+<p>Postgres offers various mechanisms for achieving high availability, including streaming replication, logical replication, and synchronous replication. It also provides tools like PostgreSQL Automatic Failover (PAF) and third-party solutions like Patroni for automatic failover and high availability setups.</p>
+<h2><span class="terminal-prompt">$</span> Summary</h2>
+<!-- END YOUR CONTENT HERE -->
+
+                <footer class="post-footer-nav">
+                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+    <!-- Prism.js Core -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+            integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+            crossorigin="anonymous"></script>
+    <!-- Prism.js Language Support -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"
+            integrity="sha384-JyDgFjMbyrE/TGiEUSXW3CLjQOySrsoiUNAlXTFdIsr/XUfaB7E+eYlR+tGQ9bCO"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"
+            integrity="sha384-9WmlN8ABpoFSSHvBGGjhvB3E/D8UkNB9HpLJjBQFC2VSQsM1odiQDv4NbEo+7l15"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"
+            integrity="sha384-Uh6n44GRSQeQSMIIfAjlbqojWR7F5KALTHNsspuLDrNCsXpDPRdZbJ5A42AP/cA4"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"
+            integrity="sha384-D44bgYYKvaiDh4cOGlj1dbSDpSctn2FSUj118HZGmZEShZcO2v//Q5vvhNy206pp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"
+            integrity="sha384-PeOqKNW/piETaCg8rqKFy+Pm6KEk7e36/5YZE5XO/OaFdO+/Aw3O8qZ9qDPKVUgx"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"
+            integrity="sha384-WJdEkJKrbsqw0evQ4GB6mlsKe5cGTxBOw4KAEIa52ZLB7DDpliGkwdme/HMa5n1m"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"
+            integrity="sha384-YxCco6ByOY5rJ3jD18514fa8w5so07zigIyV6tZa3CWSE5vYrbDSuFkZ5zOknnZ6"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"
+            integrity="sha384-DioAMZB4yk91W6LuFit5wJDh8c5Ov09f/MBvja94y0PodMqTpTZeBeejqpRUru7D"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"
+            integrity="sha384-gaD4ncierlmWk42Z3BmTp37/z+Dqt8V4Wf74UjTvFeo+M+SgnEI6Ysd98pWhksQv"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"
+            integrity="sha384-NiOrAquf32LSG3Vuig99LKS03EZPUuM8a51NOp+XXsqx08hUVo3wbNWALY7K/2J8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"
+            integrity="sha384-RhrmFFMb0ZCHImjFMpR/UE3VEtIVTCtNrtKQqXCzqXZNJala02N3UbVhi+qzw3CY"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"
+            integrity="sha384-AKAiycghK0jDCjD+aavMHzDkLzRR7Yzcwh3+xL/295cvyVMe+cxQfyQC8xxGGcI8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"
+            integrity="sha384-/MKWdycCDliku23mP5sYXbZNuXrzgmQO/jsVxwPFn99dVOaXRyKsqDjarqpueGAp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"
+            integrity="sha384-44ggPevoK6FC5kDMdbbWoMCAFkSCwaRoXXtKMkslR2lf8Ra3OSzCRrFIyeK+TQBi"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"
+            integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
+            crossorigin="anonymous"></script>
+
+    <script src="../../script.js?v=20260525"></script>
+</body>
+</html>

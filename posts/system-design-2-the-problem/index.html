@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design #2: The Problem - DevelByte Blog</title>
+    <meta name="description" content="System Design 2: The Problem ![Photo by [Med Badr Chemmaoui](https://unsplash.com/@medbadrc?utm_source=medium&utm_medium=referral) on [Unsplash](https...">
+    <meta name="author" content="Narendra Kumar">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' https://cdnjs.cloudflare.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                   font-src 'self' https://fonts.gstatic.com;
+                   img-src 'self' https://github.com data:;">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://develbyte.in/system-design-2-the-problem/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="System Design #2: The Problem">
+    <meta property="og:description" content="System Design 2: The Problem ![Photo by [Med Badr Chemmaoui](https://unsplash.com/@medbadrc?utm_source=medium&utm_medium=referral) on [Unsplash](https...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://develbyte.in/system-design-2-the-problem/">
+    <meta property="og:image" content="https://develbyte.in/og-image.png">
+    <meta property="og:site_name" content="DevelByte">
+    <meta property="article:published_time" content="2023-05-08">
+    <meta property="article:author" content="Narendra Kumar">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@im-naren">
+    <meta name="twitter:title" content="System Design #2: The Problem">
+    <meta name="twitter:description" content="System Design 2: The Problem ![Photo by [Med Badr Chemmaoui](https://unsplash.com/@medbadrc?utm_source=medium&utm_medium=referral) on [Unsplash](https...">
+    <meta name="twitter:image" content="https://develbyte.in/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="alternate icon" href="../../favicon.ico">
+
+    <!-- Resource Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" as="style" href="../../styles.css?v=20260525">
+    <link rel="preload" as="script" href="../../script.js?v=20260525">
+
+    <link rel="stylesheet" href="../../styles.css?v=20260525">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+          rel="stylesheet"
+          integrity="sha384-wFjoQjtV1y5jVHbt0p35Ui8aV8GVpEZkyF99OXWqP/eNJDU93D3Ugxkoyh6Y2I4A"
+          crossorigin="anonymous" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "System Design #2: The Problem",
+      "description": "System Design 2: The Problem ![Photo by [Med Badr Chemmaoui](https://unsplash.com/@medbadrc?utm_source=medium&utm_medium=referral) on [Unsplash](https...",
+      "image": "https://develbyte.in/og-image.png",
+      "datePublished": "2023-05-08",
+      "dateModified": "2023-05-08",
+      "author": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in/about.html"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Narendra Kumar",
+        "url": "https://develbyte.in"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://develbyte.in/system-design-2-the-problem/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scanlines"></div>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+            </div>
+            <div class="terminal-title">narendra@develbyte: ~/blog/posts</div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="prompt-line prompt-line-compact">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text"><a href="../../index.html" class="command-link">cd $HOME</a></span>
+            </div>
+            <div class="prompt-line">
+                <span class="prompt">❯ guest@develbyte:$</span>
+                <span class="command typed-text">cat ./posts/system-design-2-the-problem/</span>
+            </div>
+
+            <article class="content-area fade-in post-content" id="main-content">
+                <header class="post-header">
+                    <h1 class="post-main-title">System Design #2: The Problem</h1>
+                    <div class="post-meta-full">
+                        <span class="meta-item"><span class="meta-label">DATE:</span> 2023-05-08</span>
+                        <span class="meta-item"><span class="meta-label">TAGS:</span> system-design, architecture, requirements</span>
+                        <span class="meta-item"><span class="meta-label">TIME:</span> 5 min read</span>
+                    </div>
+                </header>
+
+                <!-- Optional: Table of Contents -->
+                <!-- <div class="table-of-contents">
+                    <div class="toc-title">// TABLE OF CONTENTS</div>
+                    <ol>
+                        <li><a href="#section1">Section 1</a></li>
+                        <li><a href="#section2">Section 2</a></li>
+                    </ol>
+                </div> -->
+
+                <!-- START YOUR CONTENT HERE -->
+<h1>System Design #2: The Problem</h1>
+<img src="https://unsplash.com/@medbadrc?utm_source=medium&utm_medium=referral" alt="Photo by <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Med Badr Chemmaoui" loading="lazy"> on [Unsplash</a>](/img/system-design-2-the-problem-01.jpg)
+<p>Hello 👋 there!</p>
+<p>Welcome to the second blog in the system design series. In the previous blog, we discussed <a href="https://medium.com/develbyte/system-design-1-introduction-e227e1389073">the fundamental concerns of system design</a>.</p>
+<p>If you have any feedback or would like to start a discussion, feel free to hit me up on my Twitter <a href="https://twitter.com/_imnaren">@_imnaren</a> or on <a href="https://www.linkedin.com/in/im-naren">LinkedIn</a>. I’m always down for a good chat.</p>
+<p>In this blog, we will discuss one of the most critical steps in the system design process, which is analysing <strong>The Problem</strong> itself. Many engineers, even experienced ones, make the mistake of jumping into solutions without thoroughly analysing the problem statement.</p>
+<p>Analysing the problem statement is a crucial step in the process, as it helps identify the key requirements and constraints of the system and influences the design decision. Getting this step wrong can lead to an expensive journey of course correction.</p>
+<p>Some of the essential aspects to consider when analysing any problem statement include:</p>
+<ul>
+<li><strong>Stakeholders</strong> — Identify the stakeholders who will be impacted by the system, such as end-users, administrators, managers, and other relevant parties. Understanding the needs and expectations of stakeholders is essential in designing a system that meets their requirements. For example, in a ride-sharing application, end-users expect a simple and user-friendly interface, whereas administrators require real-time data on driver and rider activity.</li>
+<li><strong>Latency</strong> — Latency is the time it takes for a packet of data to travel from its source to its destination. Knowing the required latency for your system is critical for making design decisions. In some systems, lower latency is non-negotiable, such as in an online streaming service, where any delay in video or audio can lead to a poor user experience. In contrast, a system that processes non-time-sensitive data, such as a batch processing system, can tolerate higher latency.</li>
+<li><strong>Throughput</strong> — Throughput refers to the rate at which data is transmitted over a communication channel or processed by a computing system. High throughput is desirable in a file transfer application, as it allows files to be transferred quickly. In a video conferencing application, high throughput is needed to transmit video and audio data in real time without delay or interruption. However, applications that involve transmitting text-based data, such as email, instant messaging, and chat applications, don’t necessarily require high throughput.</li>
+<li><strong>Availability</strong> — Availability is the ability of a system to be continuously operational for a desirably long period. High availability is measured as a percentage, with 100% meaning a service that has 0 downtimes. Most services fall between 99% and 100%. some systems are required to be available 24x7x365 some might only be during working hours? For example, for An orders platform for a stock broker, it would be a waste of resources to keep it running beyond trading hours, whereas the service of the order in e-commerce would need to be available all the time.</li>
+</ul>
+<p>Depending on the domain and business requirements, there could be more dimensions to analyse, such as data scan, compliance requirements, data privacy, etc. The idea is to understand the requirements both quantitatively and qualitatively and understand the acceptable trade-offs.</p>
+<p>For example, in a healthcare system, compliance with HIPAA regulations is critical. Any system that processes protected health information (PHI) must ensure the confidentiality, integrity, and availability of PHI. This requirement significantly influences the design of the system and may lead to additional security measures such as encryption and access control.</p>
+<p>This analysis will help you estimate the system’s capacity or performance requirements and project the cost and budgeting requirements.</p>
+<strong>Lets take a real world example :</strong>
+<div class="callout callout-info"><div class="callout-content">A retail company wants to build a data processing system to analyse its customer data and generate insights to improve its sales and marketing strategies. The system should be able to process 1 million customer records per day and provide insights in near real-time.</div></div>
+<strong>Stakeholders</strong>:
+<p>Marketing and sales teams will be using the insights generated by the system to improve their strategies.</p>
+<strong>Latency</strong>:
+<p>Since the system is expected to provide insights in near real-time, the latency requirements are critical.</p>
+<p>Let’s assume that the company wants insights to be generated within 5 seconds of a customer record being processed. This means that the system must be able to process 200,000 records per second (1 million records / 5 seconds).</p>
+<strong>Throughput</strong>:
+<p>In addition to the latency requirements, the system must also be able to process 1 million customer records per day. This means that the system must be able to process 11.6 customer records per second (1 million records / 86,400 seconds in a day).</p>
+<strong>Availability</strong>:
+<p>Since the retail company operates 24x7x365, the data processing system must also be available at all times. This means that the system should have high availability, with minimal downtime for maintenance or upgrades.</p>
+<p>Other considerations: The system should also be designed to handle large amounts of data, with built-in redundancy and fault tolerance to prevent data loss or system failure. Additionally, the system must comply with data privacy regulations, such as GDPR and CCPA, to ensure the protection of customer data.</p>
+<p>Calculations:</p>
+<ul>
+<li>Latency: To meet the 5-second latency requirement, the system must be able to process 200,000 records per second. This means that each record should take no more than 5 microseconds to process (5 seconds / 1 million records). If the system takes longer than 5 microseconds per record, the latency requirements will not be met.</li>
+<li>Throughput: To process 1 million records per day, the system must be able to process 11.6 records per second. This means that each record should take no more than 86.4 milliseconds to process (86,400 seconds in a day / 1 million records). If the system takes longer than 86.4 milliseconds per record, the throughput requirements will not be met.</li>
+</ul>
+<p>By analysing the problem statement and identifying the key requirements and constraints, we can now make design decisions that will meet the needs of the stakeholders and ensure the success of the system.</p>
+<!-- END YOUR CONTENT HERE -->
+
+                <footer class="post-footer-nav">
+                    <a href="../../index.html" class="footer-nav-link">❯ cd $HOME<span class="cursor">_</span></a>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+    <!-- Prism.js Core -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+            integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt"
+            crossorigin="anonymous"></script>
+    <!-- Prism.js Language Support -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"
+            integrity="sha384-JyDgFjMbyrE/TGiEUSXW3CLjQOySrsoiUNAlXTFdIsr/XUfaB7E+eYlR+tGQ9bCO"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"
+            integrity="sha384-9WmlN8ABpoFSSHvBGGjhvB3E/D8UkNB9HpLJjBQFC2VSQsM1odiQDv4NbEo+7l15"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"
+            integrity="sha384-Uh6n44GRSQeQSMIIfAjlbqojWR7F5KALTHNsspuLDrNCsXpDPRdZbJ5A42AP/cA4"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"
+            integrity="sha384-D44bgYYKvaiDh4cOGlj1dbSDpSctn2FSUj118HZGmZEShZcO2v//Q5vvhNy206pp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"
+            integrity="sha384-PeOqKNW/piETaCg8rqKFy+Pm6KEk7e36/5YZE5XO/OaFdO+/Aw3O8qZ9qDPKVUgx"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"
+            integrity="sha384-WJdEkJKrbsqw0evQ4GB6mlsKe5cGTxBOw4KAEIa52ZLB7DDpliGkwdme/HMa5n1m"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"
+            integrity="sha384-YxCco6ByOY5rJ3jD18514fa8w5so07zigIyV6tZa3CWSE5vYrbDSuFkZ5zOknnZ6"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"
+            integrity="sha384-DioAMZB4yk91W6LuFit5wJDh8c5Ov09f/MBvja94y0PodMqTpTZeBeejqpRUru7D"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"
+            integrity="sha384-gaD4ncierlmWk42Z3BmTp37/z+Dqt8V4Wf74UjTvFeo+M+SgnEI6Ysd98pWhksQv"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"
+            integrity="sha384-NiOrAquf32LSG3Vuig99LKS03EZPUuM8a51NOp+XXsqx08hUVo3wbNWALY7K/2J8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"
+            integrity="sha384-RhrmFFMb0ZCHImjFMpR/UE3VEtIVTCtNrtKQqXCzqXZNJala02N3UbVhi+qzw3CY"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"
+            integrity="sha384-AKAiycghK0jDCjD+aavMHzDkLzRR7Yzcwh3+xL/295cvyVMe+cxQfyQC8xxGGcI8"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"
+            integrity="sha384-/MKWdycCDliku23mP5sYXbZNuXrzgmQO/jsVxwPFn99dVOaXRyKsqDjarqpueGAp"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"
+            integrity="sha384-44ggPevoK6FC5kDMdbbWoMCAFkSCwaRoXXtKMkslR2lf8Ra3OSzCRrFIyeK+TQBi"
+            crossorigin="anonymous"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"
+            integrity="sha384-s888ApkYHxfPsp8n81g77Unl/0XYnYltLvWbwqKHcheRE8/dZPlT4IjW3mRGv/Hd"
+            crossorigin="anonymous"></script>
+
+    <script src="../../script.js?v=20260525"></script>
+</body>
+</html>
